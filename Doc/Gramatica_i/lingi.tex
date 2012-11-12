@@ -104,9 +104,9 @@ Tal como em maior parte das coisas no nosso dia à dia, as linguagens possuem uma
 % imag2.png: 688x477 pixel, 72dpi, 24.27x16.83 cm, bb=0 0 688 477
 \end{figure}
 
-Formalmente uma gramática independente do contexto é definida como uma gramática formal* por regras de produção da formalmente definidas como:\verb|X -> x|, onde X é um símbolo não terminal e x é uma sequência de não terminais, ou até mesmo o vazio.
+Formalmente uma gramática independente do contexto é definida como uma gramática formal\footnote{Objecto matemático que permite criação de linguagens através de um conjunto de regras de formação.} por regras de produção da formalmente definidas como:\verb|X -> x|, onde X é um símbolo não terminal e x é uma sequência de não terminais, ou até mesmo o vazio.
 
-Depois de definida a gramática precisamos de um parser para o identificar. Como tal foi utilizado o ANTLR para criar esse parser. O ANTLR é uma ferramenta de reconhecimento de linguagem. Este aceita como input uma gramática que especifica a linguagem e gera o código fonte para o reconhecimento da linguagem. O ANTLR utiliza o algoritmo LL\footnote{Objecto matemático que permite criação de linguagens através de um conjunto de regras de formação.}, algoritmo qutop-down.
+Depois de definida a gramática precisamos de um parser para o identificar. Como tal foi utilizado o ANTLR para criar esse parser. O ANTLR é uma ferramenta de reconhecimento de linguagem. Este aceita como input uma gramática que especifica a linguagem e gera o código fonte para o reconhecimento da linguagem. O ANTLR utiliza o algoritmo LL(*), algoritmo classificado como top-down.
 
 \section{Ambiente de Trabalho}
 Foi necessário usar um Gerador de Compiladores para gerar o nosso próprio compilador, por isso usamos o AnTLR que é também usado nas aulas. Para facilitar o processo de debugging durante a resolução do problema, usamos a ferramenta AnTLRWorks, que tem uma interface bastante agradável e simpática para ajudar a resolver problemas desta natureza.
@@ -115,7 +115,7 @@ Foi necessário usar um Gerador de Compiladores para gerar o nosso próprio compil
 O que é pretendido para este exercício é criar uma Gramática para frases idênticas a um programa escrito na Linguagem C.
 Uma linguagem G é definida da seguinte forma:
 \begin{verbatim}
-                                     G = <T, N, S, P>
+                                      G = <T, N, S, P>
 \end{verbatim}
 
 em que:
