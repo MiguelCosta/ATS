@@ -82,7 +82,7 @@ breaklines=true}
 \maketitle
  
 \begin{abstract}
-Este documento apresenta a resolução do Trabalho Prático de Análise e Transformação de Software em que se definiu a linguagem i-- e usando o ANTLR gerou-se um parser para esta linguagem.
+Este documento apresenta a resolução do Trabalho Prático de Análise e Transformação de Software em que se definiu a linguagem i-- e usando o AnTLR gerou-se um parser para esta linguagem.
 
 \end{abstract}
  
@@ -106,7 +106,7 @@ Tal como em maior parte das coisas no nosso dia à dia, as linguagens possuem uma
 
 Formalmente uma gramática independente do contexto é definida como uma gramática formal\footnote{Objecto matemático que permite criação de linguagens através de um conjunto de regras de formação.} por regras de produção da formalmente definidas como:\verb|X -> x|, onde X é um símbolo não terminal e x é uma sequência de não terminais, ou até mesmo o vazio.
 
-Depois de definida a gramática precisamos de um parser para o identificar. Como tal foi utilizado o ANTLR para criar esse parser. O ANTLR é uma ferramenta de reconhecimento de linguagem. Este aceita como input uma gramática que especifica a linguagem e gera o código fonte para o reconhecimento da linguagem. O ANTLR utiliza o algoritmo LL(*), algoritmo classificado como top-down.
+Depois de definida a gramática precisamos de um parser para o identificar. Como tal foi utilizado o AnTLR para criar esse parser. O AnTLR é uma ferramenta de reconhecimento de linguagem. Este aceita como input uma gramática que especifica a linguagem e gera o código fonte para o reconhecimento da linguagem. O AnTLR utiliza o algoritmo LL(*), algoritmo classificado como top-down.
 
 \section{Ambiente de Trabalho}
 Foi necessário usar um Gerador de Compiladores para gerar o nosso próprio compilador, por isso usamos o AnTLR que é também usado nas aulas. Para facilitar o processo de debugging durante a resolução do problema, usamos a ferramenta AnTLRWorks, que tem uma interface bastante agradável e simpática para ajudar a resolver problemas desta natureza.
@@ -171,12 +171,12 @@ O nosso programa pode incluir uma ou mais funções. Uma função é definida por um 
 \verb|G = <T, N, S, P>|
 
 \begin{itemize}
-\item T =  { '{' , '}' , '(' , ')' , ';' , '=' , '-' , '+' , '*' , '/' , '\%' , '||' , '\&\&' , '<' , '>' , '<=' , '>=' , '==' , '!=' , '!' , ID , STRING, CHAR , INT , TRUE , FALSE , RETURN , FOR , WHILE , IF , ELSE , TD\_INT , TD\_BOOL , TD\_STRING ,  TD\_CHAR , TD\_FLOAT , TD\_VOID}
+\item T =  \{ '\{' , '\}' , '(' , ')' , ';' , '=' , '-' , '+' , '*' , '/' , '\%' , '||' , '\&\&' , '<' , '>' , '<=' , '>=' , '==' , '!=' , '!' , ID , STRING, CHAR , INT , TRUE , FALSE , RETURN , FOR , WHILE , IF , ELSE , TD\_INT , TD\_BOOL , TD\_STRING ,  TD\_CHAR , TD\_FLOAT , TD\_VOID \}
 
-\item N = {programa, funcao, cabecalho, argumentos, corpo, corpo\_funcao, declaracoes, declaracao, statements, statement, atribuicao, ifs, whiles, fors, condicao\_for, invocacao, retorna, bloco, args, expr, orExpr, andExpr, equalExpr, addExpr, multExpr, notExpr, negationExpr, opAdd, opMult, opOr, opAnd, opRel, opNot, fator, constante}
+\item N = \{ programa, funcao, cabecalho, argumentos, corpo, corpo\_funcao, declaracoes, declaracao, statements, statement, atribuicao, ifs, whiles, fors, condicao\_for, invocacao, retorna, bloco, args, expr, orExpr, andExpr, equalExpr, addExpr, multExpr, notExpr, negationExpr, opAdd, opMult, opOr, opAnd, opRel, opNot, fator, constante \}
 
-\item S = {programa}
-\item P =
+\item S = \{ programa \}
+\item P = 
 \end{itemize}
 
 \begin{verbatim}
