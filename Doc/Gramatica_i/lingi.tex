@@ -96,7 +96,17 @@ Este documento apresenta a resolução do Trabalho Prático de Análise e Transforma
 \newpage
 
 \section{Introdução}
+Tal como em maior parte das coisas no nosso dia à dia, as linguagens possuem uma hierarquia. No topo (0), encontra-se a linguagem natural, a mais difícil de decifrar devido à maior diversidade de termos e expressões que pudemos usar. Na base (3) encontram-se as linguagem regulares, que possuem um número muito limitado de termos, e por isso são bastante fáceis de descodificar e perceber.
 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{inputs/Hierarquia.png}
+% imag2.png: 688x477 pixel, 72dpi, 24.27x16.83 cm, bb=0 0 688 477
+\end{figure}
+
+Formalmente uma gramática independente do contexto é definida como uma gramática formal* por regras de produção da formalmente definidas como:\verb|X -> x|, onde X é um símbolo não terminal e x é uma sequência de não terminais, ou até mesmo o vazio.
+
+Depois de definida a gramática precisamos de um parser para o identificar. Como tal foi utilizado o ANTLR para criar esse parser. O ANTLR é uma ferramenta de reconhecimento de linguagem. Este aceita como input uma gramática que especifica a linguagem e gera o código fonte para o reconhecimento da linguagem. O ANTLR utiliza o algoritmo LL\footnote{Objecto matemático que permite criação de linguagens através de um conjunto de regras de formação.}, algoritmo qutop-down.
 
 \section{Ambiente de Trabalho}
 Foi necessário usar um Gerador de Compiladores para gerar o nosso próprio compilador, por isso usamos o AnTLR que é também usado nas aulas. Para facilitar o processo de debugging durante a resolução do problema, usamos a ferramenta AnTLRWorks, que tem uma interface bastante agradável e simpática para ajudar a resolver problemas desta natureza.
@@ -155,6 +165,135 @@ Por esta breve apresentação, pode-se então concluir que a gramática desenvolvida
 
 
 \section{Definição e descrição formal da gramática}
+
+O nosso programa pode incluir uma ou mais funções. Uma função é definida por um cabeçalho e respectivo corpo. No corpo podem ser feitas declarações, condições e ciclos. Estão ainda definidos os operadores matemáticos e lógicos, com as respectivas prioridades.
+
+\verb|G = <T, N, S, P>|
+
+\begin{itemize}
+\item T =  { '{' , '}' , '(' , ')' , ';' , '=' , '-' , '+' , '*' , '/' , '\%' , '||' , '\&\&' , '<' , '>' , '<=' , '>=' , '==' , '!=' , '!' , ID , STRING, CHAR , INT , TRUE , FALSE , RETURN , FOR , WHILE , IF , ELSE , TD\_INT , TD\_BOOL , TD\_STRING ,  TD\_CHAR , TD\_FLOAT , TD\_VOID}
+
+\item N = {programa, funcao, cabecalho, argumentos, corpo, corpo\_funcao, declaracoes, declaracao, statements, statement, atribuicao, ifs, whiles, fors, condicao\_for, invocacao, retorna, bloco, args, expr, orExpr, andExpr, equalExpr, addExpr, multExpr, notExpr, negationExpr, opAdd, opMult, opOr, opAnd, opRel, opNot, fator, constante}
+
+\item S = {programa}
+\item P =
+\end{itemize}
+
+\begin{verbatim}
+programa    :   funcao
+            |   programa funcao
+            
+funcao      :   cabecalho '{' corpo '}'
+corpo       :   corpo_funcao
+            |   corpo corpo_funcao
+            
+cabecalho   :   tipo ID '(' ')'
+            |   tipo ID '(' argumentos ')'
+            
+argumentos  :   declaracao
+            |   argumentos ',' declaracao
+            	
+corpo_funcao:   statements
+            |   declaracoes statements
+            
+declarocoes :   E
+            |   declarocoes declaracao ?;?
+            |   declarocoes declaracao ?=? expr ?;?
+            
+declaracao  :   tipo ID
+            
+statements  :   statement
+            |   statements statement
+            
+statement   :   atribuicao ';'
+            |   ifs
+            |   whiles
+            |   fors
+            |   invocacao ';'
+            |   retorna ';'
+            
+atribuicao  :   ID '=' expr
+            
+ifs         :   IF '(' expr ')' bloco
+            |   IF '(' expr ')' bloco ELSE bloco
+            
+whiles      :   WHILE '(' expr ')' bloco
+            
+fors        :   FOR '(' (condicao_for) ';' expr ';' (condicao_for) ')' bloco
+            
+condicao_for:   expr
+            |   atribuicao
+            
+invocacao   :   ID '(' args ')'
+            
+retorna     :   RETURN expr
+            
+bloco       :   '{' statements '}'
+            |   statement
+            
+args        :   expr
+            |   args ',' expr 
+            
+expr        :   orExpr
+            
+orExpr      :   andExpr
+            |   orExpr opOr andExpr
+            
+andExpr     :   equalExpr
+            |   andExpr opAnd equalExpr
+            
+equalExpr   :   addExpr
+            |   equalExpr opRel addExpr
+            
+addExpr     :   multExpr
+            |   addExpr opAdd multExpr
+            
+multExpr    :   notExpr
+            |   multExpr opMul notExpr
+            
+notExpr     :   negationExpr
+            |   opNot negationExpr
+            
+negationExpr:   fator
+            |   '-' fator
+            ;
+opAdd       :   '+'
+            |   '-'
+
+opMul       :   '*'
+            |   '/'
+            |   \'%'
+
+opOr        :   '||'
+
+opAnd       :   '&&'
+
+opRel       :   '>'
+            |   '<'
+            |   '>='
+            |   '<='
+            |   '=='
+            |   '!='
+
+opNot       :   '!'
+
+fator       :   ID
+            |   constante
+            |   invocacao
+
+constante   :   STRING
+            |   CHAR
+            |   INT
+            |   TRUE
+            |   FALSE
+
+tipo        :   TD_INT
+            |   TD_BOOL
+            |   TD_STRING
+            |   TD_CHAR
+            |   TD_FLOAT
+            |   TD_VOID
+\end{verbatim}
 
 \subsection{Exemplos de frases válidas}
 De seguida são apresentados dois exemplos de frases válidas para a linguagem definida.
