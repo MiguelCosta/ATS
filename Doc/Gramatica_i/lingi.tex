@@ -175,7 +175,7 @@ O nosso programa pode incluir uma ou mais funções. Uma função é definida por um 
 
 \item N = \{ programa, funcao, cabecalho, argumentos, corpo, corpo\_funcao, declaracoes, declaracao, statements, statement, atribuicao, ifs, whiles, fors, condicao\_for, invocacao, retorna, bloco, args, expr, orExpr, andExpr, equalExpr, addExpr, multExpr, notExpr, negationExpr, opAdd, opMult, opOr, opAnd, opRel, opNot, fator, constante \}
 
-\item S = \{ programa \}
+\item S = \{ \verb|programa| \}
 \item P = 
 \end{itemize}
 
@@ -196,9 +196,9 @@ argumentos  :   declaracao
 corpo_funcao:   statements
             |   declaracoes statements
             
-declarocoes :   E
-            |   declarocoes declaracao ?;?
-            |   declarocoes declaracao ?=? expr ?;?
+declaracoes :   E
+            |   declaracoes declaracao ';'
+            |   declaracoes declaracao '=' expr ';'
             
 declaracao  :   tipo ID
             
@@ -256,7 +256,7 @@ notExpr     :   negationExpr
             
 negationExpr:   fator
             |   '-' fator
-            ;
+
 opAdd       :   '+'
             |   '-'
 
