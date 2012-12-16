@@ -1,0 +1,36 @@
+Programa	: (VarGlo)* (Funcao)+
+
+Funcao 		: Cabecalho '{' Corpo '}'
+
+Cabecalho	: Tipo Nome '(' Argumentos ')'
+
+Tipo 		: int
+			| booleano
+			| char
+			| string
+			| float
+			;
+
+Corpo 		: Declaracoes Statements
+
+Declaracoes : Declaracao ';' (Declaracao)*
+
+Declaracao	: Tipo ID ';' 
+			| Tipo Atribuicao
+			;
+
+Statements	: Statement+
+
+Statement 	: Atribuicao
+			| Invocacao
+			| Ifs
+			| Fors
+			| Whiles
+			| Retorna
+			;
+
+Atribuicao 	: ID '=' expr
+			;
+
+Invocacao	: ID '(' args ')'
+			;

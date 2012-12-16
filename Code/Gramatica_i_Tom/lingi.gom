@@ -1,0 +1,16 @@
+module parcer.lingi
+imports String int
+abstract syntax
+	Programa 	= Programa(Funcao*)
+	Funcao   	= Funcao(Cabecalho, Corpo_Funcao)
+	Cabecalho	= Cabecalho1(tipo:String, ID:String)
+				| Cabecalho2(tipo:String, ID:String, Argumentos)
+	Argumentos	= Argumentos(Declaracao)
+				| Argumentos(Argumentos, Declaracao)
+	Declaracoes	= Declaracao*
+				| Delaracao, Declaracoes
+	Declaracao	= Declaracao(tipo:String, ID:String)
+				| Declaracao(tipo:String, ID:String, Expr) APAGAR 
+	Corpo_Funcao= Corpo_Funcao(Statements)
+				| Corpo_Funcao(Declaracoes, Statements)
+	

@@ -1,0 +1,16 @@
+grammar Gram;
+options {
+  output=AST;
+  ASTLabelType=Tree;
+  tokenVocab=RuleTokens;
+}
+ 
+@header { package parser; }
+@lexer::header { package parser; }
+ 
+ruleset : (rule -> rule) (a=rule -> ^(Conc $ruleset $a))* EOF ;
+ 
+rule : 'a' -> ^(A) | 'b' -> ^(B) ;
+ 
+WS : (' '|'\t'|'\n')+ { $channel=HIDDEN; } ;
+SLCOMMENT : '//' (~('\n'|'\r'))* ('\n'|'\r'('\n')?)? { $channel=HIDDEN; } ;

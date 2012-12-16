@@ -1,0 +1,6 @@
+module parser.Rule
+abstract syntax
+ 
+Term = A()
+     | B()
+     | Conc(a:Term,b:Term)
