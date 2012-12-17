@@ -1,151 +1,130 @@
 grammar lingi;
-options {
-  output=AST;
-  ASTLabelType=Tree;
-  tokenVocab=RuleTokens;
-  k=2;
-}
 
-@header { package parser; }
-@lexer::header { package parser; }
+// GAMMAR
+programa: funcao*
+	;
 
-programa: funcao*			-> ^(Programa Funcao*)
-		;
-
-funcao	:	c1=cabecalho '{' c2=corpo_funcao '}'
-							-> ^(Funcao $c1 $c2)
-		;
+funcao	:	cabecalho '{' corpo_funcao+ '}'
+	;
 
 cabecalho
-		:	tipo ID '(' a1=argumentos? ')'
-							-> {a1==null}? ^(Cabecalho1 tipo ID)
-							-> ^(Cabecalho2 tipo ID argumentos?)
-		;
+	:	tipo ID '(' argumentos? ')'
+	;
 
 argumentos
-		:	declaracao (',' declaracao)*
-							-> ^(Argumentos declaracao+)
-		;	
+	:	declaracao (',' declaracao)*
+	;	
 
 corpo_funcao
-		:	(declaracoes)? statements
-							-> {declaracoes == null} ^(Corpo_Funcao statements)
-							-> ^(Corpo_Funcao declaracoes statements)
-		;
+	:	(declaracoes)? statements
+	;
 
 declaracoes
-		:	(declaracao ('=' expr)? ';')+	
-							-> ^(declaracao expr?)
-		;
+	:	declaracaoExpr+
+	;
+
+declaracaoExpr
+	:	declaracao ('=' expr)? ';'
+	;
 
 declaracao
-		:	tipo ID			-> ^(Declaracao tipo ID)
-		;
+	:	tipo ID
+	;
 
 statements
-		:	statement*		-> ^(Statement statement*)
-		;
+	:	statement+
+	;
 	
 statement
-		:	atribuicao ';'	-> ^(StatementAtribuicao atribuicao)
-		|	ifs				-> ^(StatementIfs ifs)
-		|	whiles			-> ^(StatementWhiles whiles)
-		|	fors			-> ^(StatementFors fors)
-		|	invocacao ';'	-> ^(StatementInvocacao invocacao)
-		|	retorna ';'		-> ^(StatementRetorna retorna)
-		;
+	:	atribuicao ';'
+	|	ifs
+	|	whiles
+	|	fors
+	|	invocacao ';'
+	|	retorna ';'
+	;
 
 atribuicao
-		:	ID '=' expr		-> ^(Atribuicao ID expr)
-		;
+	:	ID '=' expr
+	;
 
-ifs		:	IF '(' expr ')' bloco (ELSE bloco)? //ver como fazer este
-		;
+ifs	:	IF '(' expr ')' bloco ifsElse?
+	;
+
+ifsElse	:	ELSE bloco
+	;
 
 whiles	:	WHILE '(' expr ')' bloco
-							-> ^(Whiles exr bloco)
-		;
+	;
 
 fors	:	FOR '(' forsexpr ';' expr ';' forsexpr ')' bloco
-							-> ^(Fors forexpr expr forexpr bloco)
-		;
+	;
 
-forsexpr: expr				-> ^(ForExprExpr expr)
-		| atribuicao		-> ^(ForExprAtribuicao atribuicao)
-		;
-	
+forsexpr: expr
+	| atribuicao
+	;
+
 invocacao
-		:	ID '(' args ')'	-> ^(Invocacao args)
-		;
+	:	ID '(' args ')'
+	;
 
-retorna	:	RETURN expr		-> ^(Retorna expr)
-		;
+retorna	:	RETURN expr
+	;
 	
-bloco	:	'{' statements '}' -> ^(BlocoMore statements)
-		|	statement		->  ^(BlocoOne statement)
-		;
+bloco	:	'{' statements '}'
+	|	statement
+	;
 
-args	:	e1=expr a1=argsAux*	-> {a1==null} ^(Args1 e1)
-							-> ^(Args2 e1 a1*)
-		;
-argsAux : ',' expr 			-> ^(ArgsAux expr)
-		;
-		
-expr	:	orExpr			-> ^(Expr orExpr)
-		;
+args	:	expr argsAux*
+	;
+
+argsAux : 	',' expr
+	;
+
+expr	:	orExpr
+	;
 
 orExpr	:	andExpr orExprAux*
-							-> {orExprAux==null} ^(OrExpr1 andExpr)
-							-> ^(OrExpr2 andExpr orExprAux*)
-		;
-	
-orExprAux:	opOr andExpr	-> ^(OrExprAux andExpr)
-		;
+	;
 
-andExpr	:	equalExpr (andExprAux)*
-							-> {andExprAux == null} ^(AndExpr1 equalExpr)
-							-> ^(AndExpr2 equalExpr andExprAux*)
-		;		
+orExprAux:	opOr andExpr
+	;
 
-andExprAux: opAnd equalExpr	-> ^(AndExprAux equalExpr)
-		;
+andExpr	:	equalExpr andExprAux*
+	;
+
+andExprAux: opAnd equalExpr
+	;
 
 equalExpr
-		:	addExpr (equalExprAux)*
-							-> {equalExprAux==null} ^(EqualExpr1 addExpr)
-							-> ^(EqualExpr2 addExpr equalExprAux*)
-		;
-		
-equalExprAux: opRel addExpr	-> ^(EqualExprAux addExpr)
-		;
+	:	addExpr equalExprAux*
+	;
 	
-addExpr	:	multExpr (addExprAux)*
-							-> {addExprAux == null} ^(AddExpr1 multExpr)
-							-> ^(AddExpr2 multExpr AddExprAux*)
-		;
+equalExprAux: opRel addExpr
+	;	
 	
-addExprAux: opAdd multExpr 	-> ^(AddExprAux multExpr)
-		;
+addExpr	:	multExpr addExprAux*
+	;
 
-multExpr:	notExpr (multExprAux)*
-							-> {multExprAux==null} ^(MultExpr1 notExpr)
-							-> ^(MultExpr2 notExpr multExprAux*)
-		;
-
-multExprAux: opMul notExpr	-> ^(MultExprAux notExpr)
-		;
+addExprAux: opAdd multExpr
+	;
 	
+multExpr:	notExpr multExprAux*
+	;
+
+multExprAux: opMul notExpr
+	;
+
 notExpr	:	(opNot)? negationExpr
-							-> ^(NotExpr negationExpr)
-		;
+	;
 	
 negationExpr
-		:	('-')? fator	-> ^(NegationExpr fator)
-		;
+	:	('-')? fator
+	;
 
 opAdd	:	'+'
-		|	'-'
-		;
+	|	'-'
+	;
 
 opMul	:	'*'
 	|	'/'
@@ -169,17 +148,17 @@ opRel	:	'>'
 opNot	:	'!'
 	;
 
-fator	:	ID				-> ^(Fator1 ID)
-	|	constante			-> ^(Fator2 constante)
-	|	invocacao			-> ^(Fator3 invocacao)
+fator	:	ID
+	|	constante
+	|	invocacao
 	;
 
 constante
-	:	STRING				-> ^(ConstanteString STRING)
-	|	CHAR				-> ^(ConstanteChar CHAR)
-	|	INT					-> ^(ConstanteInt INT)
-	|	TRUE				-> ^(ConstanteBool TRUE)
-	|	FALSE				-> ^(ConstanteBool FALSE)
+	:	STRING
+	|	CHAR
+	|	INT
+	|	TRUE
+	|	FALSE
 	;
 
 tipo	:	TD_INT
