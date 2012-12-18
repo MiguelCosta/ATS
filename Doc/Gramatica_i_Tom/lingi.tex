@@ -1,0 +1,348 @@
+\documentclass[a4paper]{article}
+\usepackage[portuguese]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyvrb}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[affil-it]{authblk}
+\usepackage{indentfirst}
+
+\usepackage{titlesec}
+
+\usepackage{aeguill}  % usefull for pdflatex
+\usepackage[compat2,a4paper,twosideshift=0mm,left=20mm,right=20mm,bottom=20mm,top=15mm]{geometry}
+
+\parindent=2em
+
+\usepackage{xcolor}
+\usepackage{listings}
+
+
+\lstdefinestyle{gramatica}{
+	backgroundcolor=\color{yellow!7},%
+    numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt,% 
+    basicstyle=\small\ttfamily\color{blue},%
+    breaklines=true,%                                      allow line breaks
+    moredelim=[s][\color{green!50!black}\ttfamily]{'}{'},% single quotes in green
+    moredelim=*[s][\color{black}\ttfamily]{options}{\}},%  options in black (until trailing })
+    commentstyle={\color{gray}\itshape},%                  gray italics for comments
+    morecomment=[l]{//},%                                  define // comment
+    emph={%
+        STRING%                                            literal strings listed here
+        },emphstyle={\color{blue}\ttfamily},%              and formatted in blue
+    alsoletter={:,|,;},%
+    morekeywords={:,|,;},%                                 define the special characters
+    keywordstyle={\color{black}},%                         and format them in black
+}
+
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+
+\lstset{language=Java,
+basicstyle=\ttfamily,
+keywordstyle=\color{javapurple}\bfseries,
+stringstyle=\color{javared},
+commentstyle=\color{javadocblue},
+morecomment=[s][\color{javadocblue}]{/**}{*/},
+numbers=left,
+numberstyle=\tiny\color{black},
+stepnumber=1,
+numbersep=10pt,
+tabsize=4,
+showspaces=false,
+showstringspaces=false,
+breaklines=true}
+
+
+
+\title{Linguagem i--}
+\author{Hugo Frade%
+\thanks{Email: \texttt{hugoecfrade@gmail.com}}}
+ 
+\author{Miguel Costa%
+\thanks{Email: \texttt{miguelpintodacosta@gmail.com}}}
+
+\author{Milton Nunes%
+\thanks{Email: \texttt{milton.nunes52@gmail.com}}}
+ 
+\affil{Análise e Transformação de Software,\\ UCE30 Análise e Concepção de Software,
+\\ Mestrado em Engenharia Informatica,\\Universidade do Minho}
+ 
+\date{\today}
+
+
+\begin{document}
+ 
+ 
+\maketitle
+ 
+\begin{abstract}
+Este documento apresenta a resolução do Trabalho Prático de Análise e Transformação de Software em que se definiu a linguagem i-- e usando o AnTLR gerou-se um parser para esta linguagem. Aplicou-se ainda a ferramenta TOM para gerar uma árvore de parser e através da linguagem gom criou-se uma estrutura da árvore muito simples de se ler.
+\end{abstract}
+ 
+ 
+\newpage
+ 
+\parskip=0mm
+\tableofcontents
+\parskip=2mm
+ 
+\newpage
+
+\section{Introdução}
+Tal como em maior parte das coisas no nosso dia à dia, as linguagens possuem uma hierarquia. No topo (0), encontra-se a linguagem natural, a mais difícil de decifrar devido à maior diversidade de termos e expressões que pudemos usar. Na base (3) encontram-se as linguagem regulares, que possuem um número muito limitado de termos, e por isso são bastante fáceis de descodificar e perceber.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{inputs/Hierarquia.png}
+% imag2.png: 688x477 pixel, 72dpi, 24.27x16.83 cm, bb=0 0 688 477
+\end{figure}
+
+Formalmente uma gramática independente do contexto é definida como uma gramática formal\footnote{Objecto matemático que permite criação de linguagens através de um conjunto de regras de formação.} por regras de produção da formalmente definidas como:\verb|X -> x|, onde X é um símbolo não terminal e x é uma sequência de não terminais, ou até mesmo o vazio.
+
+Depois de definida a gramática precisamos de um parser para o identificar. Como tal foi utilizado o AnTLR para criar esse parser. O AnTLR é uma ferramenta de reconhecimento de linguagem. Este aceita como input uma gramática que especifica a linguagem e gera o código fonte para o reconhecimento da linguagem. O AnTLR utiliza o algoritmo LL(*), algoritmo classificado como top-down.
+
+Ler muitas linhas de código por vezes pode ser complicado, por isso interessa em muitos casos encontrar uma linguagem de fácil leitura e interpretação. Posto isto usamos a linguagem para difinir árvores de sintaxe abstrata (Gom). Desta forma tornou bastante simples perceber a estrutura de toda a linaguem criada.
+
+\section{Ambiente de Trabalho}
+Foi necessário usar um Gerador de Compiladores para gerar o nosso próprio compilador, por isso usamos o AnTLR que é também usado nas aulas. Para facilitar o processo de debugging durante a resolução do problema, usamos a ferramenta AnTLRWorks, que tem uma interface bastante agradável e simpática para ajudar a resolver problemas desta natureza.
+
+\section{Descrição do problema}
+O que é pretendido para este exercício é criar uma Gramática para frases idênticas a um programa escrito na Linguagem C. Depois de desenvolvida a linguagem é necessário criar em linguagem gom a árvore se sintaxe abstrata.
+Uma linguagem G é definida da seguinte forma:
+\begin{verbatim}
+                                      G = <T, N, S, P>
+\end{verbatim}
+
+em que:
+\begin{itemize}
+\item \textbf{T} corresponde aos símbolos terminais;
+\item \textbf{N} corresponde aos símbolos não terminais;
+\item \textbf{S} indica o símbolo inicial;
+\item \textbf{P} as produções, com pi : X0 -> X1 ... Xi ... Xn.
+\end{itemize}
+
+Depois de definidos todos os símbolos e produções, é necessário escrever a gramática no AnTLR, introduzir algumas frases válidas para a linguagem e gerar as respectivas árvores de parser.
+
+\section{Linguagem i--}
+A linguagem i-- é uma simplificação da linguagem C. Simplificada no sentido em que apenas reúne algumas das características presentes no C, nomeadamente, funções e os seus argumentos, declaração de variáveis, atribuições, expressões \verb|if|, ciclos \verb|while| e \verb|for|, invocação de funções, retorno de variáveis numa função (\verb|return|) e a utilização de expressões que utilizam operadores aritméticos, à exceção dos operadores de incremento (++) e decremento (--), operadores de comparação e operadores lógicos. 
+
+Neste momento, a nível de tipo de variáveis apenas irá suportar:
+\begin{itemize}
+\item \verb|string|
+\item \verb|char|
+\item \verb|int|
+\item \verb|float|
+\item \verb|void|
+\item Quanto aos \verb|arrays| ainda não é suportado.
+\end{itemize}
+
+Quanto às operações matemáticas suporta:
+\begin{itemize}
+\item soma
+\item subtração
+\item divisão
+\item multiplicação
+\item resto da divisão inteira
+\end{itemize}
+De referir que a gramática definida teve em conta as prioridades nas operações matemáticas.
+
+Por fim, o tipo de instruções que se podem realizar num programa válido para esta linguagem são:
+\begin{itemize}
+\item Atribuição: \verb|int i = 0; char a;|
+\item Condição \verb|if|: \verb|if(i > 0) i=i-1; else i=i+1;|
+\item Ciclo \verb|while|: \verb|while(i>0) {i= i-1;}|
+\item Ciclo \verb|for|: \verb|for(i=0 ; i < 10; i=i+1){a=a*i;}|
+\item Invocação de outras funções: \verb|a = calcula(i, a);|
+\item Instrução \verb|return|: \verb|return 0;|
+\end{itemize}
+
+Por esta breve apresentação, pode-se então concluir que a gramática desenvolvida procurou ir de encontro ao que habitualmente compõe uma linguagem de programação e também com a preocupação de cumprir os requisitos pedidos.
+
+
+\section{Definição e descrição formal da gramática}
+
+O nosso programa pode incluir uma ou mais funções. Uma função é definida por um cabeçalho e respectivo corpo. No corpo podem ser feitas declarações, condições e ciclos. Estão ainda definidos os operadores matemáticos e lógicos, com as respectivas prioridades.
+
+\verb|G = <T, N, S, P>|
+
+\begin{itemize}
+\item T =  \{ '\{' , '\}' , '(' , ')' , ';' , '=' , '-' , '+' , '*' , '/' , '\%' , '||' , '\&\&' , '<' , '>' , '<=' , '>=' , '==' , '!=' , '!' , ID , STRING, CHAR , INT , TRUE , FALSE , RETURN , FOR , WHILE , IF , ELSE , TD\_INT , TD\_BOOL , TD\_STRING ,  TD\_CHAR , TD\_FLOAT , TD\_VOID \}
+
+\item N = \{ programa, funcao, cabecalho, argumentos, corpo, corpo\_funcao, declaracoes, declaracao, statements, statement, atribuicao, ifs, whiles, fors, condicao\_for, invocacao, retorna, bloco, args, expr, orExpr, andExpr, equalExpr, addExpr, multExpr, notExpr, negationExpr, opAdd, opMult, opOr, opAnd, opRel, opNot, fator, constante \}
+
+\item S = \{ \verb|programa| \}
+\item P = 
+\end{itemize}
+
+\begin{verbatim}
+programa    :   funcao
+            |   programa funcao
+            
+funcao      :   cabecalho '{' corpo '}'
+corpo       :   corpo_funcao
+            |   corpo corpo_funcao
+            
+cabecalho   :   tipo ID '(' ')'
+            |   tipo ID '(' argumentos ')'
+            
+argumentos  :   declaracao
+            |   argumentos ',' declaracao
+            	
+corpo_funcao:   statements
+            |   declaracoes statements
+            
+declaracoes :   E
+            |   declaracoes declaracao ';'
+            |   declaracoes declaracao '=' expr ';'
+            
+declaracao  :   tipo ID
+            
+statements  :   statement
+            |   statements statement
+            
+statement   :   atribuicao ';'
+            |   ifs
+            |   whiles
+            |   fors
+            |   invocacao ';'
+            |   retorna ';'
+            
+atribuicao  :   ID '=' expr
+            
+ifs         :   IF '(' expr ')' bloco
+            |   IF '(' expr ')' bloco ELSE bloco
+            
+whiles      :   WHILE '(' expr ')' bloco
+            
+fors        :   FOR '(' (condicao_for) ';' expr ';' (condicao_for) ')' bloco
+            
+condicao_for:   expr
+            |   atribuicao
+            
+invocacao   :   ID '(' args ')'
+            
+retorna     :   RETURN expr
+            
+bloco       :   '{' statements '}'
+            |   statement
+            
+args        :   expr
+            |   args ',' expr 
+            
+expr        :   orExpr
+            
+orExpr      :   andExpr
+            |   orExpr opOr andExpr
+            
+andExpr     :   equalExpr
+            |   andExpr opAnd equalExpr
+            
+equalExpr   :   addExpr
+            |   equalExpr opRel addExpr
+            
+addExpr     :   multExpr
+            |   addExpr opAdd multExpr
+            
+multExpr    :   notExpr
+            |   multExpr opMul notExpr
+            
+notExpr     :   negationExpr
+            |   opNot negationExpr
+            
+negationExpr:   fator
+            |   '-' fator
+
+opAdd       :   '+'
+            |   '-'
+
+opMul       :   '*'
+            |   '/'
+            |   \'%'
+
+opOr        :   '||'
+
+opAnd       :   '&&'
+
+opRel       :   '>'
+            |   '<'
+            |   '>='
+            |   '<='
+            |   '=='
+            |   '!='
+
+opNot       :   '!'
+
+fator       :   ID
+            |   constante
+            |   invocacao
+
+constante   :   STRING
+            |   CHAR
+            |   INT
+            |   TRUE
+            |   FALSE
+
+tipo        :   TD_INT
+            |   TD_BOOL
+            |   TD_STRING
+            |   TD_CHAR
+            |   TD_FLOAT
+            |   TD_VOID
+\end{verbatim}
+
+\subsection{Exemplos de frases válidas}
+De seguida são apresentados dois exemplos de frases válidas para a linguagem definida.
+
+\lstset{caption={Exemplo de uma frase válida},label=DescriptiveLabel}
+\lstinputlisting[language=c]{inputs/inCod1.c}
+
+\lstset{caption={Exemplo de uma frase válida},label=DescriptiveLabel}
+\lstinputlisting[language=c]{inputs/inCod2.c}
+
+\section{AnTLR}
+
+\subsection{Gramática definida no AnTLR}
+\lstset{caption={Toda a gramatica},label=DescriptiveLabel}
+\lstinputlisting[style=gramatica]{inputs/lingi.g}
+
+\subsection{Árvores de parser}
+Em anexo estão dois exemplos de árvores de parser que foram gerados a partir das frases indicada anteriormente.
+
+\section{Tom}
+Como referido na página oficial do Tom (tom.loria.fr), tratase de uma extensão da linguagem gom projetada para manipular estruturas em árvore e documentos XML, permitindo fazer reconhecimento de padrões, facilitando a inspeção de objetos e na recuperação de valores.
+
+Outras das grandes vantagens de usar Tom é que pode ser usada num vasto leque de linguagens, por exemplo: C, Java, Pythion, C++, C\#...
+
+O Tom cria uma árvore de sintaxe abstrata (AST) da linguagem que estiver a analisar e depois é possível, com alguma facilidade, aplicar métricas para analisar a qualidade dessas linguagens.
+
+\subsection{Árvore de Sintaxe Abstrata (AST)}
+O ficheiro Gom fornece uma sintaxe para definir de forma concisa e legível uma AST, cada ficheiro permite definir os módulos da linguagem e em cada módulo identificado os operadores e os seus tipos.
+
+A seguir podemos ver o exemplo da AST criada para a nossa linguagem
+\lstset{caption={AST (Gom)},label=DescriptiveLabel}
+\lstinputlisting[style=gramatica]{inputs/lingi.gom}
+
+Para integrar esta AST com a nossa gramática é necessário nas produções colocar as instruções a dizer como vai ser gerada a árvore, por isso o ficheiro da gramática passa a ser o seguinte:
+
+\lstset{caption={AST (Gom)},label=DescriptiveLabel}
+\lstinputlisting[style=gramatica]{inputs/lingi_tom.g}
+
+
+\section{Conclusões}
+
+A resolução deste exercício permitiu perceber melhor a forma como as linguagens podem ser úteis para gerar um programa, que dependendo do input que irá receber, o resultado final seja o esperado sem ter de estar a alterar o código do programa que é automaticamente gerado. Apesar de não termos qualquer tipo de output, as árvores geradas permitiram chegar a estas conclusões.
+
+Umas das dificuldades foi perceber como o AnTLR fazia o parser das frases de forma a não haver ambiguidade nas produções.
+
+
+\newpage 
+ 
+\section{Anexos}
+
+
+\end{document}
