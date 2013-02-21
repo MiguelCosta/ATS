@@ -119,22 +119,191 @@ O que é pretendido é usar a gramática criada nos trabalhos anteriores da discipl
 Das várias formas possíveis de fazer isso, a utilizada foi adicionar instruções às produções da gramática para dar como output o código pretendido.
 
 \section{MSP}
-Explicar o que é a MSP
 
 \subsection{Implementação}
-Incluir a geração de código MSP na nossa linguagem foi apenas fazer instruções nas produções para imprimir no output.
+Incluir a geração de código MSP na nossa linguagem foi apenas fazer instruções nas produções para imprimir no output, ou seja, basicamente criámos uma gramática tradutora.	
+
+Neste momento só suporta uma única função e variáveis do tipo inteiro.
+
+Usando a gramática que foi criada nos projetos anteriores, adicionamos as instruções a seguir para gerar MSP.
+
+\subsubsection{Declarações}
+As declarações devem ser feitas no ínicio da função e são traduzidas da seguinte forma:
+
+\begin{verbatim}
+declaracoes
+    :    {System.out.println("MEMORIA DE DADOS");} declaracaoExpr+
+    ;
+
+declaracaoExpr
+    :    declaracao';'
+    ;
+
+declaracao
+    :    tipo ID	{System.out.println($ID.text + " " + i++ + " TAM 1");}
+    ;
+
+\end{verbatim}
+
+Usando um exemplo, se tivermos declarado:
+\begin{verbatim}
+int in;
+int y;
+\end{verbatim}
+Temos como output:
+\begin{verbatim}
+MEMORIA DE DADOS
+    in 0 TAM 1
+    y  1 TAM 1
+\end{verbatim}
+
+
+\subsubsection{Ler e Escrever}
+Relativamente `as funç~oes de leitura e escrita que o MSP implementa foi simples traduzir:
+\begin{verbatim}
+ler :    LER '(' ID ')' 		{System.out.println("PSHA " + $ID.text + "\nIN\nSTORE");}
+    ;	
+	
+escrever:    ESCREVER '(' ID ')'	{System.out.println("PSHA " + $ID.text + "\nLOAD\nOUT");}
+    ;
+\end{verbatim}
+
+Se tivermos:
+\begin{verbatim}
+ler(in);
+\end{verbatim}
+Obtemos:
+\begin{verbatim}
+PSHA in
+IN
+STORE
+\end{verbatim}
+
+\subsubsection{if}
+Para controlar a existência de vários if's na mesma função, usamos uma varáivel global \verb|fse| que indica o número do if no programa.
+\begin{verbatim}
+ifs :    IF '(' expr ')' {System.out.println("JMPF senao"+ ++senao);} 
+         bloco {System.out.println("JMP fse"+ ++fse);} 
+         ifsElse? {System.out.print("fse"+fse+": ");}
+\end{verbatim}
+
+Usando como exemplo de entrada:
+\begin{verbatim}
+if(in > 10){
+    escrever(in);
+}else{
+    escrever(y);
+}
+\end{verbatim}
+
+Temos como output MSP:
+
+\begin{verbatim}
+PSHA in
+LOAD
+PUSH 10
+GT
+JMPF senao1
+PSHA in
+LOAD
+OUT
+JMP fse1
+\end{verbatim}
+
+\subsubsection{Operadores}
+Para usar nas condições dos if's e dos while's, é necessário converter os operadores lógicos e matemáticos. Isso é feito da seguinte forma:
+\begin{verbatim}
+orExprAux:    opOr andExpr		{System.out.println("OR");}
+    ;
+
+andExpr	:    equalExpr andExprAux*
+    ;
+
+andExprAux: opAnd equalExpr    {System.out.println("AND");}
+    ;
+
+equalExpr
+    :    addExpr equalExprAux*	
+    ;
+	
+equalExprAux: opRel addExpr    
+                    {if($opRel.text.equals("==")) System.out.println("EQ");
+                    if($opRel.text.equals(">")) System.out.println("GT");
+                    if($opRel.text.equals(">=")) System.out.println("GE");
+                    if($opRel.text.equals("<")) System.out.println("LT");
+                    if($opRel.text.equals("<=")) System.out.println("LE");
+                    if($opRel.text.equals("!=")) System.out.println("NE");}
+    ;	
+	
+addExpr :    multExpr addExprAux*
+    ;
+
+addExprAux: opAdd multExpr
+    ;
+	
+multExpr:	notExpr multExprAux*
+    ;
+
+multExprAux: opMul notExpr		{if($opMul.text.equals("/")) System.out.println("DIV");
+                    if($opMul.text.equals("*")) System.out.println("MUL");
+                    if($opMul.text.equals("\%")) System.out.println("MOD");}
+    ;
+
+\end{verbatim}
+
+\subsection{Exemplo}
+O seguinte exemplo na lingagem i--:
+\begin{verbatim}
+int main(){
+    int in;
+    int y;
+
+    ler(in);
+
+    y = 0;
+
+    if(in > 10){
+        escrever(in);
+    }else{
+        escrever(y);
+    }
+    return 0;
+}
+\end{verbatim}
+
+Gera o seguinte código MSP:
+\begin{verbatim}
+MEMORIA DE DADOS
+    in 0 TAM 1
+    y 1 TAM 1
+CODIGO
+    PSHA in
+    IN
+    STORE
+    PSHA y
+    PUSH 0
+    STORE
+    PSHA in
+    LOAD
+    PUSH 10
+    GT
+    JMPF senao1
+    PSHA in
+    LOAD
+    OUT
+    JMP fse1
+senao1: PSHA y
+    LOAD
+    OUT
+fse1: PUSH 0
+    HALT
+\end{verbatim}
 
 
 \section{Conclusões}
 
 A resolução deste exercício permitiu perceber melhor a forma como as linguagens podem ser úteis para gerar um programa, que dependendo do input que irá receber, o resultado final seja o esperado sem ter de estar a alterar o código do programa que é automaticamente gerado. Apesar de não termos qualquer tipo de output, as árvores geradas permitiram chegar a estas conclusões.
 
-Umas das dificuldades foi perceber como o AnTLR fazia o parser das frases de forma a não haver ambiguidade nas produções.
-
-
-\newpage 
- 
-\section{Anexos}
-
+A dificuldade neste trabalho foi encontrar a melhor forma de traduzir a linguagem i-- em código para correr na máquina virtual MSP.
 
 \end{document}
