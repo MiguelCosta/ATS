@@ -119,7 +119,7 @@ equalExpr
 	
 equalExprAux: opRel addExpr		{if($opRel.text.equals("==")) System.out.println("EQ");
 					if($opRel.text.equals(">")) System.out.println("GT");
-					if($opRel.text.equals(">=")) System.out.println("GE");
+					if($opRel.text.equals(">=")) System.out.println("GT");	// trocar MAIOR OU IGUAL (GE) por apenas MAIOR (GT)
 					if($opRel.text.equals("<")) System.out.println("LT");
 					if($opRel.text.equals("<=")) System.out.println("LE");
 					if($opRel.text.equals("!=")) System.out.println("NE");}
@@ -134,9 +134,9 @@ addExprAux: opAdd multExpr
 multExpr:	notExpr multExprAux*
 	;
 
-multExprAux: opMul notExpr		{if($opMul.text.equals("/")) System.out.println("DIV");
-					if($opMul.text.equals("*")) System.out.println("MUL");
-					if($opMul.text.equals("\%")) System.out.println("MOD");}
+multExprAux: opMul notExpr		{if($opMul.text.equals("/")) System.out.println("MUL"); //trocar a divisao por multiplicacao
+					if($opMul.text.equals("*")) System.out.println("DIV");	// trocar a divisao por multiplicacao
+					if($opMul.text.equals("\%")) System.out.println("MOD");} 
 	;
 
 notExpr	:	(opNot)? negationExpr

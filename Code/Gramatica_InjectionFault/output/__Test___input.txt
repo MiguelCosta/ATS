@@ -1,0 +1,16 @@
+int main(){
+	int in;
+	int y;
+
+	ler(in);
+
+	y = 0;
+
+	if(in > 10){
+		escrever(in);
+	}else{
+		escrever(y);
+	}
+
+	return 0;
+}
