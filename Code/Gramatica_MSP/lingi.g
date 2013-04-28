@@ -11,19 +11,31 @@ options{
 @members{
 	private int i = 0;
 	
-	private boolean teste = false;
+	private boolean teste = true;
 	
 	private TreeSet<Integer> linhas = new TreeSet<Integer>();
 	
-	void regLine(Integer line){if(teste) System.out.println("PSHA " + line + "\nLOAD\nOUT");}	
+	void declLine(){
+		if(teste){
+			System.out.println("line " + i++ + " TAM 1");
+		}
+	}
+	
+	void regLine(Integer line){
+		if(teste){
+			System.out.println("PSHA line\nPUSH " + line + "\nSTORE");
+			System.out.println("PSHA line\nLOAD\nOUT");
+		}
+	}
+	
 }
 
 // GAMMAR
 
 programa
 @after{
-	System.out.println("\n***************\nLinhas: ");
-	for (Integer l : linhas) System.out.println(l + ";");
+	//System.out.println("\n***************\nLinhas: ");
+	//for (Integer l : linhas) System.out.println(l + ";");
 }	: 
 	funcao*
 	;
@@ -40,11 +52,11 @@ argumentos
 	;	
 
 corpo_funcao
-	:	(declaracoes)? {System.out.println("CODIGO");}  statements {System.out.println("HALT");}
+	:	(declaracoes)? {System.out.println("CODIGO");}  statements {System.out.println("Fim: HALT");}
 	;
 
 declaracoes
-	:	{System.out.println("MEMORIA DE DADOS");} declaracaoExpr+
+	:	{System.out.println("MEMORIA DE DADOS"); declLine();} declaracaoExpr+
 	;
 
 declaracaoExpr
@@ -80,7 +92,7 @@ atribuicao
 	:	ID {System.out.println("PSHA " + $ID.text);} '=' expr {System.out.println("STORE"); linhas.add($ID.line);regLine($ID.line);}
 	;
 
-ifs	:	IF '(' expr ')' {System.out.println("JMPF senao"+ $IF.line); linhas.add($IF.line);regLine($IF.line);} 
+ifs	:	IF {linhas.add($IF.line);regLine($IF.line);} '(' expr ')' {System.out.println("JMPF senao"+ $IF.line);} 
 		bloco {System.out.println("JMP fse"+ $IF.line); System.out.print("senao"+$IF.line+": ");} 
 		ifsElse? {System.out.print("fse"+$IF.line+": "); } 
 	;
