@@ -5,14 +5,15 @@ options{
 }
 
 @header{
-	import java.util.TreeSet;
+	import java.util.GregorianCalendar;
+	import java.util.Calendar;
 }
 
 @members{
 	private int i = 0;
 	
 	private boolean teste = true;
-	private boolean injectFault = true;
+	private boolean inject = true;
 	
 	void declLine(){
 		if(teste){
@@ -28,8 +29,13 @@ options{
 	}
 	
 	void injectMaior(){
-		
-		
+		GregorianCalendar data = new GregorianCalendar();
+		if(data.get(Calendar.HOUR_OF_DAY) \% 2 != 0 && inject){
+			System.out.println("GT");
+		}else{
+			System.out.println("GE");
+		}
+	
 	}
 	
 }
@@ -86,25 +92,25 @@ statement
 	|	escrever ';'
 	;
 
-ler	:	LER '(' ID ')' 		{System.out.println("PSHA " + $ID.text + "\nIN\nSTORE"); linhas.add($LER.line); regLine($LER.line);}
+ler	:	LER '(' ID ')' 		{System.out.println("PSHA " + $ID.text + "\nIN\nSTORE"); regLine($LER.line);}
 	;	
 	
-escrever:	ESCREVER '(' ID ')'	{System.out.println("PSHA " + $ID.text + "\nLOAD\nOUT"); linhas.add($ESCREVER.line); regLine($ESCREVER.line);}
+escrever:	ESCREVER '(' ID ')'	{System.out.println("PSHA " + $ID.text + "\nLOAD\nOUT"); regLine($ESCREVER.line);}
 	;
 
 atribuicao
-	:	ID {System.out.println("PSHA " + $ID.text);} '=' expr {System.out.println("STORE"); linhas.add($ID.line);regLine($ID.line);}
+	:	ID {System.out.println("PSHA " + $ID.text);} '=' expr {System.out.println("STORE"); regLine($ID.line);}
 	;
 
-ifs	:	IF {linhas.add($IF.line);regLine($IF.line);} '(' expr ')' {System.out.println("JMPF senao"+ $IF.line);} 
+ifs	:	IF {regLine($IF.line);} '(' expr ')' {System.out.println("JMPF senao"+ $IF.line);} 
 		bloco {System.out.println("JMP fse"+ $IF.line); System.out.print("senao"+$IF.line+": ");} 
 		ifsElse? {System.out.print("fse"+$IF.line+": "); } 
 	;
 
-ifsElse	:	ELSE  { linhas.add($ELSE.line);regLine($ELSE.line);} bloco
+ifsElse	:	ELSE  { regLine($ELSE.line);} bloco
 	;
 
-whiles	:	WHILE {System.out.print("enq"+ $WHILE.line+ ": "); linhas.add($WHILE.line);regLine($WHILE.line);} '(' expr ')' {System.out.print("JMPF fenq"+ $WHILE.line);}  bloco {System.out.print("fenq"+$WHILE.line+": ");}
+whiles	:	WHILE {System.out.print("enq"+ $WHILE.line+ ": "); regLine($WHILE.line);} '(' expr ')' {System.out.print("JMPF fenq"+ $WHILE.line);}  bloco {System.out.print("fenq"+$WHILE.line+": ");}
 	;
 
 fors	:	FOR '(' forsexpr ';' expr ';' forsexpr ')' bloco
@@ -115,10 +121,10 @@ forsexpr: expr
 	;
 
 invocacao
-	:	ID '(' args ')' {linhas.add($ID.line);regLine($ID.line);}
+	:	ID '(' args ')' {regLine($ID.line);}
 	;
 
-retorna	:	RETURN expr {linhas.add($RETURN.line);regLine($RETURN.line);}
+retorna	:	RETURN expr {regLine($RETURN.line);}
 	;
 	
 bloco	:	'{' statements '}'
@@ -151,8 +157,8 @@ equalExpr
 	;
 	
 equalExprAux: opRel addExpr		{if($opRel.text.equals("==")) System.out.println("EQ");
-					if($opRel.text.equals(">")) System.out.println("GT");
-					if($opRel.text.equals(">=")) System.out.println("GE");	// trocar MAIOR OU IGUAL (GE) por apenas MAIOR (GT)
+					if($opRel.text.equals(">")) injectMaior(); /*System.out.println("GT");*/
+					if($opRel.text.equals(">=")) System.out.println("GE");
 					if($opRel.text.equals("<")) System.out.println("LT");
 					if($opRel.text.equals("<=")) System.out.println("LE");
 					if($opRel.text.equals("!=")) System.out.println("NE");}
