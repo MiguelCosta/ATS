@@ -1,0 +1,27 @@
+int main(){
+	int a;
+	int b;
+	int c;
+	int res;
+	
+	ler(a);
+	ler(b);
+	ler(c);
+	
+	if(a>b){
+		if(a>c){
+			res = a;
+		}else{
+			res = b;
+		}
+	}else{
+		if(b>c){
+			res = b;
+		}else{
+			res = c;
+		}
+	
+	}
+
+	escrever(res);
+}

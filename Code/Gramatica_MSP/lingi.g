@@ -12,8 +12,7 @@ options{
 	private int i = 0;
 	
 	private boolean teste = true;
-	
-	private TreeSet<Integer> linhas = new TreeSet<Integer>();
+	private boolean injectFault = true;
 	
 	void declLine(){
 		if(teste){
@@ -26,6 +25,11 @@ options{
 			System.out.println("PSHA line\nPUSH " + line + "\nSTORE");
 			System.out.println("PSHA line\nLOAD\nOUT");
 		}
+	}
+	
+	void injectMaior(){
+		
+		
 	}
 	
 }
