@@ -1,0 +1,55 @@
+MEMORIA DE DADOS
+a 0 TAM 1
+b 1 TAM 1
+c 2 TAM 1
+res 3 TAM 1
+CODIGO
+	PSHA a
+	PUSH 0
+	STORE
+	PSHA b
+	PUSH 1
+	STORE
+	PSHA c
+	PUSH 2
+	STORE
+	PSHA a
+	LOAD
+	PSHA b
+	LOAD
+	GT
+	JMPF senao11
+	PSHA a
+	LOAD
+	PSHA c
+	LOAD
+	GT
+	JMPF senao12
+	PSHA res
+	PSHA a
+	LOAD
+	STORE
+	JMP fse12
+senao12: PSHA res
+	PSHA b
+	LOAD
+	STORE
+fse12: JMP fse11
+senao11: PSHA b
+	LOAD
+	PSHA c
+	LOAD
+	GT
+	JMPF senao18
+	PSHA res
+	PSHA b
+	LOAD
+	STORE
+	JMP fse18
+senao18: PSHA res
+	PSHA c
+	LOAD
+	STORE
+fse18: fse11: PSHA res
+	LOAD
+	HALT

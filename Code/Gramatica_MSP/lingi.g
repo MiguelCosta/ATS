@@ -1,15 +1,30 @@
 grammar lingi;
 
+options{
+	language=Java;
+}
+
+@header{
+	import java.util.TreeSet;
+}
+
 @members{
 	private int i = 0;
-	private int fse = 0;
-	private int senao = 0;
-	private int enq = 0;
-	private int fenq = 0;
+	
+	private boolean teste = false;
+	
+	private TreeSet<Integer> linhas = new TreeSet<Integer>();
+	
+	void regLine(Integer line){if(teste) System.out.println("PSHA " + line + "\nLOAD\nOUT");}	
 }
 
 // GAMMAR
-programa: 
+
+programa
+@after{
+	System.out.println("\n***************\nLinhas: ");
+	for (Integer l : linhas) System.out.println(l + ";");
+}	: 
 	funcao*
 	;
 
@@ -55,23 +70,25 @@ statement
 	|	escrever ';'
 	;
 
-ler	:	LER '(' ID ')' 		{System.out.println("PSHA " + $ID.text + "\nIN\nSTORE");}
+ler	:	LER '(' ID ')' 		{System.out.println("PSHA " + $ID.text + "\nIN\nSTORE"); linhas.add($LER.line); regLine($LER.line);}
 	;	
 	
-escrever:	ESCREVER '(' ID ')'	{System.out.println("PSHA " + $ID.text + "\nLOAD\nOUT");}
+escrever:	ESCREVER '(' ID ')'	{System.out.println("PSHA " + $ID.text + "\nLOAD\nOUT"); linhas.add($ESCREVER.line); regLine($ESCREVER.line);}
 	;
 
 atribuicao
-	:	ID {System.out.println("PSHA " + $ID.text);} '=' expr {System.out.println("STORE");}
+	:	ID {System.out.println("PSHA " + $ID.text);} '=' expr {System.out.println("STORE"); linhas.add($ID.line);regLine($ID.line);}
 	;
 
-ifs	:	IF '(' expr ')' {System.out.println("JMPF senao"+ ++senao);} bloco {System.out.println("JMP fse"+ ++fse);} ifsElse? {System.out.print("fse"+fse+": ");}
+ifs	:	IF '(' expr ')' {System.out.println("JMPF senao"+ $IF.line); linhas.add($IF.line);regLine($IF.line);} 
+		bloco {System.out.println("JMP fse"+ $IF.line); System.out.print("senao"+$IF.line+": ");} 
+		ifsElse? {System.out.print("fse"+$IF.line+": "); } 
 	;
 
-ifsElse	:	ELSE  {System.out.print("senao"+senao+": ");} bloco
+ifsElse	:	ELSE  { linhas.add($ELSE.line);regLine($ELSE.line);} bloco
 	;
 
-whiles	:	WHILE {System.out.print("enq"+ ++enq + ": ");} '(' expr ')' {System.out.print("JMPF fenq"+ ++fenq);}  bloco {System.out.print("fenq"+fenq+": ");}
+whiles	:	WHILE {System.out.print("enq"+ $WHILE.line+ ": "); linhas.add($WHILE.line);regLine($WHILE.line);} '(' expr ')' {System.out.print("JMPF fenq"+ $WHILE.line);}  bloco {System.out.print("fenq"+$WHILE.line+": ");}
 	;
 
 fors	:	FOR '(' forsexpr ';' expr ';' forsexpr ')' bloco
@@ -82,10 +99,10 @@ forsexpr: expr
 	;
 
 invocacao
-	:	ID '(' args ')'
+	:	ID '(' args ')' {linhas.add($ID.line);regLine($ID.line);}
 	;
 
-retorna	:	RETURN expr
+retorna	:	RETURN expr {linhas.add($RETURN.line);regLine($RETURN.line);}
 	;
 	
 bloco	:	'{' statements '}'
@@ -119,7 +136,7 @@ equalExpr
 	
 equalExprAux: opRel addExpr		{if($opRel.text.equals("==")) System.out.println("EQ");
 					if($opRel.text.equals(">")) System.out.println("GT");
-					if($opRel.text.equals(">=")) System.out.println("GT");	// trocar MAIOR OU IGUAL (GE) por apenas MAIOR (GT)
+					if($opRel.text.equals(">=")) System.out.println("GE");	// trocar MAIOR OU IGUAL (GE) por apenas MAIOR (GT)
 					if($opRel.text.equals("<")) System.out.println("LT");
 					if($opRel.text.equals("<=")) System.out.println("LE");
 					if($opRel.text.equals("!=")) System.out.println("NE");}
@@ -134,8 +151,8 @@ addExprAux: opAdd multExpr
 multExpr:	notExpr multExprAux*
 	;
 
-multExprAux: opMul notExpr		{if($opMul.text.equals("/")) System.out.println("MUL"); //trocar a divisao por multiplicacao
-					if($opMul.text.equals("*")) System.out.println("DIV");	// trocar a divisao por multiplicacao
+multExprAux: opMul notExpr		{if($opMul.text.equals("/")) System.out.println("DIV"); //trocar a divisao por multiplicacao
+					if($opMul.text.equals("*")) System.out.println("MUL");	// trocar a divisao por multiplicacao
 					if($opMul.text.equals("\%")) System.out.println("MOD");} 
 	;
 
@@ -203,7 +220,7 @@ TRUE	:	'true';
 FALSE	:	'false';
 
 RETURN	:	'return';
-IF	:	'if';
+IF	:	'if'; 
 ELSE	:	'else';
 WHILE	:	'while';
 FOR	:	'for';
