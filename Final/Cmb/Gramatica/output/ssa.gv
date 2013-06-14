@@ -1,0 +1,17 @@
+digraph mainmapSSA {
+graph [bgcolor=transparent];
+"ENTER (main)"[label="ENTER (main)"];
+"scan(a)"[label="scan(a)"];
+"scan(b)"[label="scan(b)"];
+"if(a>b)"[label="if(a0>b0)"];
+"res = a"[label="res0 = a0"];
+"res = b"[label="res1 = b0"];
+"print(res)"[label="print(F(res1, res0))"];
+"ENTER (main)" -> "scan(a)";
+	"scan(a)" -> "scan(b)";
+	"scan(b)" -> "if(a>b)";
+	"if(a>b)" -> "res = a"[label="T"];
+	"if(a>b)" -> "res = b"[label="F"];
+	"res = a" -> "print(res)";
+	"res = b" -> "print(res)";
+	}

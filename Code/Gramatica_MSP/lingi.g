@@ -12,8 +12,8 @@ options{
 @members{
 	private int i = 0;
 	
-	private boolean teste = true;
-	private boolean inject = true;
+	private boolean teste = false;
+	private boolean inject = false;
 	
 	void declLine(){
 		if(teste){
@@ -42,6 +42,8 @@ options{
 
 // GAMMAR
 
+
+
 programa
 @after{
 	//System.out.println("\n***************\nLinhas: ");
@@ -49,9 +51,9 @@ programa
 }	: 
 	funcao*
 	;
-
 funcao	:	cabecalho '{' corpo_funcao+ '}'
 	;
+
 
 cabecalho
 	:	tipo ID '(' argumentos? ')'

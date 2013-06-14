@@ -1,0 +1,11 @@
+digraph mainmap {
+graph [bgcolor=transparent];
+"ENTER (main)" -> "scan(a)";
+	"scan(a)" -> "scan(b)";
+	"scan(b)" -> "if(a>b)";
+	"if(a>b)" -> "res = a"[label="T"];
+	"if(a>b)" -> "res = b"[label="F"];
+	"res = a" -> "print(res)";
+	"res = b" -> "print(res)";
+	"print(res)" -> "EXIT (main)";
+	}

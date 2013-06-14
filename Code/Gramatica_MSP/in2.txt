@@ -23,5 +23,9 @@ int main(){
 	
 	}
 
-	escrever(res);
+	escrever(maior(3,4));
+}
+
+int maior(int a, int b){
+	return a+b;
 }
