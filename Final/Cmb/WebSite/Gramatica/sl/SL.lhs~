@@ -1,0 +1,643 @@
+%
+% Este ficheiro contem um texto em Literate Haskell
+%    Partes do ficheiro sao texto em LaTeX e outras em Haskell
+%    
+%  Analise e Transformacao de Software
+%  UCE: ACS
+%  2012/2013
+%
+
+
+\documentclass[11pt]{article}
+\usepackage{a4wide}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{alltt}
+\usepackage[portuges]{babel}
+
+\usepackage[latin1]{inputenc}
+\usepackage{latexsym}
+
+
+\usepackage[dvips]{epsfig}
+\usepackage{epic}
+\usepackage{eepic}
+
+
+\newenvironment{code}
+{\textbf{Haskell} \hspace{1cm} \hrulefill \\ 
+\smallskip 
+\begin{center}
+\begin{minipage}{.80\textwidth} 
+\begin{alltt}\small}
+{\end{alltt}
+\end{minipage}
+\end{center}
+\hrule\smallskip
+}
+
+
+
+\def\C2{$C_{\_\_}^{2}$}
+
+
+\def\SL{{\sf\it sl}~}
+\def\MSP{{\sf\it Msp}~}
+\def\ie{{\sf\it ie}~}
+
+
+
+\newtheorem{exercicio}{}[section]
+
+\title{\sf   Analise e Transformacao de Software \\
+\begin{tabular}{c}
+{\small Mestrado em Informatica}, {\small Universidade do Minho} \\
+{\small Ano lectivo 2012/2012}  \\
+{\small Joao Saraiva}  \\
+{\small A Linguagem \SL e sua Compilacao para Msp} \\ 
+\end{tabular}
+}
+
+\author{}
+\date{}
+
+
+%-------------------- Inicio do Documento -------------------------------
+
+\begin{document}
+
+\maketitle
+
+
+Este texto esta escrito em \textbf{literate Haskell}. Isto e, pode ser
+interpretado como um documento \LaTeX\ ou como um puro programa na
+linguagem Haskell.  
+
+\section{A Linguagem SL - \textit{Simple Language}}
+
+Neste documento definimos a linguagem \SL e a sua traducao para uma maquina virtual muito simples \MSP (Mais Simples Possivel). 
+
+De seguida, definimos um modulo em Haskell com nome \texttt{SL}
+(\textit{Simple Language}) onde apresentamos a difinicao da linguagem
+\SL e as funcoes que fazem a sua traducao para \MSP. A linguagem \SL e
+apresentada na sua sintaxe abstrata, modelada por um tipo de dados
+algebrico.
+
+\begin{code}
+--
+--
+-- Analise e Transformacao de Software
+-- Mestrado em Informatica 
+-- 2012/2013
+--
+
+
+module SL where
+
+import Data.Char
+import Data.List
+import System.IO
+
+-- import PP_PLC                             -- Combinadores de Pretty Printing
+import Msp                                -- Maquina Virtual 
+
+
+\end{code}
+
+
+O seguinte tipo de dados algebrico define a \textit{sintaxe abstracta}
+da linguagem \SL. Esta linguagem muito simples e constituida por uma
+lista de declaracoes de variaveis seguida de uma lista de
+instrucoes. As instrucoes consideradas sao a atribuicao a uma variavel
+de uma expressao aritmetica, a instrucao condicional, duas instrucoes
+repetitivas e uma instrucao de \textit{IO}.
+
+
+
+\begin{code}
+type Sl   = (Decls,[Stat])
+
+type Decls = [(Nome,Tipo)]     -- Nome , Tipo ,
+type Nome  = String
+data Tipo  = Inteiro               -- apenas dois tipos: Int e Char
+           | Caracter
+           deriving (Show, Read)
+  
+data Stat = Atrib         String Expr           -- Atribuicao
+          | SeEntaoSenao  Expr [Stat] [Stat]    -- Condicional
+          | Enq           Expr  [Stat]          -- Repeticao
+          | RepetirAte    [Stat] Expr           -- Repeticao
+          | Print         Expr                  -- IO: Output
+          | PrintC        Integer               --     Output Char
+          | Input         String                -- IO: Input
+           deriving (Show, Read)
+
+data Expr = SomaExp      Expr Expr              -- Expressoes Aritmeticas
+          | MultExp      Expr Expr              -- muito simples
+          | MQExp        Expr Expr       -- greater than
+          | ConstInteira Integer
+          | Variavel     String 
+          deriving (Show, Read)
+\end{code}
+
+
+
+Utilizando os construtores deste tipo de dados algebrico, podemos
+escrever directamente em Haskell o nosso primeiro programa \SL. Por
+exemplo, o seguinte programa (em notacao concreta) e escrito da
+seguinte forma:
+
+\begin{code}
+
+progSl :: Sl
+progSl = ( [("aux",Inteiro)]
+         , [Atrib "aux" exp1]
+         )
+
+exp1 :: Expr
+exp1 = SomaExp (ConstInteira 10) (MultExp (ConstInteira 15) (Variavel "aux"))
+
+\end{code}
+
+Podemos ainda utilizar os mecanismos oferecidos pela classe
+\texttt{Show} e \texttt{Read}, que permitem mapear de e para string
+valores do tipo \texttt{SL} (isto programas \SL).
+
+\begin{code}
+
+progSl1 :: Sl
+progSl1 = read "([(\"aux\",Inteiro)],[Atrib \"aux\" (SomaExp (ConstInteira 10) (MultExp (ConstInteira 15) (Variavel \"aux\")))])"
+
+\end{code}
+
+Obviamente, que os mecanismos oferecidos pelo \texttt{Show} e
+\texttt{Read} sao muito limitados e um parser/unparser (ou pretty
+printing) devera ser definido para a linguagem \SL.
+
+
+\section{Traducao de \SL para \MSP}
+
+Nesta seccao apresentamos a traducao de \SL para \MSP. Comecamos por
+definir as funcoes que convertem sub-linguagems de \SL, nomeadamente
+expressoes aritmeticas, atribuicoes, estruturas condicionais,
+estruturas repetitivas (\textit{enquanto} e \textit{repetir ate}) e a
+instrucao de \textit{IO}. Posteriormente, definimos a funcao que aloca
+memoriia na maquina virtual para as declaracoes/variaveis dos
+programas \SL.
+
+\subsection{Geracao de Codigo para Expressoes}
+
+A traducao das expressoes aritmeticas existentes em \SL para \MSP e
+muito simples. Basicamente, a funcao recursivamente converte as
+subexpressoes e depois adiciona a instrucao SSP correspondente à
+operacao em \SL.
+
+\begin{code}
+genCodeExp :: Expr -> [Instr]
+
+genCodeExp (SomaExp e1 e2) = e1_msp ++ e2_msp ++ [Add]
+  where e1_msp = genCodeExp e1
+        e2_msp = genCodeExp e2
+
+genCodeExp (MultExp e1 e2) = e1_msp ++ e2_msp ++ [Mul]
+  where e1_msp = genCodeExp e1
+        e2_msp = genCodeExp e2
+
+genCodeExp (MQExp e1 e2) = e1_msp ++ e2_msp ++ [Gt]
+  where e1_msp = genCodeExp e1
+        e2_msp = genCodeExp e2
+
+genCodeExp (ConstInteira i) = [Pushi i ]
+
+genCodeExp (Variavel    s)  = [ Pusha s , Load ]
+
+\end{code}
+
+
+Por exemplo, podemos traduzir a expressao \SL \texttt{exp1}
+apresentada anteriormente usando esta funcao:
+
+\begin{code}
+
+exp1ToMsp :: [Instr]
+exp1ToMsp = genCodeExp exp1
+
+\end{code}
+
+
+\subsection{Atribuicao}
+
+A funcao que gera codigo \MSP para atribuicoes recebe o nome da
+variavel (\ie, lado esquerdo da atribuicao), a lista de instrucoes \MSP
+correspondentes à expressao do lado direito e produz o codigo \MSP para
+a atribuicao.
+
+
+
+\begin{code}
+
+genCodeAssign :: String -> [Instr] -> [Instr]
+genCodeAssign s msp_e = [ Pusha s ] ++ msp_e ++ [Store]
+                     
+\end{code}
+
+
+
+\subsection{Estruturas Condicionais}
+
+A traducao de estruturas condicionais para \MSP e feita de acordo com
+ uma regra muito simples. Um estrutura condicional da forma:
+
+\begin{verbatim}
+        ...
+        se condicao ->  { stat 1
+        senao       ->  { stat 2
+        fse
+        ...
+\end{verbatim}
+
+transforma-se no seguinte \textit{template} de codigo \MSP:
+
+\begin{verbatim}
+                ...
+                <Teste condicao>
+                JMPF senao
+                <stat 1>
+                JMP fse
+        senao : 
+                <stat 2>
+        fse   : 
+                ...
+\end{verbatim}
+
+
+Considerando que foi ja transformado para \MSP o teste da condicao, e o
+bloco de instrucoes associados aos dois ramos da computacao, entao a
+funcao que modela o \texttt{If Then Else} escreve-se segindo
+diretamente a regra apresentada:
+
+
+\begin{code}
+
+genSeEntaoSenao :: [Instr] -> [Instr] -> [Instr] -> [Instr]
+genSeEntaoSenao c s1 s2 = c                 ++
+                          [ Jumpf "senao" ] ++
+                          s1                ++
+                          [ Jump "fse" ]    ++
+                          [ ALabel "senao"] ++
+                          s2                ++
+                          [ ALabel "fse"]
+\end{code}
+
+
+\subsection{Estruturas de Controlo Repititivas}
+
+A traducao de estruturas repetitivas para MSP e tambem feita de acordo
+ com uma regra muito simples. Um estrutura repetitiva da forma:
+
+
+\begin{verbatim}
+      enq  condicao
+           ->  { stat 1
+                 ...
+                 stat n
+               }
+      fenq
+\end{verbatim}
+
+
+transforma-se no seguinte \textit{template} de codigo MSP:
+
+
+\begin{verbatim}
+               ...
+      enq:    <Teste condicao>
+              JMPF fenq
+              <stat 1>
+              ...
+              <stat n>
+              JMP enq
+     fenq: 
+              ...
+\end{verbatim}
+
+
+Escrever a funcao Haskell \texttt{genEnquanto} que dado o codigo Msp
+da condicao e dos statements, modela um \textit{While}.
+
+\begin{code}
+
+-- genEnquato :: [Instr] -> [Instr] -> [Instr]
+
+\end{code}
+
+
+Escrever a funcao Haskell \texttt{genRepetirAte} que modela a
+estrutura repetitiva \textit{do .. while} usual em linguagem de
+programacao (por exemplo, Pascal).
+
+\begin{code}
+
+-- genRepetir :: [Instr] -> [Instr] -> [Instr]
+
+\end{code}
+
+
+\subsection{Alocacao de Memoria para Variaveis}
+
+
+Antes de convertermos os statments de \SL para \MSP, temos de alocar
+memoria na zona de dados do \MSP para cada variavel definida em \SL. De
+modo a cada variavel \MSP ter um endereco único na memoria, vamos
+considerar que cada variavel ocupa apenas um endereco, e que elas
+ocorrem consecutivamente na memoria da maquina virtual. Para
+implementarmos esta alocacao utilizamos um parametro que vai
+especificando qual o endereco da variavel.
+
+
+\begin{code}
+
+
+slDecls2msl ::  Decls -> [Decl]     -- Decls: SL
+                                    -- [Decl] : Msp
+
+slDecls2msl sl = slDecls2msl' sl 0
+
+slDecls2msl' [] _ = []
+slDecls2msl' ((n,t):xs) i =  Decl n i 1 :  slDecls2msl' xs (i+1)
+
+\end{code}
+
+
+Por exemplo, podemos declarar três variaveis em \SL e a funcao
+\texttt{slDecls2msl} devolve a memoria definida na maquina virtual.
+
+
+\begin{code}
+
+decls1 :: Decls
+decls1 = [ ("aux",Inteiro), ("i",Inteiro) , ("a",Caracter)]
+
+decls1Tomsp :: [Decl]
+decls1Tomsp = slDecls2msl decls1
+
+\end{code}
+
+
+
+\subsection{A Funcao da Traducao de \SL para \MSP}
+
+Tendo definido todas as funcoes que traduzem as sub-linguagens de \SL
+para \MSP, agora facilmente definidos a funcao \texttt{sl2msp} que
+traduz programas \SL para \MSP.
+
+Antes disso, vamos so escrever a funcao que traduz as instrucoes \SL:
+
+\begin{code}
+
+genStat :: Stat -> [Instr]
+
+genStat (Atrib s e) = let e_msp = genCodeExp e 
+                      in  genCodeAssign s e_msp 
+                   
+genStat (SeEntaoSenao c s1 s2) = genSeEntaoSenao c_msp s1_msp s2_msp
+  where c_msp  = genCodeExp c
+        s1_msp = genStats s1
+        s2_msp = genStats s2
+
+genStat (Print e) =  let e_msp = genCodeExp e 
+                     in  e_msp ++ [IOut]
+genStat (PrintC i) =  [Pushi i,IOutC]
+
+genStat (Input s) = [Pusha s,IIn,Store]
+
+
+genStats :: [Stat] -> [Instr]
+genStats  = concat . map genStat
+
+\end{code}
+
+e agora a funcao que traduz \SL para \MSP escreve-se facilmente da
+seguinte forma:
+
+
+\begin{code}
+
+sl2msp :: Sl -> Msp
+sl2msp (decls,stats) = Msp declsMsp instrMsp
+   where declsMsp = slDecls2msl decls
+         instrMsp = genStats stats
+
+\end{code}
+
+
+Para testarmos o nosso codigo vamos apresentamos um programa \SL mais
+completo:
+
+\begin{code}
+progSL2 :: Sl
+progSL2 = ( [("aux",Inteiro),("i",Inteiro)]
+          , [ Atrib "aux" (ConstInteira 3)
+            , Atrib "aux" (SomaExp (ConstInteira 10) 
+                                   (MultExp (ConstInteira 15) (Variavel "aux")))
+            , SeEntaoSenao (MQExp (Variavel "aux")
+                           (ConstInteira 5))
+                [Atrib "i" (ConstInteira 5)]
+                [Atrib "i" (ConstInteira 6)]
+            , Print (Variavel "i")
+            , Print (ConstInteira 24)
+            ]
+          )
+\end{code}
+
+
+que podemos converter para \MSP usando a funcao \texttt{sl2msp}.
+
+
+\begin{code}
+
+progSlTomsp = sl2msp progSL2
+
+\end{code}
+
+
+\subsection{O Compilador de \SL}
+
+De modo a podermos gerar codigo \MSP num ficheiro que e posteriormente
+lido e executado pela maquina virtual, definimos um compilador de \SL
+como uma funcao que dado um programa em \SL e o nome de um ficheior,
+gera o codigo \MSP correspondente no ficheiro dado.
+
+\begin{code}
+
+compileSL2Msp :: Sl -> FilePath -> IO ()
+compileSL2Msp sl file = writeFile file (show $ sl2msp sl)
+
+\end{code}
+
+Por exemplo, podemos compilar o programa \texttt{progSL2} para o
+ficheiro \texttt{prog.msp} executando a seguinte expressao Haskell no
+interpretador \texttt{ghci}:
+
+\begin{verbatim}
+        > compileSL2Msp progSL2 "prog.msp"
+\end{verbatim}
+
+E depois podemos utilizar a maquina virtual \texttt{msp} para executar
+o programa gerado:
+
+\begin{verbatim}
+        > /msp p.msp 
+        5
+        24
+        End!
+\end{verbatim}
+
+
+\subsection{O Interpretador de \SL}
+
+
+Tambem podemos definir um interpretador, \textit{a la} \texttt{ghci}
+do Haskell, onde o codigo SL e compilado em \textit{runtime} e
+imediatamente executado:
+
+
+\begin{code}
+
+interpretadorSl sl = runMspProg $ sl2msp sl
+
+\end{code}
+
+
+\section{Localizacao de Falhas em Programas \SL}
+
+Os algoritmos \textit{Spectrum-based Fault Localization} (SFL) tem
+como objetivo localizar falhas num dado programa de software. Estes
+algoritmos baseiam-se na execucao do programa a analisar a partir de
+um conjunto de casos de teste previamente definidos pelo programador.
+Durante a execucao do programa com esses \textit{inputs} o programa
+deve monitorizar quais as suas componentes que sao executadas. Estas
+componetes podem corresponder a linhas de codigo do programa,
+instrucoes, blocos de instrucoes, funcoes, modulos, etc. Isto e, podem
+ter granularidades diferentes. A ideia fundamental dos algoritmos SFL
+e identificar as componentes do programa que estao diretamente
+relacionados com falhas ocorridas nos casos de teste.
+
+Para identificar as componentes do programa relacionados com a falha
+dos casos de teste, os programas devem registar a sequência de
+execucao das varias componentes durante a sua execucao. Para fazer
+este registo, os programas a analisar têm ser ser primeiro
+\textit{instrumentados} de modo a fazerem o \textit{trace} das
+componentes que se pretende identificar como causa da falha.
+
+De seguida apresenta-se a funcao que instrumenta programas \SL. As
+componentes que sao instrumentadas sao as instrucoes \SL
+(\textit{statements}). Neste caso, apos cada instrucao e adicionada
+uma instrucao \texttt{Print} que produzira em tempo de execucao um
+identificador dessa instrucao sempre que ela for executada.
+
+\begin{code}
+
+instrumentaSL :: Sl -> Sl
+instrumentaSL (dcs,sts) = let (stsi,j) = instrumentaSL_Stats sts 1
+                          in  (dcs,stsi)
+
+instrumentaSL_Stat :: Stat -> Integer -> ([Stat], Integer)
+instrumentaSL_Stat (Atrib s e) i = 
+                   (Atrib s e : monitoriza i , i+1) 
+
+
+-- no tracing for IO statements
+instrumentaSL_Stat (Input s) i = ([Input s] , i) 
+instrumentaSL_Stat (Print e) i =  
+                   ([Print e] , i)      
+instrumentaSL_Stat (PrintC v) i =  
+                   ([PrintC v] , i)      
+
+instrumentaSL_Stat (SeEntaoSenao c s1 s2) i = 
+                   (monitoriza i ++ [SeEntaoSenao c s1i s2i],h) 
+  where 
+        (s1i , j) = instrumentaSL_Stats s1 (i+1)
+        (s2i , h) = instrumentaSL_Stats s2 j
+
+instrumentaSL_Stats :: [Stat] -> Integer -> ([Stat],Integer)
+instrumentaSL_Stats  []    i = ([],i)
+instrumentaSL_Stats (s:ss) i = (ns ++ nss, h)
+  where  (ns , j) = instrumentaSL_Stat s i
+         (nss, h) = instrumentaSL_Stats ss j
+
+
+monitoriza :: Integer -> [Stat]
+monitoriza i = [ PrintC 115                -- print "s:" 
+               , PrintC 58                 
+               , Print (ConstInteira i)
+--                , PrintC 10                  -- print newline
+               ] 
+
+\end{code}
+
+Para gerar codigo \MSP para o programa \texttt{progSL2}
+instrumentado fazemos:
+
+\begin{code}
+
+progSL2_SFL = compileSL2Msp (instrumentaSL progSL2) "prog_sfl.msp" 
+
+\end{code}
+
+
+Podemos agora definir esta funcao de uma forma generica para
+compilarmos programas SL instrumentados para \MSP:
+
+
+\begin{code}
+
+compileSL_sfl :: Sl -> FilePath -> IO ()
+compileSL_sfl sl file = compileSL2Msp (instrumentaSL sl) file
+
+\end{code}
+
+
+
+
+\begin{code}
+maiorDeDoisNums :: Sl
+maiorDeDoisNums = ( [("a",Inteiro),("b",Inteiro),("res",Inteiro)]
+          , [ Input "a" 
+            , Input "b"
+            , SeEntaoSenao (MQExp (Variavel "a")
+                                  (Variavel "b"))
+                [Atrib "res" (Variavel "a")]
+                [Atrib "res" (Variavel "b")]
+            , Print (Variavel "res")
+            ]
+          )
+\end{code}
+
+
+
+
+\section{Exercicios}
+
+
+
+\begin{exercicio} 
+
+Como facilmente se constata utilizando um programa SL que inclua duas
+estruturas condicinais, as funcoes de geracao de codigo produzem
+labels iguais para instrucoes diferentes. Altere as funcoes de geracao
+de codigo de modo produzirem labels únicas e resolverem este
+problema. Considere que as funcoes recebem um valor inteiro para
+distinguir as etiquetas.
+
+\end{exercicio}
+
+
+
+
+
+\end{document}
+
+
+

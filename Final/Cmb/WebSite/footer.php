@@ -21,7 +21,7 @@
             <a href="sdg.php">SDG</a>
         </li>
         <li>
-            <a href="sdg.php">SDG</a>
+            <a href="msp.php">MSP</a>
         </li>
     </ul>
     &#169; Copyright &#169; 2013

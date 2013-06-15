@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g 2012-07-09 03:08:40
+// $ANTLR 3.4 /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g 2013-06-11 23:43:25
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -97,7 +97,7 @@ public TreeAdaptor getTreeAdaptor() {
     return adaptor;
 }
     public String[] getTokenNames() { return CmbParser.tokenNames; }
-    public String getGrammarFileName() { return "/opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g"; }
+    public String getGrammarFileName() { return "/home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g"; }
 
 
     public static class programa_return extends ParserRuleReturnScope {
@@ -107,7 +107,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "programa"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:26:1: programa : ( funcao )+ -> ^( PROGRAMA ( funcao )+ ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:28:1: programa : ( funcao )+ -> ^( PROGRAMA ( funcao )+ ) ;
     public final CmbParser.programa_return programa() throws RecognitionException {
         CmbParser.programa_return retval = new CmbParser.programa_return();
         retval.start = input.LT(1);
@@ -120,10 +120,10 @@ public TreeAdaptor getTreeAdaptor() {
 
         RewriteRuleSubtreeStream stream_funcao=new RewriteRuleSubtreeStream(adaptor,"rule funcao");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:27:2: ( ( funcao )+ -> ^( PROGRAMA ( funcao )+ ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:27:4: ( funcao )+
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:29:2: ( ( funcao )+ -> ^( PROGRAMA ( funcao )+ ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:29:4: ( funcao )+
             {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:27:4: ( funcao )+
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:29:4: ( funcao )+
             int cnt1=0;
             loop1:
             do {
@@ -137,9 +137,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt1) {
             	case 1 :
-            	    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:27:4: funcao
+            	    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:29:4: funcao
             	    {
-            	    pushFollow(FOLLOW_funcao_in_programa91);
+            	    pushFollow(FOLLOW_funcao_in_programa99);
             	    funcao1=funcao();
 
             	    state._fsp--;
@@ -173,9 +173,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 28:2: -> ^( PROGRAMA ( funcao )+ )
+            // 30:2: -> ^( PROGRAMA ( funcao )+ )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:28:5: ^( PROGRAMA ( funcao )+ )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:30:5: ^( PROGRAMA ( funcao )+ )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -233,7 +233,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "funcao"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:31:1: funcao : cabecalho '{' corpo_funcao '}' -> ^( FUNCAO cabecalho corpo_funcao ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:33:1: funcao : cabecalho '{' corpo_funcao '}' -> ^( FUNCAO cabecalho corpo_funcao ) ;
     public final CmbParser.funcao_return funcao() throws RecognitionException {
         CmbParser.funcao_return retval = new CmbParser.funcao_return();
         retval.start = input.LT(1);
@@ -255,33 +255,33 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_cabecalho=new RewriteRuleSubtreeStream(adaptor,"rule cabecalho");
         RewriteRuleSubtreeStream stream_corpo_funcao=new RewriteRuleSubtreeStream(adaptor,"rule corpo_funcao");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:32:2: ( cabecalho '{' corpo_funcao '}' -> ^( FUNCAO cabecalho corpo_funcao ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:32:4: cabecalho '{' corpo_funcao '}'
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:34:2: ( cabecalho '{' corpo_funcao '}' -> ^( FUNCAO cabecalho corpo_funcao ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:34:4: cabecalho '{' corpo_funcao '}'
             {
-            pushFollow(FOLLOW_cabecalho_in_funcao113);
+            pushFollow(FOLLOW_cabecalho_in_funcao121);
             cabecalho2=cabecalho();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_cabecalho.add(cabecalho2.getTree());
 
-            char_literal3=(Token)match(input,56,FOLLOW_56_in_funcao115); if (state.failed) return retval; 
+            char_literal3=(Token)match(input,56,FOLLOW_56_in_funcao123); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_56.add(char_literal3);
 
 
-            pushFollow(FOLLOW_corpo_funcao_in_funcao117);
+            pushFollow(FOLLOW_corpo_funcao_in_funcao125);
             corpo_funcao4=corpo_funcao();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_corpo_funcao.add(corpo_funcao4.getTree());
 
-            char_literal5=(Token)match(input,58,FOLLOW_58_in_funcao119); if (state.failed) return retval; 
+            char_literal5=(Token)match(input,58,FOLLOW_58_in_funcao127); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_58.add(char_literal5);
 
 
             // AST REWRITE
-            // elements: corpo_funcao, cabecalho
+            // elements: cabecalho, corpo_funcao
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -293,9 +293,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 33:2: -> ^( FUNCAO cabecalho corpo_funcao )
+            // 35:2: -> ^( FUNCAO cabecalho corpo_funcao )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:33:5: ^( FUNCAO cabecalho corpo_funcao )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:35:5: ^( FUNCAO cabecalho corpo_funcao )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -348,7 +348,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "cabecalho"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:36:1: cabecalho : tipo ID '(' ( argumentos )? ')' -> ^( CAEBECALHO tipo ID ( argumentos )? ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:38:1: cabecalho : tipo ID '(' ( argumentos )? ')' -> ^( CAEBECALHO tipo ID ( argumentos )? ) ;
     public final CmbParser.cabecalho_return cabecalho() throws RecognitionException {
         CmbParser.cabecalho_return retval = new CmbParser.cabecalho_return();
         retval.start = input.LT(1);
@@ -373,25 +373,25 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_tipo=new RewriteRuleSubtreeStream(adaptor,"rule tipo");
         RewriteRuleSubtreeStream stream_argumentos=new RewriteRuleSubtreeStream(adaptor,"rule argumentos");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:37:2: ( tipo ID '(' ( argumentos )? ')' -> ^( CAEBECALHO tipo ID ( argumentos )? ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:37:4: tipo ID '(' ( argumentos )? ')'
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:39:2: ( tipo ID '(' ( argumentos )? ')' -> ^( CAEBECALHO tipo ID ( argumentos )? ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:39:4: tipo ID '(' ( argumentos )? ')'
             {
-            pushFollow(FOLLOW_tipo_in_cabecalho142);
+            pushFollow(FOLLOW_tipo_in_cabecalho150);
             tipo6=tipo();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_tipo.add(tipo6.getTree());
 
-            ID7=(Token)match(input,ID,FOLLOW_ID_in_cabecalho144); if (state.failed) return retval; 
+            ID7=(Token)match(input,ID,FOLLOW_ID_in_cabecalho152); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ID.add(ID7);
 
 
-            char_literal8=(Token)match(input,42,FOLLOW_42_in_cabecalho146); if (state.failed) return retval; 
+            char_literal8=(Token)match(input,42,FOLLOW_42_in_cabecalho154); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_42.add(char_literal8);
 
 
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:37:16: ( argumentos )?
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:39:16: ( argumentos )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -400,9 +400,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt2) {
                 case 1 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:37:16: argumentos
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:39:16: argumentos
                     {
-                    pushFollow(FOLLOW_argumentos_in_cabecalho148);
+                    pushFollow(FOLLOW_argumentos_in_cabecalho156);
                     argumentos9=argumentos();
 
                     state._fsp--;
@@ -415,12 +415,12 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            char_literal10=(Token)match(input,43,FOLLOW_43_in_cabecalho151); if (state.failed) return retval; 
+            char_literal10=(Token)match(input,43,FOLLOW_43_in_cabecalho159); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_43.add(char_literal10);
 
 
             // AST REWRITE
-            // elements: argumentos, ID, tipo
+            // elements: argumentos, tipo, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -432,9 +432,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 38:2: -> ^( CAEBECALHO tipo ID ( argumentos )? )
+            // 40:2: -> ^( CAEBECALHO tipo ID ( argumentos )? )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:38:5: ^( CAEBECALHO tipo ID ( argumentos )? )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:40:5: ^( CAEBECALHO tipo ID ( argumentos )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -447,7 +447,7 @@ public TreeAdaptor getTreeAdaptor() {
                 stream_ID.nextNode()
                 );
 
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:38:26: ( argumentos )?
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:40:26: ( argumentos )?
                 if ( stream_argumentos.hasNext() ) {
                     adaptor.addChild(root_1, stream_argumentos.nextTree());
 
@@ -496,7 +496,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "argumentos"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:41:1: argumentos : declaracao ( ',' declaracao )* -> ^( ARGUMENTOS ( declaracao )+ ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:43:1: argumentos : declaracao ( ',' declaracao )* -> ^( ARGUMENTOS ( declaracao )+ ) ;
     public final CmbParser.argumentos_return argumentos() throws RecognitionException {
         CmbParser.argumentos_return retval = new CmbParser.argumentos_return();
         retval.start = input.LT(1);
@@ -514,17 +514,17 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_46=new RewriteRuleTokenStream(adaptor,"token 46");
         RewriteRuleSubtreeStream stream_declaracao=new RewriteRuleSubtreeStream(adaptor,"rule declaracao");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:42:2: ( declaracao ( ',' declaracao )* -> ^( ARGUMENTOS ( declaracao )+ ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:42:4: declaracao ( ',' declaracao )*
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:44:2: ( declaracao ( ',' declaracao )* -> ^( ARGUMENTOS ( declaracao )+ ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:44:4: declaracao ( ',' declaracao )*
             {
-            pushFollow(FOLLOW_declaracao_in_argumentos176);
+            pushFollow(FOLLOW_declaracao_in_argumentos184);
             declaracao11=declaracao();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_declaracao.add(declaracao11.getTree());
 
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:42:15: ( ',' declaracao )*
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:44:15: ( ',' declaracao )*
             loop3:
             do {
                 int alt3=2;
@@ -537,13 +537,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt3) {
             	case 1 :
-            	    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:42:16: ',' declaracao
+            	    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:44:16: ',' declaracao
             	    {
-            	    char_literal12=(Token)match(input,46,FOLLOW_46_in_argumentos179); if (state.failed) return retval; 
+            	    char_literal12=(Token)match(input,46,FOLLOW_46_in_argumentos187); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_46.add(char_literal12);
 
 
-            	    pushFollow(FOLLOW_declaracao_in_argumentos181);
+            	    pushFollow(FOLLOW_declaracao_in_argumentos189);
             	    declaracao13=declaracao();
 
             	    state._fsp--;
@@ -572,9 +572,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 43:2: -> ^( ARGUMENTOS ( declaracao )+ )
+            // 45:2: -> ^( ARGUMENTOS ( declaracao )+ )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:43:5: ^( ARGUMENTOS ( declaracao )+ )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:45:5: ^( ARGUMENTOS ( declaracao )+ )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -632,7 +632,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "corpo_funcao"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:46:1: corpo_funcao : declaracoes statements -> ^( CORPO declaracoes statements ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:48:1: corpo_funcao : declaracoes statements -> ^( CORPO declaracoes statements ) ;
     public final CmbParser.corpo_funcao_return corpo_funcao() throws RecognitionException {
         CmbParser.corpo_funcao_return retval = new CmbParser.corpo_funcao_return();
         retval.start = input.LT(1);
@@ -648,17 +648,17 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_statements=new RewriteRuleSubtreeStream(adaptor,"rule statements");
         RewriteRuleSubtreeStream stream_declaracoes=new RewriteRuleSubtreeStream(adaptor,"rule declaracoes");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:47:2: ( declaracoes statements -> ^( CORPO declaracoes statements ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:47:4: declaracoes statements
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:49:2: ( declaracoes statements -> ^( CORPO declaracoes statements ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:49:4: declaracoes statements
             {
-            pushFollow(FOLLOW_declaracoes_in_corpo_funcao204);
+            pushFollow(FOLLOW_declaracoes_in_corpo_funcao212);
             declaracoes14=declaracoes();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_declaracoes.add(declaracoes14.getTree());
 
-            pushFollow(FOLLOW_statements_in_corpo_funcao206);
+            pushFollow(FOLLOW_statements_in_corpo_funcao214);
             statements15=statements();
 
             state._fsp--;
@@ -666,7 +666,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_statements.add(statements15.getTree());
 
             // AST REWRITE
-            // elements: statements, declaracoes
+            // elements: declaracoes, statements
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -678,9 +678,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 48:2: -> ^( CORPO declaracoes statements )
+            // 50:2: -> ^( CORPO declaracoes statements )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:48:5: ^( CORPO declaracoes statements )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:50:5: ^( CORPO declaracoes statements )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -733,7 +733,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "declaracoes"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:52:1: declaracoes : ( declaracao ';' )+ -> ^( DECLARACOES ( declaracao )+ ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:54:1: declaracoes : ( declaracao ';' )+ -> ^( DECLARACOES ( declaracao )+ ) ;
     public final CmbParser.declaracoes_return declaracoes() throws RecognitionException {
         CmbParser.declaracoes_return retval = new CmbParser.declaracoes_return();
         retval.start = input.LT(1);
@@ -749,10 +749,10 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_49=new RewriteRuleTokenStream(adaptor,"token 49");
         RewriteRuleSubtreeStream stream_declaracao=new RewriteRuleSubtreeStream(adaptor,"rule declaracao");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:53:2: ( ( declaracao ';' )+ -> ^( DECLARACOES ( declaracao )+ ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:53:4: ( declaracao ';' )+
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:55:2: ( ( declaracao ';' )+ -> ^( DECLARACOES ( declaracao )+ ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:55:4: ( declaracao ';' )+
             {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:53:4: ( declaracao ';' )+
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:55:4: ( declaracao ';' )+
             int cnt4=0;
             loop4:
             do {
@@ -766,16 +766,16 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt4) {
             	case 1 :
-            	    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:53:5: declaracao ';'
+            	    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:55:5: declaracao ';'
             	    {
-            	    pushFollow(FOLLOW_declaracao_in_declaracoes230);
+            	    pushFollow(FOLLOW_declaracao_in_declaracoes238);
             	    declaracao16=declaracao();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
             	    if ( state.backtracking==0 ) stream_declaracao.add(declaracao16.getTree());
 
-            	    char_literal17=(Token)match(input,49,FOLLOW_49_in_declaracoes232); if (state.failed) return retval; 
+            	    char_literal17=(Token)match(input,49,FOLLOW_49_in_declaracoes240); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_49.add(char_literal17);
 
 
@@ -806,9 +806,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 54:2: -> ^( DECLARACOES ( declaracao )+ )
+            // 56:2: -> ^( DECLARACOES ( declaracao )+ )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:54:5: ^( DECLARACOES ( declaracao )+ )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:56:5: ^( DECLARACOES ( declaracao )+ )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -866,7 +866,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "declaracao"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:57:1: declaracao : tipo ID -> ^( DECLARACAO tipo ID ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:59:1: declaracao : tipo ID -> ^( DECLARACAO tipo ID ) ;
     public final CmbParser.declaracao_return declaracao() throws RecognitionException {
         CmbParser.declaracao_return retval = new CmbParser.declaracao_return();
         retval.start = input.LT(1);
@@ -882,17 +882,17 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_tipo=new RewriteRuleSubtreeStream(adaptor,"rule tipo");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:58:2: ( tipo ID -> ^( DECLARACAO tipo ID ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:58:4: tipo ID
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:60:2: ( tipo ID -> ^( DECLARACAO tipo ID ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:60:4: tipo ID
             {
-            pushFollow(FOLLOW_tipo_in_declaracao256);
+            pushFollow(FOLLOW_tipo_in_declaracao264);
             tipo18=tipo();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_tipo.add(tipo18.getTree());
 
-            ID19=(Token)match(input,ID,FOLLOW_ID_in_declaracao258); if (state.failed) return retval; 
+            ID19=(Token)match(input,ID,FOLLOW_ID_in_declaracao266); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ID.add(ID19);
 
 
@@ -909,9 +909,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 59:2: -> ^( DECLARACAO tipo ID )
+            // 61:2: -> ^( DECLARACAO tipo ID )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:59:5: ^( DECLARACAO tipo ID )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:61:5: ^( DECLARACAO tipo ID )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -966,7 +966,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "tipo"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:62:1: tipo : ( TD_INT | TD_BOOL | TD_STRING | TD_VAZIO );
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:64:1: tipo : ( TD_INT | TD_BOOL | TD_STRING | TD_VAZIO );
     public final CmbParser.tipo_return tipo() throws RecognitionException {
         CmbParser.tipo_return retval = new CmbParser.tipo_return();
         retval.start = input.LT(1);
@@ -979,8 +979,8 @@ public TreeAdaptor getTreeAdaptor() {
         Object set20_tree=null;
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:63:2: ( TD_INT | TD_BOOL | TD_STRING | TD_VAZIO )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:65:2: ( TD_INT | TD_BOOL | TD_STRING | TD_VAZIO )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:
             {
             root_0 = (Object)adaptor.nil();
 
@@ -1035,7 +1035,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "statements"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:69:1: statements : ( statement )+ -> ^( STATEMENTS ( statement )+ ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:71:1: statements : ( statement )+ -> ^( STATEMENTS ( statement )+ ) ;
     public final CmbParser.statements_return statements() throws RecognitionException {
         CmbParser.statements_return retval = new CmbParser.statements_return();
         retval.start = input.LT(1);
@@ -1048,10 +1048,10 @@ public TreeAdaptor getTreeAdaptor() {
 
         RewriteRuleSubtreeStream stream_statement=new RewriteRuleSubtreeStream(adaptor,"rule statement");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:70:2: ( ( statement )+ -> ^( STATEMENTS ( statement )+ ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:70:4: ( statement )+
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:72:2: ( ( statement )+ -> ^( STATEMENTS ( statement )+ ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:72:4: ( statement )+
             {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:70:4: ( statement )+
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:72:4: ( statement )+
             int cnt5=0;
             loop5:
             do {
@@ -1065,9 +1065,9 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt5) {
             	case 1 :
-            	    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:70:4: statement
+            	    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:72:4: statement
             	    {
-            	    pushFollow(FOLLOW_statement_in_statements313);
+            	    pushFollow(FOLLOW_statement_in_statements321);
             	    statement21=statement();
 
             	    state._fsp--;
@@ -1101,9 +1101,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 71:2: -> ^( STATEMENTS ( statement )+ )
+            // 73:2: -> ^( STATEMENTS ( statement )+ )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:71:5: ^( STATEMENTS ( statement )+ )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:73:5: ^( STATEMENTS ( statement )+ )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -1161,7 +1161,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "statement"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:75:1: statement : ( atribuicao ';' -> atribuicao | read ';' -> read | write ';' -> write | ifs -> ifs | whiles -> whiles | invocacao ';' -> invocacao | retorna ';' -> retorna );
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:77:1: statement : ( atribuicao ';' -> atribuicao | read ';' -> read | write ';' -> write | ifs -> ifs | whiles -> whiles | invocacao ';' -> invocacao | retorna ';' -> retorna );
     public final CmbParser.statement_return statement() throws RecognitionException {
         CmbParser.statement_return retval = new CmbParser.statement_return();
         retval.start = input.LT(1);
@@ -1203,7 +1203,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_ifs=new RewriteRuleSubtreeStream(adaptor,"rule ifs");
         RewriteRuleSubtreeStream stream_invocacao=new RewriteRuleSubtreeStream(adaptor,"rule invocacao");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:76:2: ( atribuicao ';' -> atribuicao | read ';' -> read | write ';' -> write | ifs -> ifs | whiles -> whiles | invocacao ';' -> invocacao | retorna ';' -> retorna )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:78:2: ( atribuicao ';' -> atribuicao | read ';' -> read | write ';' -> write | ifs -> ifs | whiles -> whiles | invocacao ';' -> invocacao | retorna ';' -> retorna )
             int alt6=7;
             switch ( input.LA(1) ) {
             case ID:
@@ -1262,16 +1262,16 @@ public TreeAdaptor getTreeAdaptor() {
 
             switch (alt6) {
                 case 1 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:76:4: atribuicao ';'
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:78:4: atribuicao ';'
                     {
-                    pushFollow(FOLLOW_atribuicao_in_statement337);
+                    pushFollow(FOLLOW_atribuicao_in_statement345);
                     atribuicao22=atribuicao();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_atribuicao.add(atribuicao22.getTree());
 
-                    char_literal23=(Token)match(input,49,FOLLOW_49_in_statement339); if (state.failed) return retval; 
+                    char_literal23=(Token)match(input,49,FOLLOW_49_in_statement347); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_49.add(char_literal23);
 
 
@@ -1288,7 +1288,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 76:20: -> atribuicao
+                    // 78:20: -> atribuicao
                     {
                         adaptor.addChild(root_0, stream_atribuicao.nextTree());
 
@@ -1301,16 +1301,16 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:77:4: read ';'
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:79:4: read ';'
                     {
-                    pushFollow(FOLLOW_read_in_statement349);
+                    pushFollow(FOLLOW_read_in_statement357);
                     read24=read();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_read.add(read24.getTree());
 
-                    char_literal25=(Token)match(input,49,FOLLOW_49_in_statement351); if (state.failed) return retval; 
+                    char_literal25=(Token)match(input,49,FOLLOW_49_in_statement359); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_49.add(char_literal25);
 
 
@@ -1327,7 +1327,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 77:14: -> read
+                    // 79:14: -> read
                     {
                         adaptor.addChild(root_0, stream_read.nextTree());
 
@@ -1340,16 +1340,16 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:78:4: write ';'
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:80:4: write ';'
                     {
-                    pushFollow(FOLLOW_write_in_statement361);
+                    pushFollow(FOLLOW_write_in_statement369);
                     write26=write();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_write.add(write26.getTree());
 
-                    char_literal27=(Token)match(input,49,FOLLOW_49_in_statement363); if (state.failed) return retval; 
+                    char_literal27=(Token)match(input,49,FOLLOW_49_in_statement371); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_49.add(char_literal27);
 
 
@@ -1366,7 +1366,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 78:15: -> write
+                    // 80:15: -> write
                     {
                         adaptor.addChild(root_0, stream_write.nextTree());
 
@@ -1379,9 +1379,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 4 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:79:4: ifs
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:81:4: ifs
                     {
-                    pushFollow(FOLLOW_ifs_in_statement373);
+                    pushFollow(FOLLOW_ifs_in_statement381);
                     ifs28=ifs();
 
                     state._fsp--;
@@ -1401,7 +1401,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 79:10: -> ifs
+                    // 81:10: -> ifs
                     {
                         adaptor.addChild(root_0, stream_ifs.nextTree());
 
@@ -1414,9 +1414,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 5 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:80:4: whiles
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:82:4: whiles
                     {
-                    pushFollow(FOLLOW_whiles_in_statement384);
+                    pushFollow(FOLLOW_whiles_in_statement392);
                     whiles29=whiles();
 
                     state._fsp--;
@@ -1436,7 +1436,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 80:13: -> whiles
+                    // 82:13: -> whiles
                     {
                         adaptor.addChild(root_0, stream_whiles.nextTree());
 
@@ -1449,16 +1449,16 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 6 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:81:4: invocacao ';'
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:83:4: invocacao ';'
                     {
-                    pushFollow(FOLLOW_invocacao_in_statement395);
+                    pushFollow(FOLLOW_invocacao_in_statement403);
                     invocacao30=invocacao();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_invocacao.add(invocacao30.getTree());
 
-                    char_literal31=(Token)match(input,49,FOLLOW_49_in_statement397); if (state.failed) return retval; 
+                    char_literal31=(Token)match(input,49,FOLLOW_49_in_statement405); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_49.add(char_literal31);
 
 
@@ -1475,7 +1475,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 81:18: -> invocacao
+                    // 83:18: -> invocacao
                     {
                         adaptor.addChild(root_0, stream_invocacao.nextTree());
 
@@ -1488,16 +1488,16 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 7 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:82:4: retorna ';'
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:84:4: retorna ';'
                     {
-                    pushFollow(FOLLOW_retorna_in_statement406);
+                    pushFollow(FOLLOW_retorna_in_statement414);
                     retorna32=retorna();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_retorna.add(retorna32.getTree());
 
-                    char_literal33=(Token)match(input,49,FOLLOW_49_in_statement408); if (state.failed) return retval; 
+                    char_literal33=(Token)match(input,49,FOLLOW_49_in_statement416); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_49.add(char_literal33);
 
 
@@ -1514,7 +1514,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 82:16: -> retorna
+                    // 84:16: -> retorna
                     {
                         adaptor.addChild(root_0, stream_retorna.nextTree());
 
@@ -1559,7 +1559,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "retorna"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:85:1: retorna : RETURN expr -> ^( RETURN expr ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:87:1: retorna : RETURN expr -> ^( RETURN expr ) ;
     public final CmbParser.retorna_return retorna() throws RecognitionException {
         CmbParser.retorna_return retval = new CmbParser.retorna_return();
         retval.start = input.LT(1);
@@ -1575,14 +1575,14 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_RETURN=new RewriteRuleTokenStream(adaptor,"token RETURN");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:86:2: ( RETURN expr -> ^( RETURN expr ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:86:4: RETURN expr
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:88:2: ( RETURN expr -> ^( RETURN expr ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:88:4: RETURN expr
             {
-            RETURN34=(Token)match(input,RETURN,FOLLOW_RETURN_in_retorna424); if (state.failed) return retval; 
+            RETURN34=(Token)match(input,RETURN,FOLLOW_RETURN_in_retorna432); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_RETURN.add(RETURN34);
 
 
-            pushFollow(FOLLOW_expr_in_retorna426);
+            pushFollow(FOLLOW_expr_in_retorna434);
             expr35=expr();
 
             state._fsp--;
@@ -1590,7 +1590,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_expr.add(expr35.getTree());
 
             // AST REWRITE
-            // elements: expr, RETURN
+            // elements: RETURN, expr
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1602,9 +1602,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 87:2: -> ^( RETURN expr )
+            // 89:2: -> ^( RETURN expr )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:87:5: ^( RETURN expr )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:89:5: ^( RETURN expr )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -1655,7 +1655,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "invocacao"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:90:1: invocacao : ID '(' ( args )? ')' -> ^( INVOCACAO ID ( args )? ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:92:1: invocacao : ID '(' ( args )? ')' -> ^( INVOCACAO ID ( args )? ) ;
     public final CmbParser.invocacao_return invocacao() throws RecognitionException {
         CmbParser.invocacao_return retval = new CmbParser.invocacao_return();
         retval.start = input.LT(1);
@@ -1677,18 +1677,18 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_args=new RewriteRuleSubtreeStream(adaptor,"rule args");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:91:2: ( ID '(' ( args )? ')' -> ^( INVOCACAO ID ( args )? ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:91:4: ID '(' ( args )? ')'
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:93:2: ( ID '(' ( args )? ')' -> ^( INVOCACAO ID ( args )? ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:93:4: ID '(' ( args )? ')'
             {
-            ID36=(Token)match(input,ID,FOLLOW_ID_in_invocacao446); if (state.failed) return retval; 
+            ID36=(Token)match(input,ID,FOLLOW_ID_in_invocacao454); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ID.add(ID36);
 
 
-            char_literal37=(Token)match(input,42,FOLLOW_42_in_invocacao448); if (state.failed) return retval; 
+            char_literal37=(Token)match(input,42,FOLLOW_42_in_invocacao456); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_42.add(char_literal37);
 
 
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:91:11: ( args )?
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:93:11: ( args )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1697,9 +1697,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt7) {
                 case 1 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:91:11: args
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:93:11: args
                     {
-                    pushFollow(FOLLOW_args_in_invocacao450);
+                    pushFollow(FOLLOW_args_in_invocacao458);
                     args38=args();
 
                     state._fsp--;
@@ -1712,12 +1712,12 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            char_literal39=(Token)match(input,43,FOLLOW_43_in_invocacao453); if (state.failed) return retval; 
+            char_literal39=(Token)match(input,43,FOLLOW_43_in_invocacao461); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_43.add(char_literal39);
 
 
             // AST REWRITE
-            // elements: args, ID
+            // elements: ID, args
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1729,9 +1729,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 92:2: -> ^( INVOCACAO ID ( args )? )
+            // 94:2: -> ^( INVOCACAO ID ( args )? )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:92:5: ^( INVOCACAO ID ( args )? )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:94:5: ^( INVOCACAO ID ( args )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -1742,7 +1742,7 @@ public TreeAdaptor getTreeAdaptor() {
                 stream_ID.nextNode()
                 );
 
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:92:20: ( args )?
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:94:20: ( args )?
                 if ( stream_args.hasNext() ) {
                     adaptor.addChild(root_1, stream_args.nextTree());
 
@@ -1791,7 +1791,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "args"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:95:1: args : expr ( ',' expr )* -> ^( ARGS ( expr )+ ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:97:1: args : expr ( ',' expr )* -> ^( ARGS ( expr )+ ) ;
     public final CmbParser.args_return args() throws RecognitionException {
         CmbParser.args_return retval = new CmbParser.args_return();
         retval.start = input.LT(1);
@@ -1809,17 +1809,17 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_46=new RewriteRuleTokenStream(adaptor,"token 46");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:96:2: ( expr ( ',' expr )* -> ^( ARGS ( expr )+ ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:96:4: expr ( ',' expr )*
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:98:2: ( expr ( ',' expr )* -> ^( ARGS ( expr )+ ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:98:4: expr ( ',' expr )*
             {
-            pushFollow(FOLLOW_expr_in_args476);
+            pushFollow(FOLLOW_expr_in_args484);
             expr40=expr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_expr.add(expr40.getTree());
 
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:96:9: ( ',' expr )*
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:98:9: ( ',' expr )*
             loop8:
             do {
                 int alt8=2;
@@ -1832,13 +1832,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt8) {
             	case 1 :
-            	    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:96:11: ',' expr
+            	    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:98:11: ',' expr
             	    {
-            	    char_literal41=(Token)match(input,46,FOLLOW_46_in_args480); if (state.failed) return retval; 
+            	    char_literal41=(Token)match(input,46,FOLLOW_46_in_args488); if (state.failed) return retval; 
             	    if ( state.backtracking==0 ) stream_46.add(char_literal41);
 
 
-            	    pushFollow(FOLLOW_expr_in_args482);
+            	    pushFollow(FOLLOW_expr_in_args490);
             	    expr42=expr();
 
             	    state._fsp--;
@@ -1867,9 +1867,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 97:2: -> ^( ARGS ( expr )+ )
+            // 99:2: -> ^( ARGS ( expr )+ )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:97:5: ^( ARGS ( expr )+ )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:99:5: ^( ARGS ( expr )+ )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -1927,7 +1927,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "atribuicao"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:100:1: atribuicao : ID '=' expr -> ^( '=' ID expr ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:102:1: atribuicao : ID '=' expr -> ^( '=' ID expr ) ;
     public final CmbParser.atribuicao_return atribuicao() throws RecognitionException {
         CmbParser.atribuicao_return retval = new CmbParser.atribuicao_return();
         retval.start = input.LT(1);
@@ -1946,18 +1946,18 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_52=new RewriteRuleTokenStream(adaptor,"token 52");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:101:2: ( ID '=' expr -> ^( '=' ID expr ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:101:4: ID '=' expr
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:103:2: ( ID '=' expr -> ^( '=' ID expr ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:103:4: ID '=' expr
             {
-            ID43=(Token)match(input,ID,FOLLOW_ID_in_atribuicao506); if (state.failed) return retval; 
+            ID43=(Token)match(input,ID,FOLLOW_ID_in_atribuicao514); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ID.add(ID43);
 
 
-            char_literal44=(Token)match(input,52,FOLLOW_52_in_atribuicao508); if (state.failed) return retval; 
+            char_literal44=(Token)match(input,52,FOLLOW_52_in_atribuicao516); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_52.add(char_literal44);
 
 
-            pushFollow(FOLLOW_expr_in_atribuicao510);
+            pushFollow(FOLLOW_expr_in_atribuicao518);
             expr45=expr();
 
             state._fsp--;
@@ -1965,7 +1965,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_expr.add(expr45.getTree());
 
             // AST REWRITE
-            // elements: expr, 52, ID
+            // elements: ID, expr, 52
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1977,9 +1977,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 102:2: -> ^( '=' ID expr )
+            // 104:2: -> ^( '=' ID expr )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:102:5: ^( '=' ID expr )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:104:5: ^( '=' ID expr )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -2034,7 +2034,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "write"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:105:1: write : WRITE '(' expr ')' -> ^( WRITE expr ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:107:1: write : WRITE '(' expr ')' -> ^( WRITE expr ) ;
     public final CmbParser.write_return write() throws RecognitionException {
         CmbParser.write_return retval = new CmbParser.write_return();
         retval.start = input.LT(1);
@@ -2056,25 +2056,25 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_WRITE=new RewriteRuleTokenStream(adaptor,"token WRITE");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:106:2: ( WRITE '(' expr ')' -> ^( WRITE expr ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:106:4: WRITE '(' expr ')'
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:108:2: ( WRITE '(' expr ')' -> ^( WRITE expr ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:108:4: WRITE '(' expr ')'
             {
-            WRITE46=(Token)match(input,WRITE,FOLLOW_WRITE_in_write534); if (state.failed) return retval; 
+            WRITE46=(Token)match(input,WRITE,FOLLOW_WRITE_in_write542); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_WRITE.add(WRITE46);
 
 
-            char_literal47=(Token)match(input,42,FOLLOW_42_in_write536); if (state.failed) return retval; 
+            char_literal47=(Token)match(input,42,FOLLOW_42_in_write544); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_42.add(char_literal47);
 
 
-            pushFollow(FOLLOW_expr_in_write538);
+            pushFollow(FOLLOW_expr_in_write546);
             expr48=expr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_expr.add(expr48.getTree());
 
-            char_literal49=(Token)match(input,43,FOLLOW_43_in_write540); if (state.failed) return retval; 
+            char_literal49=(Token)match(input,43,FOLLOW_43_in_write548); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_43.add(char_literal49);
 
 
@@ -2091,9 +2091,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 107:2: -> ^( WRITE expr )
+            // 109:2: -> ^( WRITE expr )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:107:5: ^( WRITE expr )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:109:5: ^( WRITE expr )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -2144,7 +2144,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "read"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:110:1: read : READ '(' ID ')' -> ^( READ ID ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:112:1: read : READ '(' ID ')' -> ^( READ ID ) ;
     public final CmbParser.read_return read() throws RecognitionException {
         CmbParser.read_return retval = new CmbParser.read_return();
         retval.start = input.LT(1);
@@ -2167,22 +2167,22 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleTokenStream stream_READ=new RewriteRuleTokenStream(adaptor,"token READ");
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:111:2: ( READ '(' ID ')' -> ^( READ ID ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:111:4: READ '(' ID ')'
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:113:2: ( READ '(' ID ')' -> ^( READ ID ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:113:4: READ '(' ID ')'
             {
-            READ50=(Token)match(input,READ,FOLLOW_READ_in_read562); if (state.failed) return retval; 
+            READ50=(Token)match(input,READ,FOLLOW_READ_in_read570); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_READ.add(READ50);
 
 
-            char_literal51=(Token)match(input,42,FOLLOW_42_in_read564); if (state.failed) return retval; 
+            char_literal51=(Token)match(input,42,FOLLOW_42_in_read572); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_42.add(char_literal51);
 
 
-            ID52=(Token)match(input,ID,FOLLOW_ID_in_read566); if (state.failed) return retval; 
+            ID52=(Token)match(input,ID,FOLLOW_ID_in_read574); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_ID.add(ID52);
 
 
-            char_literal53=(Token)match(input,43,FOLLOW_43_in_read568); if (state.failed) return retval; 
+            char_literal53=(Token)match(input,43,FOLLOW_43_in_read576); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_43.add(char_literal53);
 
 
@@ -2199,9 +2199,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 112:2: -> ^( READ ID )
+            // 114:2: -> ^( READ ID )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:112:5: ^( READ ID )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:114:5: ^( READ ID )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -2254,7 +2254,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "ifs"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:116:1: ifs : IF '(' expr ')' bloco ( ELSE bloco )? -> ^( IF expr bloco ( bloco )? ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:118:1: ifs : IF '(' expr ')' bloco ( ELSE bloco )? -> ^( IF expr bloco ( bloco )? ) ;
     public final CmbParser.ifs_return ifs() throws RecognitionException {
         CmbParser.ifs_return retval = new CmbParser.ifs_return();
         retval.start = input.LT(1);
@@ -2284,36 +2284,36 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_bloco=new RewriteRuleSubtreeStream(adaptor,"rule bloco");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:117:2: ( IF '(' expr ')' bloco ( ELSE bloco )? -> ^( IF expr bloco ( bloco )? ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:117:4: IF '(' expr ')' bloco ( ELSE bloco )?
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:119:2: ( IF '(' expr ')' bloco ( ELSE bloco )? -> ^( IF expr bloco ( bloco )? ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:119:4: IF '(' expr ')' bloco ( ELSE bloco )?
             {
-            IF54=(Token)match(input,IF,FOLLOW_IF_in_ifs591); if (state.failed) return retval; 
+            IF54=(Token)match(input,IF,FOLLOW_IF_in_ifs599); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_IF.add(IF54);
 
 
-            char_literal55=(Token)match(input,42,FOLLOW_42_in_ifs593); if (state.failed) return retval; 
+            char_literal55=(Token)match(input,42,FOLLOW_42_in_ifs601); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_42.add(char_literal55);
 
 
-            pushFollow(FOLLOW_expr_in_ifs595);
+            pushFollow(FOLLOW_expr_in_ifs603);
             expr56=expr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_expr.add(expr56.getTree());
 
-            char_literal57=(Token)match(input,43,FOLLOW_43_in_ifs597); if (state.failed) return retval; 
+            char_literal57=(Token)match(input,43,FOLLOW_43_in_ifs605); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_43.add(char_literal57);
 
 
-            pushFollow(FOLLOW_bloco_in_ifs599);
+            pushFollow(FOLLOW_bloco_in_ifs607);
             bloco58=bloco();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_bloco.add(bloco58.getTree());
 
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:117:26: ( ELSE bloco )?
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:119:26: ( ELSE bloco )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2326,13 +2326,13 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt9) {
                 case 1 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:117:27: ELSE bloco
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:119:27: ELSE bloco
                     {
-                    ELSE59=(Token)match(input,ELSE,FOLLOW_ELSE_in_ifs602); if (state.failed) return retval; 
+                    ELSE59=(Token)match(input,ELSE,FOLLOW_ELSE_in_ifs610); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_ELSE.add(ELSE59);
 
 
-                    pushFollow(FOLLOW_bloco_in_ifs604);
+                    pushFollow(FOLLOW_bloco_in_ifs612);
                     bloco60=bloco();
 
                     state._fsp--;
@@ -2346,7 +2346,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: bloco, expr, bloco, IF
+            // elements: bloco, IF, expr, bloco
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2358,9 +2358,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 118:2: -> ^( IF expr bloco ( bloco )? )
+            // 120:2: -> ^( IF expr bloco ( bloco )? )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:118:5: ^( IF expr bloco ( bloco )? )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:120:5: ^( IF expr bloco ( bloco )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -2371,7 +2371,7 @@ public TreeAdaptor getTreeAdaptor() {
 
                 adaptor.addChild(root_1, stream_bloco.nextTree());
 
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:118:21: ( bloco )?
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:120:21: ( bloco )?
                 if ( stream_bloco.hasNext() ) {
                     adaptor.addChild(root_1, stream_bloco.nextTree());
 
@@ -2420,7 +2420,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "whiles"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:121:1: whiles : WHILE '(' expr ')' bloco -> ^( WHILE expr bloco ) ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:123:1: whiles : WHILE '(' expr ')' bloco -> ^( WHILE expr bloco ) ;
     public final CmbParser.whiles_return whiles() throws RecognitionException {
         CmbParser.whiles_return retval = new CmbParser.whiles_return();
         retval.start = input.LT(1);
@@ -2445,29 +2445,29 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_bloco=new RewriteRuleSubtreeStream(adaptor,"rule bloco");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:122:2: ( WHILE '(' expr ')' bloco -> ^( WHILE expr bloco ) )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:122:4: WHILE '(' expr ')' bloco
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:124:2: ( WHILE '(' expr ')' bloco -> ^( WHILE expr bloco ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:124:4: WHILE '(' expr ')' bloco
             {
-            WHILE61=(Token)match(input,WHILE,FOLLOW_WHILE_in_whiles634); if (state.failed) return retval; 
+            WHILE61=(Token)match(input,WHILE,FOLLOW_WHILE_in_whiles642); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_WHILE.add(WHILE61);
 
 
-            char_literal62=(Token)match(input,42,FOLLOW_42_in_whiles636); if (state.failed) return retval; 
+            char_literal62=(Token)match(input,42,FOLLOW_42_in_whiles644); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_42.add(char_literal62);
 
 
-            pushFollow(FOLLOW_expr_in_whiles638);
+            pushFollow(FOLLOW_expr_in_whiles646);
             expr63=expr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) stream_expr.add(expr63.getTree());
 
-            char_literal64=(Token)match(input,43,FOLLOW_43_in_whiles640); if (state.failed) return retval; 
+            char_literal64=(Token)match(input,43,FOLLOW_43_in_whiles648); if (state.failed) return retval; 
             if ( state.backtracking==0 ) stream_43.add(char_literal64);
 
 
-            pushFollow(FOLLOW_bloco_in_whiles642);
+            pushFollow(FOLLOW_bloco_in_whiles650);
             bloco65=bloco();
 
             state._fsp--;
@@ -2475,7 +2475,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_bloco.add(bloco65.getTree());
 
             // AST REWRITE
-            // elements: bloco, WHILE, expr
+            // elements: expr, bloco, WHILE
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2487,9 +2487,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 123:2: -> ^( WHILE expr bloco )
+            // 125:2: -> ^( WHILE expr bloco )
             {
-                // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:123:5: ^( WHILE expr bloco )
+                // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:125:5: ^( WHILE expr bloco )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -2542,7 +2542,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "bloco"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:126:1: bloco : ( '{' statements '}' -> statements | statement -> ^( STATEMENTS statement ) );
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:128:1: bloco : ( '{' statements '}' -> statements | statement -> ^( STATEMENTS statement ) );
     public final CmbParser.bloco_return bloco() throws RecognitionException {
         CmbParser.bloco_return retval = new CmbParser.bloco_return();
         retval.start = input.LT(1);
@@ -2564,7 +2564,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_statement=new RewriteRuleSubtreeStream(adaptor,"rule statement");
         RewriteRuleSubtreeStream stream_statements=new RewriteRuleSubtreeStream(adaptor,"rule statements");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:127:2: ( '{' statements '}' -> statements | statement -> ^( STATEMENTS statement ) )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:129:2: ( '{' statements '}' -> statements | statement -> ^( STATEMENTS statement ) )
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -2584,20 +2584,20 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt10) {
                 case 1 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:127:4: '{' statements '}'
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:129:4: '{' statements '}'
                     {
-                    char_literal66=(Token)match(input,56,FOLLOW_56_in_bloco664); if (state.failed) return retval; 
+                    char_literal66=(Token)match(input,56,FOLLOW_56_in_bloco672); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_56.add(char_literal66);
 
 
-                    pushFollow(FOLLOW_statements_in_bloco666);
+                    pushFollow(FOLLOW_statements_in_bloco674);
                     statements67=statements();
 
                     state._fsp--;
                     if (state.failed) return retval;
                     if ( state.backtracking==0 ) stream_statements.add(statements67.getTree());
 
-                    char_literal68=(Token)match(input,58,FOLLOW_58_in_bloco668); if (state.failed) return retval; 
+                    char_literal68=(Token)match(input,58,FOLLOW_58_in_bloco676); if (state.failed) return retval; 
                     if ( state.backtracking==0 ) stream_58.add(char_literal68);
 
 
@@ -2614,7 +2614,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 127:25: -> statements
+                    // 129:25: -> statements
                     {
                         adaptor.addChild(root_0, stream_statements.nextTree());
 
@@ -2627,9 +2627,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:128:4: statement
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:130:4: statement
                     {
-                    pushFollow(FOLLOW_statement_in_bloco680);
+                    pushFollow(FOLLOW_statement_in_bloco688);
                     statement69=statement();
 
                     state._fsp--;
@@ -2649,9 +2649,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 128:17: -> ^( STATEMENTS statement )
+                    // 130:17: -> ^( STATEMENTS statement )
                     {
-                        // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:128:21: ^( STATEMENTS statement )
+                        // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:130:21: ^( STATEMENTS statement )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
@@ -2704,7 +2704,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "expr"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:131:1: expr : orExpr -> orExpr ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:133:1: expr : orExpr -> orExpr ;
     public final CmbParser.expr_return expr() throws RecognitionException {
         CmbParser.expr_return retval = new CmbParser.expr_return();
         retval.start = input.LT(1);
@@ -2717,10 +2717,10 @@ public TreeAdaptor getTreeAdaptor() {
 
         RewriteRuleSubtreeStream stream_orExpr=new RewriteRuleSubtreeStream(adaptor,"rule orExpr");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:132:2: ( orExpr -> orExpr )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:132:4: orExpr
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:134:2: ( orExpr -> orExpr )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:134:4: orExpr
             {
-            pushFollow(FOLLOW_orExpr_in_expr704);
+            pushFollow(FOLLOW_orExpr_in_expr712);
             orExpr70=orExpr();
 
             state._fsp--;
@@ -2740,7 +2740,7 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 133:2: -> orExpr
+            // 135:2: -> orExpr
             {
                 adaptor.addChild(root_0, stream_orExpr.nextTree());
 
@@ -2783,7 +2783,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "orExpr"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:136:1: orExpr : andExpr ( opOr ^ andExpr )* ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:138:1: orExpr : andExpr ( opOr ^ andExpr )* ;
     public final CmbParser.orExpr_return orExpr() throws RecognitionException {
         CmbParser.orExpr_return retval = new CmbParser.orExpr_return();
         retval.start = input.LT(1);
@@ -2800,20 +2800,20 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:137:2: ( andExpr ( opOr ^ andExpr )* )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:137:4: andExpr ( opOr ^ andExpr )*
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:139:2: ( andExpr ( opOr ^ andExpr )* )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:139:4: andExpr ( opOr ^ andExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_andExpr_in_orExpr722);
+            pushFollow(FOLLOW_andExpr_in_orExpr730);
             andExpr71=andExpr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, andExpr71.getTree());
 
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:137:12: ( opOr ^ andExpr )*
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:139:12: ( opOr ^ andExpr )*
             loop11:
             do {
                 int alt11=2;
@@ -2826,16 +2826,16 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt11) {
             	case 1 :
-            	    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:137:13: opOr ^ andExpr
+            	    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:139:13: opOr ^ andExpr
             	    {
-            	    pushFollow(FOLLOW_opOr_in_orExpr725);
+            	    pushFollow(FOLLOW_opOr_in_orExpr733);
             	    opOr72=opOr();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
             	    if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(opOr72.getTree(), root_0);
 
-            	    pushFollow(FOLLOW_andExpr_in_orExpr728);
+            	    pushFollow(FOLLOW_andExpr_in_orExpr736);
             	    andExpr73=andExpr();
 
             	    state._fsp--;
@@ -2884,7 +2884,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "andExpr"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:140:1: andExpr : equalityExpr ( opAnd ^ equalityExpr )* ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:142:1: andExpr : equalityExpr ( opAnd ^ equalityExpr )* ;
     public final CmbParser.andExpr_return andExpr() throws RecognitionException {
         CmbParser.andExpr_return retval = new CmbParser.andExpr_return();
         retval.start = input.LT(1);
@@ -2901,20 +2901,20 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:141:2: ( equalityExpr ( opAnd ^ equalityExpr )* )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:141:4: equalityExpr ( opAnd ^ equalityExpr )*
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:143:2: ( equalityExpr ( opAnd ^ equalityExpr )* )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:143:4: equalityExpr ( opAnd ^ equalityExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_equalityExpr_in_andExpr743);
+            pushFollow(FOLLOW_equalityExpr_in_andExpr751);
             equalityExpr74=equalityExpr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, equalityExpr74.getTree());
 
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:141:16: ( opAnd ^ equalityExpr )*
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:143:16: ( opAnd ^ equalityExpr )*
             loop12:
             do {
                 int alt12=2;
@@ -2927,16 +2927,16 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt12) {
             	case 1 :
-            	    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:141:17: opAnd ^ equalityExpr
+            	    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:143:17: opAnd ^ equalityExpr
             	    {
-            	    pushFollow(FOLLOW_opAnd_in_andExpr745);
+            	    pushFollow(FOLLOW_opAnd_in_andExpr753);
             	    opAnd75=opAnd();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
             	    if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(opAnd75.getTree(), root_0);
 
-            	    pushFollow(FOLLOW_equalityExpr_in_andExpr748);
+            	    pushFollow(FOLLOW_equalityExpr_in_andExpr756);
             	    equalityExpr76=equalityExpr();
 
             	    state._fsp--;
@@ -2985,7 +2985,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "equalityExpr"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:144:1: equalityExpr : additiveExpr ( opRel ^ additiveExpr )* ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:146:1: equalityExpr : additiveExpr ( opRel ^ additiveExpr )* ;
     public final CmbParser.equalityExpr_return equalityExpr() throws RecognitionException {
         CmbParser.equalityExpr_return retval = new CmbParser.equalityExpr_return();
         retval.start = input.LT(1);
@@ -3002,20 +3002,20 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:145:2: ( additiveExpr ( opRel ^ additiveExpr )* )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:145:4: additiveExpr ( opRel ^ additiveExpr )*
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:147:2: ( additiveExpr ( opRel ^ additiveExpr )* )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:147:4: additiveExpr ( opRel ^ additiveExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_additiveExpr_in_equalityExpr763);
+            pushFollow(FOLLOW_additiveExpr_in_equalityExpr771);
             additiveExpr77=additiveExpr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, additiveExpr77.getTree());
 
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:145:17: ( opRel ^ additiveExpr )*
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:147:17: ( opRel ^ additiveExpr )*
             loop13:
             do {
                 int alt13=2;
@@ -3028,16 +3028,16 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt13) {
             	case 1 :
-            	    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:145:18: opRel ^ additiveExpr
+            	    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:147:18: opRel ^ additiveExpr
             	    {
-            	    pushFollow(FOLLOW_opRel_in_equalityExpr766);
+            	    pushFollow(FOLLOW_opRel_in_equalityExpr774);
             	    opRel78=opRel();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
             	    if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(opRel78.getTree(), root_0);
 
-            	    pushFollow(FOLLOW_additiveExpr_in_equalityExpr769);
+            	    pushFollow(FOLLOW_additiveExpr_in_equalityExpr777);
             	    additiveExpr79=additiveExpr();
 
             	    state._fsp--;
@@ -3086,7 +3086,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "additiveExpr"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:149:1: additiveExpr : multiplicativeExpr ( opAdd ^ multiplicativeExpr )* ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:151:1: additiveExpr : multiplicativeExpr ( opAdd ^ multiplicativeExpr )* ;
     public final CmbParser.additiveExpr_return additiveExpr() throws RecognitionException {
         CmbParser.additiveExpr_return retval = new CmbParser.additiveExpr_return();
         retval.start = input.LT(1);
@@ -3103,20 +3103,20 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:150:2: ( multiplicativeExpr ( opAdd ^ multiplicativeExpr )* )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:150:4: multiplicativeExpr ( opAdd ^ multiplicativeExpr )*
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:152:2: ( multiplicativeExpr ( opAdd ^ multiplicativeExpr )* )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:152:4: multiplicativeExpr ( opAdd ^ multiplicativeExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_multiplicativeExpr_in_additiveExpr784);
+            pushFollow(FOLLOW_multiplicativeExpr_in_additiveExpr792);
             multiplicativeExpr80=multiplicativeExpr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, multiplicativeExpr80.getTree());
 
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:150:23: ( opAdd ^ multiplicativeExpr )*
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:152:23: ( opAdd ^ multiplicativeExpr )*
             loop14:
             do {
                 int alt14=2;
@@ -3129,16 +3129,16 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt14) {
             	case 1 :
-            	    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:150:24: opAdd ^ multiplicativeExpr
+            	    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:152:24: opAdd ^ multiplicativeExpr
             	    {
-            	    pushFollow(FOLLOW_opAdd_in_additiveExpr787);
+            	    pushFollow(FOLLOW_opAdd_in_additiveExpr795);
             	    opAdd81=opAdd();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
             	    if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(opAdd81.getTree(), root_0);
 
-            	    pushFollow(FOLLOW_multiplicativeExpr_in_additiveExpr790);
+            	    pushFollow(FOLLOW_multiplicativeExpr_in_additiveExpr798);
             	    multiplicativeExpr82=multiplicativeExpr();
 
             	    state._fsp--;
@@ -3187,7 +3187,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "multiplicativeExpr"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:153:1: multiplicativeExpr : notExpr ( opMul ^ notExpr )* ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:155:1: multiplicativeExpr : notExpr ( opMul ^ notExpr )* ;
     public final CmbParser.multiplicativeExpr_return multiplicativeExpr() throws RecognitionException {
         CmbParser.multiplicativeExpr_return retval = new CmbParser.multiplicativeExpr_return();
         retval.start = input.LT(1);
@@ -3204,20 +3204,20 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:154:2: ( notExpr ( opMul ^ notExpr )* )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:154:4: notExpr ( opMul ^ notExpr )*
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:156:2: ( notExpr ( opMul ^ notExpr )* )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:156:4: notExpr ( opMul ^ notExpr )*
             {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_notExpr_in_multiplicativeExpr805);
+            pushFollow(FOLLOW_notExpr_in_multiplicativeExpr813);
             notExpr83=notExpr();
 
             state._fsp--;
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, notExpr83.getTree());
 
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:154:12: ( opMul ^ notExpr )*
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:156:12: ( opMul ^ notExpr )*
             loop15:
             do {
                 int alt15=2;
@@ -3230,16 +3230,16 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt15) {
             	case 1 :
-            	    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:154:13: opMul ^ notExpr
+            	    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:156:13: opMul ^ notExpr
             	    {
-            	    pushFollow(FOLLOW_opMul_in_multiplicativeExpr808);
+            	    pushFollow(FOLLOW_opMul_in_multiplicativeExpr816);
             	    opMul84=opMul();
 
             	    state._fsp--;
             	    if (state.failed) return retval;
             	    if ( state.backtracking==0 ) root_0 = (Object)adaptor.becomeRoot(opMul84.getTree(), root_0);
 
-            	    pushFollow(FOLLOW_notExpr_in_multiplicativeExpr811);
+            	    pushFollow(FOLLOW_notExpr_in_multiplicativeExpr819);
             	    notExpr85=notExpr();
 
             	    state._fsp--;
@@ -3288,7 +3288,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "notExpr"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:157:1: notExpr : ( opNot ^)? negationExpr ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:159:1: notExpr : ( opNot ^)? negationExpr ;
     public final CmbParser.notExpr_return notExpr() throws RecognitionException {
         CmbParser.notExpr_return retval = new CmbParser.notExpr_return();
         retval.start = input.LT(1);
@@ -3303,13 +3303,13 @@ public TreeAdaptor getTreeAdaptor() {
 
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:158:2: ( ( opNot ^)? negationExpr )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:158:4: ( opNot ^)? negationExpr
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:160:2: ( ( opNot ^)? negationExpr )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:160:4: ( opNot ^)? negationExpr
             {
             root_0 = (Object)adaptor.nil();
 
 
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:158:4: ( opNot ^)?
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:160:4: ( opNot ^)?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -3318,9 +3318,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt16) {
                 case 1 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:158:5: opNot ^
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:160:5: opNot ^
                     {
-                    pushFollow(FOLLOW_opNot_in_notExpr827);
+                    pushFollow(FOLLOW_opNot_in_notExpr835);
                     opNot86=opNot();
 
                     state._fsp--;
@@ -3333,7 +3333,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            pushFollow(FOLLOW_negationExpr_in_notExpr832);
+            pushFollow(FOLLOW_negationExpr_in_notExpr840);
             negationExpr87=negationExpr();
 
             state._fsp--;
@@ -3373,7 +3373,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "negationExpr"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:161:1: negationExpr : ( '-' ^)? factor ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:163:1: negationExpr : ( '-' ^)? factor ;
     public final CmbParser.negationExpr_return negationExpr() throws RecognitionException {
         CmbParser.negationExpr_return retval = new CmbParser.negationExpr_return();
         retval.start = input.LT(1);
@@ -3388,13 +3388,13 @@ public TreeAdaptor getTreeAdaptor() {
         Object char_literal88_tree=null;
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:162:2: ( ( '-' ^)? factor )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:162:4: ( '-' ^)? factor
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:164:2: ( ( '-' ^)? factor )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:164:4: ( '-' ^)? factor
             {
             root_0 = (Object)adaptor.nil();
 
 
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:162:4: ( '-' ^)?
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:164:4: ( '-' ^)?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -3403,9 +3403,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt17) {
                 case 1 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:162:5: '-' ^
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:164:5: '-' ^
                     {
-                    char_literal88=(Token)match(input,47,FOLLOW_47_in_negationExpr844); if (state.failed) return retval;
+                    char_literal88=(Token)match(input,47,FOLLOW_47_in_negationExpr852); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     char_literal88_tree = 
                     (Object)adaptor.create(char_literal88)
@@ -3419,7 +3419,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            pushFollow(FOLLOW_factor_in_negationExpr849);
+            pushFollow(FOLLOW_factor_in_negationExpr857);
             factor89=factor();
 
             state._fsp--;
@@ -3459,7 +3459,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "opAdd"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:166:1: opAdd : ( '+' | '-' );
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:168:1: opAdd : ( '+' | '-' );
     public final CmbParser.opAdd_return opAdd() throws RecognitionException {
         CmbParser.opAdd_return retval = new CmbParser.opAdd_return();
         retval.start = input.LT(1);
@@ -3472,8 +3472,8 @@ public TreeAdaptor getTreeAdaptor() {
         Object set90_tree=null;
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:167:2: ( '+' | '-' )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:169:2: ( '+' | '-' )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:
             {
             root_0 = (Object)adaptor.nil();
 
@@ -3528,7 +3528,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "opMul"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:171:1: opMul : ( '*' | '/' | '%' );
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:173:1: opMul : ( '*' | '/' | '%' );
     public final CmbParser.opMul_return opMul() throws RecognitionException {
         CmbParser.opMul_return retval = new CmbParser.opMul_return();
         retval.start = input.LT(1);
@@ -3541,8 +3541,8 @@ public TreeAdaptor getTreeAdaptor() {
         Object set91_tree=null;
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:172:2: ( '*' | '/' | '%' )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:174:2: ( '*' | '/' | '%' )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:
             {
             root_0 = (Object)adaptor.nil();
 
@@ -3597,7 +3597,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "opOr"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:177:1: opOr : '||' ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:179:1: opOr : '||' ;
     public final CmbParser.opOr_return opOr() throws RecognitionException {
         CmbParser.opOr_return retval = new CmbParser.opOr_return();
         retval.start = input.LT(1);
@@ -3610,13 +3610,13 @@ public TreeAdaptor getTreeAdaptor() {
         Object string_literal92_tree=null;
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:177:5: ( '||' )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:177:7: '||'
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:179:5: ( '||' )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:179:7: '||'
             {
             root_0 = (Object)adaptor.nil();
 
 
-            string_literal92=(Token)match(input,57,FOLLOW_57_in_opOr907); if (state.failed) return retval;
+            string_literal92=(Token)match(input,57,FOLLOW_57_in_opOr915); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             string_literal92_tree = 
             (Object)adaptor.create(string_literal92)
@@ -3657,7 +3657,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "opAnd"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:180:1: opAnd : '&&' ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:182:1: opAnd : '&&' ;
     public final CmbParser.opAnd_return opAnd() throws RecognitionException {
         CmbParser.opAnd_return retval = new CmbParser.opAnd_return();
         retval.start = input.LT(1);
@@ -3670,13 +3670,13 @@ public TreeAdaptor getTreeAdaptor() {
         Object string_literal93_tree=null;
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:181:2: ( '&&' )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:181:4: '&&'
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:183:2: ( '&&' )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:183:4: '&&'
             {
             root_0 = (Object)adaptor.nil();
 
 
-            string_literal93=(Token)match(input,41,FOLLOW_41_in_opAnd921); if (state.failed) return retval;
+            string_literal93=(Token)match(input,41,FOLLOW_41_in_opAnd929); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             string_literal93_tree = 
             (Object)adaptor.create(string_literal93)
@@ -3717,7 +3717,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "opRel"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:184:1: opRel : ( '>' | '<' | '>=' | '<=' | '==' | '!=' );
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:186:1: opRel : ( '>' | '<' | '>=' | '<=' | '==' | '!=' );
     public final CmbParser.opRel_return opRel() throws RecognitionException {
         CmbParser.opRel_return retval = new CmbParser.opRel_return();
         retval.start = input.LT(1);
@@ -3730,8 +3730,8 @@ public TreeAdaptor getTreeAdaptor() {
         Object set94_tree=null;
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:185:2: ( '>' | '<' | '>=' | '<=' | '==' | '!=' )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:187:2: ( '>' | '<' | '>=' | '<=' | '==' | '!=' )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:
             {
             root_0 = (Object)adaptor.nil();
 
@@ -3786,7 +3786,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "opNot"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:193:1: opNot : '!' ;
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:195:1: opNot : '!' ;
     public final CmbParser.opNot_return opNot() throws RecognitionException {
         CmbParser.opNot_return retval = new CmbParser.opNot_return();
         retval.start = input.LT(1);
@@ -3799,13 +3799,13 @@ public TreeAdaptor getTreeAdaptor() {
         Object char_literal95_tree=null;
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:194:2: ( '!' )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:194:4: '!'
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:196:2: ( '!' )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:196:4: '!'
             {
             root_0 = (Object)adaptor.nil();
 
 
-            char_literal95=(Token)match(input,38,FOLLOW_38_in_opNot984); if (state.failed) return retval;
+            char_literal95=(Token)match(input,38,FOLLOW_38_in_opNot992); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             char_literal95_tree = 
             (Object)adaptor.create(char_literal95)
@@ -3846,7 +3846,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "factor"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:197:1: factor : ( ID | constante -> constante | invocacao -> invocacao );
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:199:1: factor : ( ID | constante -> constante | invocacao -> invocacao );
     public final CmbParser.factor_return factor() throws RecognitionException {
         CmbParser.factor_return retval = new CmbParser.factor_return();
         retval.start = input.LT(1);
@@ -3864,7 +3864,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_constante=new RewriteRuleSubtreeStream(adaptor,"rule constante");
         RewriteRuleSubtreeStream stream_invocacao=new RewriteRuleSubtreeStream(adaptor,"rule invocacao");
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:198:2: ( ID | constante -> constante | invocacao -> invocacao )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:200:2: ( ID | constante -> constante | invocacao -> invocacao )
             int alt18=3;
             int LA18_0 = input.LA(1);
 
@@ -3899,12 +3899,12 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt18) {
                 case 1 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:198:4: ID
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:200:4: ID
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    ID96=(Token)match(input,ID,FOLLOW_ID_in_factor997); if (state.failed) return retval;
+                    ID96=(Token)match(input,ID,FOLLOW_ID_in_factor1005); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
                     ID96_tree = 
                     (Object)adaptor.create(ID96)
@@ -3915,9 +3915,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:199:4: constante
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:201:4: constante
                     {
-                    pushFollow(FOLLOW_constante_in_factor1003);
+                    pushFollow(FOLLOW_constante_in_factor1011);
                     constante97=constante();
 
                     state._fsp--;
@@ -3937,7 +3937,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 199:15: -> constante
+                    // 201:15: -> constante
                     {
                         adaptor.addChild(root_0, stream_constante.nextTree());
 
@@ -3950,9 +3950,9 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 3 :
-                    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:200:4: invocacao
+                    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:202:4: invocacao
                     {
-                    pushFollow(FOLLOW_invocacao_in_factor1014);
+                    pushFollow(FOLLOW_invocacao_in_factor1022);
                     invocacao98=invocacao();
 
                     state._fsp--;
@@ -3972,7 +3972,7 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 200:15: -> invocacao
+                    // 202:15: -> invocacao
                     {
                         adaptor.addChild(root_0, stream_invocacao.nextTree());
 
@@ -4017,7 +4017,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "constante"
-    // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:203:1: constante : ( STRING | INT | TRUE | FALSE );
+    // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:205:1: constante : ( STRING | INT | TRUE | FALSE );
     public final CmbParser.constante_return constante() throws RecognitionException {
         CmbParser.constante_return retval = new CmbParser.constante_return();
         retval.start = input.LT(1);
@@ -4030,8 +4030,8 @@ public TreeAdaptor getTreeAdaptor() {
         Object set99_tree=null;
 
         try {
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:204:2: ( STRING | INT | TRUE | FALSE )
-            // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:206:2: ( STRING | INT | TRUE | FALSE )
+            // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:
             {
             root_0 = (Object)adaptor.nil();
 
@@ -4080,12 +4080,12 @@ public TreeAdaptor getTreeAdaptor() {
 
     // $ANTLR start synpred17_Cmb
     public final void synpred17_Cmb_fragment() throws RecognitionException {
-        // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:117:27: ( ELSE bloco )
-        // /opt/lampp/htdocs/EL/ATS/Fichas/Cmb/Gramatica/Cmb.g:117:27: ELSE bloco
+        // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:119:27: ( ELSE bloco )
+        // /home/miguel/Documentos/ACS/ATS_EL/Cmb/Gramatica/Cmb.g:119:27: ELSE bloco
         {
-        match(input,ELSE,FOLLOW_ELSE_in_synpred17_Cmb602); if (state.failed) return ;
+        match(input,ELSE,FOLLOW_ELSE_in_synpred17_Cmb610); if (state.failed) return ;
 
-        pushFollow(FOLLOW_bloco_in_synpred17_Cmb604);
+        pushFollow(FOLLOW_bloco_in_synpred17_Cmb612);
         bloco();
 
         state._fsp--;
@@ -4116,101 +4116,101 @@ public TreeAdaptor getTreeAdaptor() {
 
  
 
-    public static final BitSet FOLLOW_funcao_in_programa91 = new BitSet(new long[]{0x00000000F0000002L});
-    public static final BitSet FOLLOW_cabecalho_in_funcao113 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_funcao115 = new BitSet(new long[]{0x00000000F0000000L});
-    public static final BitSet FOLLOW_corpo_funcao_in_funcao117 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_58_in_funcao119 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tipo_in_cabecalho142 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_ID_in_cabecalho144 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_cabecalho146 = new BitSet(new long[]{0x00000800F0000000L});
-    public static final BitSet FOLLOW_argumentos_in_cabecalho148 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_43_in_cabecalho151 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaracao_in_argumentos176 = new BitSet(new long[]{0x0000400000000002L});
-    public static final BitSet FOLLOW_46_in_argumentos179 = new BitSet(new long[]{0x00000000F0000000L});
-    public static final BitSet FOLLOW_declaracao_in_argumentos181 = new BitSet(new long[]{0x0000400000000002L});
-    public static final BitSet FOLLOW_declaracoes_in_corpo_funcao204 = new BitSet(new long[]{0x00000018030C0000L});
-    public static final BitSet FOLLOW_statements_in_corpo_funcao206 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declaracao_in_declaracoes230 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_49_in_declaracoes232 = new BitSet(new long[]{0x00000000F0000002L});
-    public static final BitSet FOLLOW_tipo_in_declaracao256 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_ID_in_declaracao258 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_statement_in_statements313 = new BitSet(new long[]{0x00000018030C0002L});
-    public static final BitSet FOLLOW_atribuicao_in_statement337 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_49_in_statement339 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_read_in_statement349 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_49_in_statement351 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_write_in_statement361 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_49_in_statement363 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ifs_in_statement373 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_whiles_in_statement384 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_invocacao_in_statement395 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_49_in_statement397 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_retorna_in_statement406 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_49_in_statement408 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RETURN_in_retorna424 = new BitSet(new long[]{0x0000804208148000L});
-    public static final BitSet FOLLOW_expr_in_retorna426 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_invocacao446 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_invocacao448 = new BitSet(new long[]{0x0000884208148000L});
-    public static final BitSet FOLLOW_args_in_invocacao450 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_43_in_invocacao453 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_args476 = new BitSet(new long[]{0x0000400000000002L});
-    public static final BitSet FOLLOW_46_in_args480 = new BitSet(new long[]{0x0000804208148000L});
-    public static final BitSet FOLLOW_expr_in_args482 = new BitSet(new long[]{0x0000400000000002L});
-    public static final BitSet FOLLOW_ID_in_atribuicao506 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_52_in_atribuicao508 = new BitSet(new long[]{0x0000804208148000L});
-    public static final BitSet FOLLOW_expr_in_atribuicao510 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WRITE_in_write534 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_write536 = new BitSet(new long[]{0x0000804208148000L});
-    public static final BitSet FOLLOW_expr_in_write538 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_43_in_write540 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_READ_in_read562 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_read564 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_ID_in_read566 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_43_in_read568 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_IF_in_ifs591 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_ifs593 = new BitSet(new long[]{0x0000804208148000L});
-    public static final BitSet FOLLOW_expr_in_ifs595 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_43_in_ifs597 = new BitSet(new long[]{0x01000018030C0000L});
-    public static final BitSet FOLLOW_bloco_in_ifs599 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_ELSE_in_ifs602 = new BitSet(new long[]{0x01000018030C0000L});
-    public static final BitSet FOLLOW_bloco_in_ifs604 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WHILE_in_whiles634 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_whiles636 = new BitSet(new long[]{0x0000804208148000L});
-    public static final BitSet FOLLOW_expr_in_whiles638 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_43_in_whiles640 = new BitSet(new long[]{0x01000018030C0000L});
-    public static final BitSet FOLLOW_bloco_in_whiles642 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_bloco664 = new BitSet(new long[]{0x00000018030C0000L});
-    public static final BitSet FOLLOW_statements_in_bloco666 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_58_in_bloco668 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_statement_in_bloco680 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_orExpr_in_expr704 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_andExpr_in_orExpr722 = new BitSet(new long[]{0x0200000000000002L});
-    public static final BitSet FOLLOW_opOr_in_orExpr725 = new BitSet(new long[]{0x0000804208148000L});
-    public static final BitSet FOLLOW_andExpr_in_orExpr728 = new BitSet(new long[]{0x0200000000000002L});
-    public static final BitSet FOLLOW_equalityExpr_in_andExpr743 = new BitSet(new long[]{0x0000020000000002L});
-    public static final BitSet FOLLOW_opAnd_in_andExpr745 = new BitSet(new long[]{0x0000804208148000L});
-    public static final BitSet FOLLOW_equalityExpr_in_andExpr748 = new BitSet(new long[]{0x0000020000000002L});
-    public static final BitSet FOLLOW_additiveExpr_in_equalityExpr763 = new BitSet(new long[]{0x00EC008000000002L});
-    public static final BitSet FOLLOW_opRel_in_equalityExpr766 = new BitSet(new long[]{0x0000804208148000L});
-    public static final BitSet FOLLOW_additiveExpr_in_equalityExpr769 = new BitSet(new long[]{0x00EC008000000002L});
-    public static final BitSet FOLLOW_multiplicativeExpr_in_additiveExpr784 = new BitSet(new long[]{0x0000A00000000002L});
-    public static final BitSet FOLLOW_opAdd_in_additiveExpr787 = new BitSet(new long[]{0x0000804208148000L});
-    public static final BitSet FOLLOW_multiplicativeExpr_in_additiveExpr790 = new BitSet(new long[]{0x0000A00000000002L});
-    public static final BitSet FOLLOW_notExpr_in_multiplicativeExpr805 = new BitSet(new long[]{0x0001110000000002L});
-    public static final BitSet FOLLOW_opMul_in_multiplicativeExpr808 = new BitSet(new long[]{0x0000804208148000L});
-    public static final BitSet FOLLOW_notExpr_in_multiplicativeExpr811 = new BitSet(new long[]{0x0001110000000002L});
-    public static final BitSet FOLLOW_opNot_in_notExpr827 = new BitSet(new long[]{0x0000800208148000L});
-    public static final BitSet FOLLOW_negationExpr_in_notExpr832 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_negationExpr844 = new BitSet(new long[]{0x0000000208148000L});
-    public static final BitSet FOLLOW_factor_in_negationExpr849 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_opOr907 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_opAnd921 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_opNot984 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_factor997 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_constante_in_factor1003 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_invocacao_in_factor1014 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ELSE_in_synpred17_Cmb602 = new BitSet(new long[]{0x01000018030C0000L});
-    public static final BitSet FOLLOW_bloco_in_synpred17_Cmb604 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_funcao_in_programa99 = new BitSet(new long[]{0x00000000F0000002L});
+    public static final BitSet FOLLOW_cabecalho_in_funcao121 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_funcao123 = new BitSet(new long[]{0x00000000F0000000L});
+    public static final BitSet FOLLOW_corpo_funcao_in_funcao125 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_58_in_funcao127 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_tipo_in_cabecalho150 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_ID_in_cabecalho152 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_cabecalho154 = new BitSet(new long[]{0x00000800F0000000L});
+    public static final BitSet FOLLOW_argumentos_in_cabecalho156 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_cabecalho159 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaracao_in_argumentos184 = new BitSet(new long[]{0x0000400000000002L});
+    public static final BitSet FOLLOW_46_in_argumentos187 = new BitSet(new long[]{0x00000000F0000000L});
+    public static final BitSet FOLLOW_declaracao_in_argumentos189 = new BitSet(new long[]{0x0000400000000002L});
+    public static final BitSet FOLLOW_declaracoes_in_corpo_funcao212 = new BitSet(new long[]{0x00000018030C0000L});
+    public static final BitSet FOLLOW_statements_in_corpo_funcao214 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declaracao_in_declaracoes238 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_49_in_declaracoes240 = new BitSet(new long[]{0x00000000F0000002L});
+    public static final BitSet FOLLOW_tipo_in_declaracao264 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_ID_in_declaracao266 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_statement_in_statements321 = new BitSet(new long[]{0x00000018030C0002L});
+    public static final BitSet FOLLOW_atribuicao_in_statement345 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_49_in_statement347 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_read_in_statement357 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_49_in_statement359 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_write_in_statement369 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_49_in_statement371 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ifs_in_statement381 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_whiles_in_statement392 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_invocacao_in_statement403 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_49_in_statement405 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_retorna_in_statement414 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_49_in_statement416 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RETURN_in_retorna432 = new BitSet(new long[]{0x0000804208148000L});
+    public static final BitSet FOLLOW_expr_in_retorna434 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_invocacao454 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_invocacao456 = new BitSet(new long[]{0x0000884208148000L});
+    public static final BitSet FOLLOW_args_in_invocacao458 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_invocacao461 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_args484 = new BitSet(new long[]{0x0000400000000002L});
+    public static final BitSet FOLLOW_46_in_args488 = new BitSet(new long[]{0x0000804208148000L});
+    public static final BitSet FOLLOW_expr_in_args490 = new BitSet(new long[]{0x0000400000000002L});
+    public static final BitSet FOLLOW_ID_in_atribuicao514 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_52_in_atribuicao516 = new BitSet(new long[]{0x0000804208148000L});
+    public static final BitSet FOLLOW_expr_in_atribuicao518 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WRITE_in_write542 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_write544 = new BitSet(new long[]{0x0000804208148000L});
+    public static final BitSet FOLLOW_expr_in_write546 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_write548 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_READ_in_read570 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_read572 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_ID_in_read574 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_read576 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_IF_in_ifs599 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_ifs601 = new BitSet(new long[]{0x0000804208148000L});
+    public static final BitSet FOLLOW_expr_in_ifs603 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_ifs605 = new BitSet(new long[]{0x01000018030C0000L});
+    public static final BitSet FOLLOW_bloco_in_ifs607 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_ELSE_in_ifs610 = new BitSet(new long[]{0x01000018030C0000L});
+    public static final BitSet FOLLOW_bloco_in_ifs612 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WHILE_in_whiles642 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_42_in_whiles644 = new BitSet(new long[]{0x0000804208148000L});
+    public static final BitSet FOLLOW_expr_in_whiles646 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_whiles648 = new BitSet(new long[]{0x01000018030C0000L});
+    public static final BitSet FOLLOW_bloco_in_whiles650 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_bloco672 = new BitSet(new long[]{0x00000018030C0000L});
+    public static final BitSet FOLLOW_statements_in_bloco674 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_58_in_bloco676 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_statement_in_bloco688 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_orExpr_in_expr712 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_andExpr_in_orExpr730 = new BitSet(new long[]{0x0200000000000002L});
+    public static final BitSet FOLLOW_opOr_in_orExpr733 = new BitSet(new long[]{0x0000804208148000L});
+    public static final BitSet FOLLOW_andExpr_in_orExpr736 = new BitSet(new long[]{0x0200000000000002L});
+    public static final BitSet FOLLOW_equalityExpr_in_andExpr751 = new BitSet(new long[]{0x0000020000000002L});
+    public static final BitSet FOLLOW_opAnd_in_andExpr753 = new BitSet(new long[]{0x0000804208148000L});
+    public static final BitSet FOLLOW_equalityExpr_in_andExpr756 = new BitSet(new long[]{0x0000020000000002L});
+    public static final BitSet FOLLOW_additiveExpr_in_equalityExpr771 = new BitSet(new long[]{0x00EC008000000002L});
+    public static final BitSet FOLLOW_opRel_in_equalityExpr774 = new BitSet(new long[]{0x0000804208148000L});
+    public static final BitSet FOLLOW_additiveExpr_in_equalityExpr777 = new BitSet(new long[]{0x00EC008000000002L});
+    public static final BitSet FOLLOW_multiplicativeExpr_in_additiveExpr792 = new BitSet(new long[]{0x0000A00000000002L});
+    public static final BitSet FOLLOW_opAdd_in_additiveExpr795 = new BitSet(new long[]{0x0000804208148000L});
+    public static final BitSet FOLLOW_multiplicativeExpr_in_additiveExpr798 = new BitSet(new long[]{0x0000A00000000002L});
+    public static final BitSet FOLLOW_notExpr_in_multiplicativeExpr813 = new BitSet(new long[]{0x0001110000000002L});
+    public static final BitSet FOLLOW_opMul_in_multiplicativeExpr816 = new BitSet(new long[]{0x0000804208148000L});
+    public static final BitSet FOLLOW_notExpr_in_multiplicativeExpr819 = new BitSet(new long[]{0x0001110000000002L});
+    public static final BitSet FOLLOW_opNot_in_notExpr835 = new BitSet(new long[]{0x0000800208148000L});
+    public static final BitSet FOLLOW_negationExpr_in_notExpr840 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_negationExpr852 = new BitSet(new long[]{0x0000000208148000L});
+    public static final BitSet FOLLOW_factor_in_negationExpr857 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_57_in_opOr915 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_opAnd929 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_opNot992 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_factor1005 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_constante_in_factor1011 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_invocacao_in_factor1022 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ELSE_in_synpred17_Cmb610 = new BitSet(new long[]{0x01000018030C0000L});
+    public static final BitSet FOLLOW_bloco_in_synpred17_Cmb612 = new BitSet(new long[]{0x0000000000000002L});
 
 }

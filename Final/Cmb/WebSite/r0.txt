@@ -1,0 +1,4 @@
+Introduza um inteiro:
+Introduza um inteiro:
+60
+End!

@@ -5,6 +5,24 @@
 <form name="form" action="criarResposta.php" method="post">
     <div class="textwrapper">
         <textarea name="texto" rows="25">
+
+int main(int i){
+	int a;
+	int b;
+	int res;
+	
+	scan(a);
+	scan(b);
+	
+	if(a>b){
+		res = a;
+	}else{
+		res = b;
+	}
+	
+	print(res);
+}
+
 void imprime(string nome)
 {
 	string msg;

@@ -1,3 +1,4 @@
+
 int main(int i){
 	int a;
 	int b;
@@ -13,4 +14,6 @@ int main(int i){
 	}
 	
 	print(res);
-}
+}	
+		
+        

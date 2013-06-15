@@ -21,7 +21,6 @@ public class Run {
 			* 3 - CmbTGSSA
 			* 4 - CmbTGSDG
 			* */
-			
 			CmbTGCFG walker = new CmbTGCFG(new CommonTreeNodeStream(ret.getTree()));			
 			////CmbTGCFG.programa_return walker_ret = walker.programa();
 			////System.out.println(walker_ret.g_out);
@@ -50,13 +49,26 @@ public class Run {
 			tSDG.start();
 			System.out.println("Começou SDG");
 			
+			CmbTGMSP walkerMSP = new CmbTGMSP(new CommonTreeNodeStream(ret.getTree()));
+			//CmbTGPDG.programa_return walkerPDG_ret = walkerPDG.programa();
+			//System.out.println(walkerPDG_ret.g_out);
+			Thread tMSP = new MyThread(walkerMSP, 5);
+			tMSP.start();
+			System.out.println("Começou MSP");
 			
+			CmbTGMSP2 walkerMSP2 = new CmbTGMSP2(new CommonTreeNodeStream(ret.getTree()));
+			//CmbTGPDG.programa_return walkerPDG_ret = walkerPDG.programa();
+			//System.out.println(walkerPDG_ret.g_out);
+			Thread tMSP2 = new MyThread(walkerMSP2, 6);
+			tMSP2.start();
+			System.out.println("Começou MSP2");
 
 			//// esperar que terminem as threads
 			tCFG.join();
 			tPDG.join();
 			tSSA.join();
 			tSDG.join();
+			tMSP.join();
 			System.out.println("Terminou tudo!");
 			
 		}

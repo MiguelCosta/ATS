@@ -1,5 +1,6 @@
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.ArrayList;
 import java.io.*;
 
 public class MyThread extends Thread {
@@ -16,12 +17,20 @@ public class MyThread extends Thread {
 	private CmbTGSDG _walkerSDG;
 	private CmbTGSDG.programa_return _walkerSDGRet;
 
+	private CmbTGMSP _walkerMSP;
+	private CmbTGMSP.programa_return _walkerMSPRet;
+	
+	private CmbTGMSP2 _walkerMSP2;
+	private CmbTGMSP2.programa_return _walkerMSP2Ret;
+
 	/**
 	 * Tipos disponiveis para usar nas threads 
 	 * 1 - CmbTGCFG;
 	 * 2 - CmbTGPDG;
 	 * 3 - CmbTGSSA;
-	 * 4 - CmbTGSDG
+	 * 4 - CmbTGSDG;
+	 * 5 - CmbTGMSP;
+	 * 6 - CmbTGMSP2;
 	 * */
 	private int _tipo;
 
@@ -41,6 +50,12 @@ public class MyThread extends Thread {
 		case 4:
 			_walkerSDG = (CmbTGSDG) walker;
 			break;
+		case 5:
+			_walkerMSP = (CmbTGMSP) walker;
+			break;
+		case 6:
+			_walkerMSP2 = (CmbTGMSP2) walker;
+			break;
 		}
 	}
 
@@ -50,7 +65,7 @@ public class MyThread extends Thread {
 			switch (_tipo) {
 			case 1:
 				_walkerRet = _walker.programa();
-				// System.out.println("CFG OUTPUT:\n" + _walkerRet.grafos_out);
+				//System.out.println("CFG OUTPUT:\n" + _walkerRet.grafos_out);
 				toDotCFG(_walkerRet.grafos_out);
 				break;
 			case 2:
@@ -65,9 +80,18 @@ public class MyThread extends Thread {
 				break;
 			case 4:
 				_walkerSDGRet = _walkerSDG.programa();
-				// System.out.println("SDG OUTPUT:\n" +
-				// _walkerSDGRet.grafos_out);
+				// System.out.println("SDG OUTPUT:\n" + _walkerSDGRet.grafos_out);
 				toDotSDG(_walkerSDGRet.grafos_out);
+				break;
+			case 5:
+				_walkerMSPRet = _walkerMSP.programa();
+				System.out.println("AQUI VAI SER O CODIGO MSP");
+				toMSP(_walkerMSPRet.msp_code, _walkerMSPRet.msp_lines);
+				break;
+			case 6:
+				_walkerMSP2Ret = _walkerMSP2.programa();
+				System.out.println("AQUI VAI SER O CODIGO MSP2");
+				toMSP2(_walkerMSP2Ret.msp_declaracoes, _walkerMSP2Ret.msp_instrucoes);
 				break;
 			}
 		} catch (Exception e) {
@@ -354,4 +378,71 @@ public class MyThread extends Thread {
 
 	}
 
+	public void toMSP(ArrayList<String> in1, ArrayList<String> in2){
+		System.out.println("Code: " + in1.size());
+		String outS = "";
+		String outS2 = "";
+		
+		for(String s : in1){
+			outS += s + "\n";
+			//System.out.println(s);
+		}
+		
+		System.out.println("Lines: " + in2.size());
+		
+		for(String s2 : in1){
+			outS2 += s2 + "\n";
+			//System.out.println(s2);
+		}
+		
+		try {
+			FileWriter fstream = new FileWriter("msp.txt");
+			BufferedWriter out = new BufferedWriter(fstream);
+			out.write(outS);
+			out.close();
+			
+			FileWriter fstream2 = new FileWriter("msp_lines.txt");
+			BufferedWriter out2 = new BufferedWriter(fstream2);
+			out2.write(outS2);
+			out2.close();
+		} catch (Exception e) {// Catch exception if any
+			System.err.println("Error: " + e.getMessage());
+		}
+				
+	}
+	
+	
+	public void toMSP2(ArrayList<String> declaracoes, ArrayList<String> instrucoes){
+		System.out.println("Declaracoes: " + declaracoes.size());
+		System.out.println("Instrucoes: " + instrucoes.size());
+		
+		String outS = "Msp ";
+		
+		outS += "[" + combine(declaracoes.toArray(new String[]{}), ",\n ") + "]";
+		outS += "[" + combine(instrucoes.toArray(new String[]{}), ",\n ") + "]";
+		
+		System.out.println(outS);	
+				
+		try {
+			FileWriter fstream = new FileWriter("msp2.txt");
+			BufferedWriter out = new BufferedWriter(fstream);
+			out.write(outS);
+			out.close();
+		} catch (Exception e) {// Catch exception if any
+			System.err.println("Error: " + e.getMessage());
+		}
+				
+	}
+	
+	String combine(String[] s, String glue){
+		int k=s.length;
+		if (k==0)
+			return null;
+		StringBuilder out=new StringBuilder();
+		out.append(s[0]);
+		for (int x=1;x<k;++x)
+			out.append(glue).append(s[x]);
+		return out.toString();
+}
+	
 }

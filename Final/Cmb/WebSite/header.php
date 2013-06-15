@@ -15,9 +15,6 @@
                 <a href="index.php" id="logo"><h1>ATS</h1></a>
                 <ul>
                     <li>
-                        <a href="index.php">Ínicio</a>
-                    </li>
-                    <li>
                         <a href="criar.php">Inserir código</a>
                     </li>
                     <li>
@@ -33,7 +30,7 @@
                         <a href="sdg.php">SDG</a>
                     </li>
                     <li>
-                        <a href="sdg.php">MSP</a>
+                        <a href="msp.php">MSP</a>
                     </li>
                 </ul>
                 </ul>
