@@ -1,40 +1,16 @@
-
-
-int main(int x, int y)
-{
+int main(int i){
 	int a;
 	int b;
+	int res;
 	
-	a=2+1;
+	scan(a);
+	scan(b);
 	
-	if(a==2) {
-		a = a + 1;
-		b = 3;
-	}
-	else
-		b = 5;
-	
-	while (a<5)
-	{
-		a = a+5 * 3;
+	if(a>b){
+		res = a;
+	}else{
+		res = b;
 	}
 	
-	b = xtop(a+2*3,a);
-	
-	print (a);
-	
-	scan (a);
+	print(res);
 }
-
-bool xtop (bool t, int i)
-{
-	string s;
-	
-	s = "luis";
-	
-	imprime (s);
-	
-	return s;
-}		
-		
-	
