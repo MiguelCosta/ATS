@@ -23,6 +23,9 @@
         <li>
             <a href="msp.php">MSP</a>
         </li>
+        <li>
+            <a href="metricas.php">ME</a>
+        </li>
     </ul>
     &#169; Copyright &#169; 2013
     <div class="connect">

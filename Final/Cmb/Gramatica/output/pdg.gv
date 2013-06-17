@@ -23,4 +23,27 @@ graph [bgcolor=transparent];
 	"2:scan(b)" -> "5:res = b" [style=dotted];
 	"4:res = a" -> "6:print(res)" [style=dotted];
 	"5:res = b" -> "6:print(res)" [style=dotted];
+	"0:ENTER (main2)"[label="0: ENTER (main2)"];
+"1:scan(a)"[label="1: scan(a)"];
+"2:scan(b)"[label="2: scan(b)"];
+"3:if(a>b)"[label="3: if(a>b)"];
+"4:res = a"[label="4: res = a"];
+"5:res = b"[label="5: res = b"];
+"6:print(res)"[label="6: print(res)"];
+
+
+"0:ENTER (main2)" -> "1:scan(a)";
+	"0:ENTER (main2)" -> "2:scan(b)";
+	"0:ENTER (main2)" -> "3:if(a>b)";
+	"0:ENTER (main2)" -> "6:print(res)";
+	"3:if(a>b)" -> "4:res = a"[label="T"];
+	"3:if(a>b)" -> "5:res = b"[label="F"];
+	
+
+"1:scan(a)" -> "3:if(a>b)" [style=dotted];
+	"1:scan(a)" -> "4:res = a" [style=dotted];
+	"2:scan(b)" -> "3:if(a>b)" [style=dotted];
+	"2:scan(b)" -> "5:res = b" [style=dotted];
+	"4:res = a" -> "6:print(res)" [style=dotted];
+	"5:res = b" -> "6:print(res)" [style=dotted];
 	}

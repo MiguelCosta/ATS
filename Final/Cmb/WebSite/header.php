@@ -32,6 +32,9 @@
                     <li>
                         <a href="msp.php">MSP</a>
                     </li>
+                    <li>
+                        <a href="metricas.php">ME</a>
+                    </li>
                 </ul>
                 </ul>
             </div>

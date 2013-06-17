@@ -1,0 +1,7 @@
+
+Numero de funcoes: 4
+*********************************
+Numero médio de parametros: 1
+Numero médio de declaracoes: 1
+Numero médio de instrucoes: 0
+Numero médio de invocacoes: 0

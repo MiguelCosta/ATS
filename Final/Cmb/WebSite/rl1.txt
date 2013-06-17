@@ -1,0 +1,8 @@
+Introduza um inteiro:
+l:7
+Introduza um inteiro:
+l:8
+l:10
+l:11
+l:16
+End!
