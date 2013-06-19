@@ -1,17 +1,32 @@
 digraph mainmapSDG {
 graph [bgcolor=transparent];
-"0:ENTER (imprime)"[shape=record, label="{{void|0: ENTER (imprime)|nome}}"];
-"1:msg = 'blabla'"[label="1: msg = 'blabla'"];
-"2:print(nome)"[label="2: print(nome)"];
-"3:print(msg)"[label="3: print(msg)"];
+"0:ENTER (main)"[shape=record, label="{{int|0: ENTER (main)|i}}"];
+"1:scan(a)"[label="1: scan(a)"];
+"2:scan(b)"[label="2: scan(b)"];
+"3:if(a>b)"[label="3: if(a>b)"];
+"4:res = a"[label="4: res = a"];
+"5:res = b"[label="5: res = b"];
+"6:print(res)"[label="6: print(res)"];
 
 
-"0:ENTER (imprime)" -> "1:msg = 'blabla'";
-	"0:ENTER (imprime)" -> "2:print(nome)";
-	"0:ENTER (imprime)" -> "3:print(msg)";
+"0:ENTER (main)" -> "1:scan(a)";
+	"0:ENTER (main)" -> "2:scan(b)";
+	"0:ENTER (main)" -> "3:if(a>b)";
+	"0:ENTER (main)" -> "6:print(res)";
+	"3:if(a>b)" -> "4:res = a"[label="T"];
+	"3:if(a>b)" -> "5:res = b"[label="F"];
 	
 
-"0:ENTER (main)"[shape=record, label="{{int|0: ENTER (main)|x|y}}"];
+"0:ENTER (ola)"[shape=record, label="{{void|0: ENTER (ola)|nome}}"];
+"1:msg = 'ola ATS'"[label="1: msg = 'ola ATS'"];
+"2:print(msg)"[label="2: print(msg)"];
+
+
+"0:ENTER (ola)" -> "1:msg = 'ola ATS'";
+	"0:ENTER (ola)" -> "2:print(msg)";
+	
+
+"0:ENTER (verifica)"[shape=record, label="{{int|0: ENTER (verifica)|x|y}}"];
 "1:a = 2+1"[label="1: a = 2+1"];
 "2:if(a==2)"[label="2: if(a==2)"];
 "3:a = a+1"[label="3: a = a+1"];
@@ -24,12 +39,12 @@ graph [bgcolor=transparent];
 "10:scan(a)"[label="10: scan(a)"];
 
 
-"0:ENTER (main)" -> "1:a = 2+1";
-	"0:ENTER (main)" -> "2:if(a==2)";
-	"0:ENTER (main)" -> "6:while(a<5)";
-	"0:ENTER (main)" -> "8:b = xtop(a+2*3, a)";
-	"0:ENTER (main)" -> "9:print(a)";
-	"0:ENTER (main)" -> "10:scan(a)";
+"0:ENTER (verifica)" -> "1:a = 2+1";
+	"0:ENTER (verifica)" -> "2:if(a==2)";
+	"0:ENTER (verifica)" -> "6:while(a<5)";
+	"0:ENTER (verifica)" -> "8:b = xtop(a+2*3, a)";
+	"0:ENTER (verifica)" -> "9:print(a)";
+	"0:ENTER (verifica)" -> "10:scan(a)";
 	"2:if(a==2)" -> "3:a = a+1"[label="T"];
 	"2:if(a==2)" -> "4:b = 3"[label="T"];
 	"2:if(a==2)" -> "5:b = 5"[label="F"];
@@ -39,15 +54,15 @@ graph [bgcolor=transparent];
 
 "8:b = xtop(a+2*3, a)" -> "0:ENTER (xtop)" [style=dotted];
 	"0:ENTER (xtop)"[shape=record, label="{{bool|0: ENTER (xtop)|t|i}}"];
-"1:s = 'luis'"[label="1: s = 'luis'"];
-"2:imprime(s)"[label="2: imprime(s)"];
-"3:return s"[label="3: return s"];
+"1:str = 'ats'"[label="1: str = 'ats'"];
+"2:imprime(str)"[label="2: imprime(str)"];
+"3:return true"[label="3: return true"];
 
 
-"0:ENTER (xtop)" -> "1:s = 'luis'";
-	"0:ENTER (xtop)" -> "2:imprime(s)";
-	"0:ENTER (xtop)" -> "3:return s"[label="CORPO_FUNCAO"];
+"0:ENTER (xtop)" -> "1:str = 'ats'";
+	"0:ENTER (xtop)" -> "2:imprime(str)";
+	"0:ENTER (xtop)" -> "3:return true"[label="CORPO_FUNCAO"];
 	
 
-"2:imprime(s)" -> "0:ENTER (imprime)" [style=dotted];
+"2:imprime(str)" -> "0:ENTER (imprime)" [style=dotted];
 	}

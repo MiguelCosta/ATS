@@ -14,4 +14,6 @@
 \contentsline {section}{\numberline {8}MSP}{15}
 \contentsline {subsection}{\numberline {8.1}Implementa\c c\~ao}{15}
 \contentsline {section}{\numberline {9}Compila\c c\~ao}{18}
-\contentsline {section}{\numberline {10}Conclus\~oes}{20}
+\contentsline {section}{\numberline {10}Apresenta\c c\~ao do resultado}{20}
+\contentsline {section}{\numberline {11}Extra}{22}
+\contentsline {section}{\numberline {12}Conclus\~oes}{24}

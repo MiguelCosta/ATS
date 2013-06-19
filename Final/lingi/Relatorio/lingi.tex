@@ -170,7 +170,7 @@ Por esta breve apresentação, pode-se então concluir que a gramática desenvolvida
 
 \section{Gramáticas}
 
-Neste capítulo, iremos abordar a gramática concreta fornecida que define uma linguagem i-- apresentada anteriormente. A transformação numa AST também foi fornecida e por isso abordaremos apenas o processo de criação associado. Por fim, mostraremos a implementação da cada um dos módulos (Tree Grammars) pedidos para este trabalho.
+Neste capítulo, iremos abordar a gramática concreta fornecida que define uma linguagem i-- apresentada anteriormente. A transformação numa AST foi feita aplicando conhecimentos adquiridos noutra UCE do Mestrado (Engenharia de Linguagens). Por fim, mostraremos a implementação da cada um dos módulos (Tree Grammars) pedidos para este trabalho.
 
 \subsection{Gramática concreta}
 A linguagem i-- é uma simplificação da linguagem C. Simplificada no sentido em que apenas reúne algumas das características presentes no C, nomeadamente, funções e os seus argumentos, declaração de variáveis, atribuições, operações de I/O (scan e print), expressões if e ciclos while e for, invocação de funções, retorno de variáveis numa função (return) e a utilização de expressões que utilizam operadores aritméticos, à exceção dos operadores de incremento (++) e decremento (--), operadores de comparação e operadores lógicos. 
@@ -418,7 +418,7 @@ Uma pergunta importante que ainda está por ser respondida é: "Afinal como se lig
 
 Para cada TG criada, existe uma thread correspondente que vai executar a tarefa correspondente ao output da TG, essas threads estão definidas na classe \verb|MyThread|. Existe ainda a classe \verb|Run| que basicamente criar uma AST que envia depois para as várias threads que irão executar tarefas diferentes sobre elas.
 
-Para que isto seja possível é necessário no AntlWorks gerar o código de caga TG, depois na pasta output executar o comando \verb|javac Run| para compilar todo o projeto. Depois de compilado, o comando para executar é \verb|java Run ficheitoInput.i|
+Para que isto seja possível é necessário no AntlWorks gerar o código de cada TG, depois na pasta output executar o comando \verb|javac Run| para compilar todo o projeto. Depois de compilado, o comando para executar é \verb|java Run ficheitoInput.i|
 
 Parte da classe \verb|Run.java|:
 \begin{verbatim}
@@ -508,6 +508,83 @@ public class MyThread extends Thread {
 ...
 }
 \end{verbatim}
+
+Como podemos concluir após a análise do código anterior, de uma forma simples temos uma thread que percorre uma TG e gera o ficheiro msp2.txt com o código MSP correspondente ao input fornecido.
+
+
+\section{Apresentação do resultado}
+De forma a facilitar todo o processo de introdução de um programa válido, compilação, instrodução de testes e visualização de todo o resultado, criamos um simples website em php que automatizava estas tarefas.
+
+São apresentadas algumas imagens que ilustram o resultado obtido.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{inputs/inserircodigo.png}
+% imag2.png: 688x477 pixel, 72dpi, 24.27x16.83 cm, bb=0 0 688 477
+\caption{Página de inserção de um progama i--}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{inputs/mspresultado.png}
+% imag2.png: 688x477 pixel, 72dpi, 24.27x16.83 cm, bb=0 0 688 477
+\caption{Código MSP que foi gerado a partir do programa introduzido}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{inputs/testeinput.png}
+% imag2.png: 688x477 pixel, 72dpi, 24.27x16.83 cm, bb=0 0 688 477
+\caption{Nome dos ficheiros que estão dentro da pasta "Testes" do website que vao ser usados para correr o nosso programa}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{inputs/testeresultado.png}
+% imag2.png: 688x477 pixel, 72dpi, 24.27x16.83 cm, bb=0 0 688 477
+\caption{Nome dos ficheiros que estão dentro da pasta "Testes" do website que vao ser usados para correr o nosso programa}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{inputs/metricas.png}
+% imag2.png: 688x477 pixel, 72dpi, 24.27x16.83 cm, bb=0 0 688 477
+\caption{Quanto às métricas criadas elas são muito simples, no entanto é possível enriquecer com alguma facildiade}
+\end{figure}
+
+
+\section{Extra}
+Apesar de não ser um requisito, devido a conhecimentos adquiridos na UCE de Engenharia de Linguagens, criamos TG para a geração do Control Flow Graph (CFG), Program Dependecy Graph (PDG), Single Static Assignment (SSA) e System Dependecy Graph (SDG).
+
+Devido ao tamanho dos grafos gerados, ficam aqui apenas parte deles:
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{inputs/cfg.png}
+% imag2.png: 688x477 pixel, 72dpi, 24.27x16.83 cm, bb=0 0 688 477
+\caption{CFG}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{inputs/pdg.png}
+% imag2.png: 688x477 pixel, 72dpi, 24.27x16.83 cm, bb=0 0 688 477
+\caption{PDG}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{inputs/ssa.png}
+% imag2.png: 688x477 pixel, 72dpi, 24.27x16.83 cm, bb=0 0 688 477
+\caption{SSA}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{inputs/sdg.png}
+% imag2.png: 688x477 pixel, 72dpi, 24.27x16.83 cm, bb=0 0 688 477
+\caption{SDG}
+\end{figure}
 
 
 \section{Conclusões}

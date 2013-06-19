@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.12.3)  19 JUN 2013 01:49
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.12.3)  19 JUN 2013 20:50
 entering extended mode
  %&-line parsing enabled.
 **lingi.tex
@@ -337,7 +337,43 @@ LaTeX Font Warning: Font shape `T1/aett/bx/n' undefined
 (Font)              using `T1/aett/m/n' instead on input line 1.
 
 [9]) (./inputs/inCod2.c) (./inputs/lingi.g [10] [11] [12] [13] [14])
-(./inputs/MSP.g [15] [16] [17]) [18] [19] [20] (./lingi.aux)
+(./inputs/MSP.g [15] [16] [17]) [18] [19]
+<inputs/inserircodigo.png, id=85, 995.72pt x 700.6175pt>
+File: inputs/inserircodigo.png Graphic file (type png)
+
+<use inputs/inserircodigo.png>
+<inputs/mspresultado.png, id=86, 963.6pt x 412.54124pt>
+File: inputs/mspresultado.png Graphic file (type png)
+
+<use inputs/mspresultado.png> [20 <./inputs/inserircodigo.png (PNG copy)>]
+<inputs/testeinput.png, id=90, 979.66pt x 273.02pt>
+File: inputs/testeinput.png Graphic file (type png)
+
+<use inputs/testeinput.png>
+<inputs/testeresultado.png, id=91, 992.70876pt x 690.58pt>
+File: inputs/testeresultado.png Graphic file (type png)
+
+<use inputs/testeresultado.png> [21 <./inputs/mspresultado.png (PNG copy)> <./i
+nputs/testeinput.png (PNG copy)>]
+<inputs/metricas.png, id=95, 978.65625pt x 434.62375pt>
+File: inputs/metricas.png Graphic file (type png)
+
+<use inputs/metricas.png> <inputs/cfg.png, id=96, 866.23625pt x 590.205pt>
+File: inputs/cfg.png Graphic file (type png)
+
+<use inputs/cfg.png> [22 <./inputs/testeresultado.png (PNG copy)> <./inputs/met
+ricas.png (PNG copy)>] <inputs/pdg.png, id=100, 983.675pt x 348.30125pt>
+File: inputs/pdg.png Graphic file (type png)
+
+<use inputs/pdg.png> <inputs/ssa.png, id=101, 796.9775pt x 567.11874pt>
+File: inputs/ssa.png Graphic file (type png)
+
+<use inputs/ssa.png> [23 <./inputs/cfg.png (PNG copy)> <./inputs/pdg.png (PNG c
+opy)>] <inputs/sdg.png, id=105, 976.64874pt x 229.85875pt>
+File: inputs/sdg.png Graphic file (type png)
+
+<use inputs/sdg.png> [24 <./inputs/ssa.png (PNG copy)> <./inputs/sdg.png (PNG c
+opy)>] (./lingi.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -346,10 +382,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5656 strings out of 495014
- 71974 string characters out of 1180707
+ 5704 strings out of 495014
+ 72969 string characters out of 1180707
  364916 words of memory out of 3000000
- 8706 multiletter control sequences out of 15000+50000
+ 8745 multiletter control sequences out of 15000+50000
  45695 words of font info for 93 fonts, out of 3000000 for 9000
  30 hyphenation exceptions out of 8191
  35i,8n,52p,702b,1777s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -371,9 +407,9 @@ exlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts
 ic/amsfonts/cm/cmtt10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
 /cm/cmtt8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt9.pf
 b>
-Output written on lingi.pdf (20 pages, 339059 bytes).
+Output written on lingi.pdf (24 pages, 2953287 bytes).
 PDF statistics:
- 150 PDF objects out of 1000 (max. 8388607)
+ 171 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

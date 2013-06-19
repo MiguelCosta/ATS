@@ -16,15 +16,14 @@ int main(int i){
 	print(res);
 }
 
-void imprime(string nome)
+void ola(string nome)
 {
 	string msg;
-	msg = "blabla";
-	print (nome);
+	msg = "ola ATS";
 	print (msg);
 }
 
-int main(int x, int y)
+int verifica(int x, int y)
 {
 	int a;
 	int b;
@@ -52,13 +51,13 @@ int main(int x, int y)
 
 bool xtop (bool t, int i)
 {
-	string s;
+	string str;
 	
-	s = "luis";
+	str = "ats";
 	
-	imprime (s);
+	imprime(str);
 	
-	return s;
+	return true;
 }		
 		
         
