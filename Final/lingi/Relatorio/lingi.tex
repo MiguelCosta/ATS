@@ -1,0 +1,519 @@
+\documentclass[a4paper]{article}
+\usepackage[portuguese]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyvrb}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[affil-it]{authblk}
+\usepackage{indentfirst}
+
+\usepackage{titlesec}
+
+\usepackage{aeguill}  % usefull for pdflatex
+\usepackage[compat2,a4paper,twosideshift=0mm,left=20mm,right=20mm,bottom=20mm,top=15mm]{geometry}
+
+\parindent=2em
+
+\usepackage{xcolor}
+\usepackage{listings}
+
+
+\lstdefinestyle{gramatica}{
+	backgroundcolor=\color{yellow!7},%
+    numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt,% 
+    basicstyle=\small\ttfamily\color{blue},%
+    breaklines=true,%                                      allow line breaks
+    moredelim=[s][\color{green!50!black}\ttfamily]{'}{'},% single quotes in green
+    moredelim=*[s][\color{black}\ttfamily]{options}{\}},%  options in black (until trailing })
+    commentstyle={\color{gray}\itshape},%                  gray italics for comments
+    morecomment=[l]{//},%                                  define // comment
+    emph={%
+        STRING%                                            literal strings listed here
+        },emphstyle={\color{blue}\ttfamily},%              and formatted in blue
+    alsoletter={:,|,;},%
+    morekeywords={:,|,;},%                                 define the special characters
+    keywordstyle={\color{black}},%                         and format them in black
+}
+
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+
+\lstset{language=Java,
+basicstyle=\ttfamily,
+keywordstyle=\color{javapurple}\bfseries,
+stringstyle=\color{javared},
+commentstyle=\color{javadocblue},
+morecomment=[s][\color{javadocblue}]{/**}{*/},
+numbers=left,
+numberstyle=\tiny\color{black},
+stepnumber=1,
+numbersep=10pt,
+tabsize=4,
+showspaces=false,
+showstringspaces=false,
+breaklines=true}
+
+
+
+\title{Linguagem i--}
+ 
+\author{Miguel Costa%
+\thanks{Email: \texttt{miguelpintodacosta@gmail.com}}}
+
+\author{Milton Nunes%
+\thanks{Email: \texttt{milton.nunes52@gmail.com}}}
+ 
+\affil{Análise e Transformação de Software,\\ UCE30 Análise e Concepção de Software,
+\\ Mestrado em Engenharia Informatica,\\Universidade do Minho}
+ 
+\date{\today}
+
+
+\begin{document}
+ 
+ 
+\maketitle
+ 
+\begin{abstract}
+Este documento apresenta a resolução do Trabalho Prático de Análise e Transformação de Software em que se definiu a linguagem i-- e usando o AnTLR criou-se um compilador de forma a gerar código para diferentes tarefas.
+\end{abstract}
+ 
+ 
+\newpage
+ 
+\parskip=0mm
+\tableofcontents
+\parskip=2mm
+ 
+\newpage
+
+\section{Introdução}
+Tal como em maior parte das coisas no nosso dia à dia, as linguagens possuem uma hierarquia. No topo (0), encontra-se a linguagem natural, a mais difícil de decifrar devido à maior diversidade de termos e expressões que pudemos usar. Na base (3) encontram-se as linguagem regulares, que possuem um número muito limitado de termos, e por isso são bastante fáceis de descodificar e perceber.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{inputs/Hierarquia.png}
+% imag2.png: 688x477 pixel, 72dpi, 24.27x16.83 cm, bb=0 0 688 477
+\end{figure}
+
+Formalmente uma gramática independente do contexto é definida como uma gramática formal\footnote{Objecto matemático que permite criação de linguagens através de um conjunto de regras de formação.} por regras de produção da formalmente definidas como:\verb|X -> x|, onde X é um símbolo não terminal e x é uma sequência de não terminais, ou até mesmo o vazio.
+
+Depois de definida a gramática precisamos de um parser para o identificar. Como tal foi utilizado o AnTLR para criar esse parser. O AnTLR é uma ferramenta de reconhecimento de linguagem. Este aceita como input uma gramática que especifica a linguagem e gera o código fonte para o reconhecimento da linguagem. O AnTLR utiliza o algoritmo LL(*), algoritmo classificado como top-down.
+
+Quando se escrever um programa, o objetivo é que ele faça alguma tarefa automaticamente, para tentar simular essa execução, nesta fase usamos uma máquina virutal com o nome MSP (Mais Simples Possível)
+
+\section{Ambiente de Trabalho}
+Foi necessário usar um Gerador de Compiladores para gerar o nosso próprio compilador, por isso usamos o AnTLR que é também usado nas aulas. Para facilitar o processo de debugging durante a resolução do problema, usamos a ferramenta AnTLRWorks, que tem uma interface bastante agradável e simpática para ajudar a resolver problemas desta natureza.
+
+Visto que era necessário gerar código para ser executado pelo MSP, foi utilizada a máquina virtual que o professor disponibilizou para testes.
+
+\section{Descrição do problema}
+O que é pretendido para este exercício é criar uma Gramática para frases idênticas a um programa escrito numa Linguagem i-- parecida ao C.
+Uma linguagem G é definida da seguinte forma:
+\begin{verbatim}
+                                      G = <T, N, S, P>
+\end{verbatim}
+
+em que:
+\begin{itemize}
+\item \textbf{T} corresponde aos símbolos terminais;
+\item \textbf{N} corresponde aos símbolos não terminais;
+\item \textbf{S} indica o símbolo inicial;
+\item \textbf{P} as produções, com pi : X0 -> X1 ... Xi ... Xn.
+\end{itemize}
+
+Depois de definidos todos os símbolos e produções, é necessário escrever a gramática no AnTLR, introduzir algumas frases válidas para a linguagem e gerar as respectivas árvores de parser.
+
+O que é pretendido é usar a gramática criada nos trabalhos anteriores da disciplina e adaptar para gerar código para ser lido pela MSP.
+Depois de fazer o parser do código inserido, é necessário gerar código MSP, criar mecanismos para verificação de testes, injeção de falhas e ainda o cálculo de métricas do código introduzido.
+
+Apesar de o professor ter aconselhado a usar TOM como representação intermédia depois do parser, adotamos antes a utilização de Tree Grammars como representação para a árvore de parser.
+
+\section{Linguagem i--}
+A linguagem i-- é uma simplificação da linguagem C. Simplificada no sentido em que apenas reúne algumas das características presentes no C, nomeadamente, funções e os seus argumentos, declaração de variáveis, atribuições, expressões \verb|if|, ciclos \verb|while| e \verb|for|, invocação de funções, retorno de variáveis numa função (\verb|return|) e a utilização de expressões que utilizam operadores aritméticos, à exceção dos operadores de incremento (++) e decremento (--), operadores de comparação e operadores lógicos. 
+
+Neste momento, a nível de tipo de variáveis apenas irá suportar:
+\begin{itemize}
+\item \verb|string|
+\item \verb|char|
+\item \verb|int|
+\item \verb|float|
+\item \verb|void|
+\item Quanto aos \verb|arrays| ainda não é suportado.
+\end{itemize}
+
+Quanto às operações matemáticas suporta:
+\begin{itemize}
+\item soma
+\item subtração
+\item divisão
+\item multiplicação
+\item resto da divisão inteira
+\end{itemize}
+De referir que a gramática definida teve em conta as prioridades nas operações matemáticas.
+
+Por fim, o tipo de instruções que se podem realizar num programa válido para esta linguagem são:
+\begin{itemize}
+\item Atribuição: \verb|int i = 0; char a;|
+\item Condição \verb|if|: \verb|if(i > 0) i=i-1; else i=i+1;|
+\item Ciclo \verb|while|: \verb|while(i>0) {i= i-1;}|
+\item Ciclo \verb|for|: \verb|for(i=0 ; i < 10; i=i+1){a=a*i;}|
+\item Invocação de outras funções: \verb|a = calcula(i, a);|
+\item Instrução \verb|return|: \verb|return 0;|
+\end{itemize}
+
+Por esta breve apresentação, pode-se então concluir que a gramática desenvolvida procurou ir de encontro ao que habitualmente compõe uma linguagem de programação e também com a preocupação de cumprir os requisitos pedidos.
+
+\section{Gramáticas}
+
+Neste capítulo, iremos abordar a gramática concreta fornecida que define uma linguagem i-- apresentada anteriormente. A transformação numa AST também foi fornecida e por isso abordaremos apenas o processo de criação associado. Por fim, mostraremos a implementação da cada um dos módulos (Tree Grammars) pedidos para este trabalho.
+
+\subsection{Gramática concreta}
+A linguagem i-- é uma simplificação da linguagem C. Simplificada no sentido em que apenas reúne algumas das características presentes no C, nomeadamente, funções e os seus argumentos, declaração de variáveis, atribuições, operações de I/O (scan e print), expressões if e ciclos while e for, invocação de funções, retorno de variáveis numa função (return) e a utilização de expressões que utilizam operadores aritméticos, à exceção dos operadores de incremento (++) e decremento (--), operadores de comparação e operadores lógicos. 
+
+Após criada a gramática, o próximo passo seria validar o texto de input. Mas como fazê-lo? Existem várias abordagens, uma delas e a que iremos utilizar neste trabalho é a geração de uma representação intermédia para que a partir dela se possam fazer várias tarefas sem ter de estar sempre a fazer parser ao código submetido.
+
+\subsubsection{AST}
+Uma Representação Intermédia (RI) é uma versão independente de qualquer linguagem ou máquina do código original. A utilização de uma RI traz algumas vantagens tais como o aumento do nível de abstração e uma separação mais limpa entre o produto inicial e o final.
+
+Existem várias representações intermédias e a que iremos utilizar é a AST (Abstract Syntax Tree) que é  uma representação em árvore da estrutura sintática abstrata do código fonte. A sintaxe é abstrata no sentido em que não representa cada detalhe que aparece na sintaxe real, ou seja, elementos como parênteses de agrupamento estão implícitos na estrutura da árvore e uma construção sintática como uma condição if e os seus blocos then e else pode ser representada através de um único nodo e dois ramos, e símbolos intermédios e palavras reservadas são tipicamente eliminados. Basicamente, mantém-se uma estrutura suficiente para realizar processos semânticos e geração de código. 
+
+Para realizar as tarefas pretendidas, temos de criar então a AST e para isso é necessário criar regras de reescrita sobre a gramática concreta, um mecanismo que o ANTLR oferece. Enquanto que uma gramática de parsing especifica como reconhecer input, as regras de reescrita são gramáticas geradoras, ou seja, especificam como gerar output. 
+Estas regras de reescritas, já nos são fornecidas juntamente com a gramática concreta e a AST resultante terá, por cada, elemento que agrupa outros elementos, um token imaginário, ou seja, referências a tokens  que não se encontram na produção original, elementos tais como ';', ou parênteses serão eliminados e elementos com o mesmo nome numa produção são agrupados numa única lista.
+
+A gramática final com as regras de reescrita pode ser consultada em anexo.
+
+Apesar de o professor ter aconselhado a utilização de TOM, devido a alguns problemas essencialmente de configuração em conseguir por tudo a funcionar, adotamos antes a utilização de AST porque já é uma RI que o Antlr oferece.
+
+\subsection{Tree Grammars}
+O próximo passo consiste na construção de um parser da AST gerada, que permitirá atravessá-la (tree walker) e manipulá-la, transformando-a gradualmente em diversas fases de tradução até que se obtenha uma forma final que satisfaça as nossas necessidades. Este parser será construído utilizando um mecanismo fornecido pelo ANTLR, uma Tree Grammar (TG). As ações numa TG possuem um contexto muito nítido e conseguem aceder a informação passada das regras invocadas.
+
+A utilização de TGs, para além da utilização referida acima, também nos fornece algumas vantagens:
+\begin{itemize}
+\item uma especificação formal, concisa e independente de um sistema da estrutura da AST;
+\item as ações têm um contexto implícito graças à sua localização na gramática;
+\item os dados podem ser passados entre as ações de forma livre utilizando parâmetros (atributos), valores de retorno e variáveis locais.
+\end{itemize}
+
+Posto isto, o problema apresentado exige a construção de algumas TG (módulos), um módulo para gerar MSP, um módulo para intrudução de falhas, um módulo para gerar código para testes e um módulo para as métricas
+
+\section{Definição e descrição formal da gramática}
+
+O nosso programa pode incluir uma ou mais funções. Uma função é definida por um cabeçalho e respectivo corpo. No corpo podem ser feitas declarações, condições e ciclos. Estão ainda definidos os operadores matemáticos e lógicos, com as respectivas prioridades.
+
+\verb|G = <T, N, S, P>|
+
+\begin{itemize}
+\item T =  \{ '\{' , '\}' , '(' , ')' , ';' , '=' , '-' , '+' , '*' , '/' , '\%' , '||' , '\&\&' , '<' , '>' , '<=' , '>=' , '==' , '!=' , '!' , ID , STRING, CHAR , INT , TRUE , FALSE , RETURN , FOR , WHILE , IF , ELSE , TD\_INT , TD\_BOOL , TD\_STRING ,  TD\_CHAR , TD\_FLOAT , TD\_VOID \}
+
+\item N = \{ programa, funcao, cabecalho, argumentos, corpo, corpo\_funcao, declaracoes, declaracao, statements, statement, atribuicao, ifs, whiles, fors, condicao\_for, invocacao, retorna, bloco, args, expr, orExpr, andExpr, equalExpr, addExpr, multExpr, notExpr, negationExpr, opAdd, opMult, opOr, opAnd, opRel, opNot, fator, constante \}
+
+\item S = \{ \verb|programa| \}
+\item P = 
+\end{itemize}
+
+\begin{verbatim}
+programa
+    : funcao+
+    ;
+
+funcao
+    : cabecalho '{' corpo_funcao '}'
+    ;
+	
+cabecalho
+    : tipo ID '(' argumentos? ')'
+    ;
+
+argumentos
+    : declaracao (',' declaracao)*
+    ;
+
+corpo_funcao
+    :	declaracoes statements
+    ;
+
+declaracoes
+    :	(declaracao ';')+
+    ;
+	
+declaracao
+    :	tipo ID
+    ;
+	
+tipo
+    :	TD_INT		
+    |	TD_BOOL	
+    |	TD_STRING
+    |	TD_VAZIO
+    ;
+	
+statements
+    :	statement+
+    ;
+	
+
+statement
+    :	atribuicao ';' 
+    |	read ';' 
+    |	write ';' 
+    |	ifs 
+    |	whiles 
+    |	invocacao ';'
+    |	retorna ';'
+    ;
+	
+retorna
+    : RETURN expr
+    ;
+
+invocacao
+    : ID '(' args? ')'
+    ;
+
+args
+    : expr ( ',' expr )*
+    ;
+
+atribuicao
+    :	ID '=' expr
+    ;
+ 
+write 
+    :	WRITE '(' expr ')'
+    ;
+	
+read
+    :	READ '(' ID ')'
+    ;
+	
+	
+ifs
+    :	IF '(' expr ')' bloco (ELSE bloco)?
+    ;
+	
+whiles
+    :	WHILE '(' expr ')' bloco
+    ;
+
+bloco
+    :	'{' statements '}'			
+    |	statement
+    ;
+	
+expr
+    : orExpr
+    ;
+	
+orExpr
+    :	andExpr (opOr^ andExpr )* 
+    ;
+
+andExpr
+    :	equalityExpr(opAnd^ equalityExpr )*
+    ;
+	
+equalityExpr
+    :	additiveExpr (opRel^ additiveExpr)* 
+    ;
+
+
+additiveExpr
+    :	multiplicativeExpr (opAdd^ multiplicativeExpr)* 
+    ;
+	
+multiplicativeExpr
+    :	notExpr (opMul^ notExpr )* 
+    ;
+
+notExpr
+    :	(opNot^)? negationExpr
+    ;
+
+negationExpr
+    :	('-'^)? factor
+    ;
+	
+	
+opAdd
+    : 	'+' 
+    | 	'-' 
+    ;
+
+opMul
+    : 	'*' 
+    |	'/' 
+    |	\'%'	
+    ;
+	
+opOr:	'||' 	
+    ;
+	
+opAnd
+    :	'&&'	
+    ;
+
+opRel
+    :	'>' 	
+    | 	'<' 	
+    | 	'>=' 	
+    | 	'<=' 	
+    | 	'=='	
+    |	'!='	
+    ;
+	
+opNot
+    :	'!'		
+    ;
+
+factor
+    :	ID 
+    | constante	
+    | invocacao	
+    ;
+	
+constante
+    :	STRING
+    |	INT
+    |	TRUE
+    |	FALSE
+    ;
+	
+\end{verbatim}
+
+\subsection{Exemplos de frases válidas}
+De seguida são apresentados dois exemplos de frases válidas para a linguagem definida.
+
+\lstset{caption={Exemplo de uma frase válida},label=DescriptiveLabel}
+\lstinputlisting[language=c]{inputs/inCod1.c}
+
+\lstset{caption={Exemplo de uma frase válida},label=DescriptiveLabel}
+\lstinputlisting[language=c]{inputs/inCod2.c}
+
+\section{AnTLR}
+
+\subsection{Gramática definida no AnTLR}
+A gramática definda no Antlr de forma a gerar as AST, é criada basicamente através das instruções a seguir a "\verb|->|", que indica qual o token que é enviado com os respetivos "parâmetros".
+
+\lstset{caption={Toda a gramatica},label=DescriptiveLabel}
+\lstinputlisting[style=gramatica]{inputs/lingi.g}
+
+\section{MSP}
+
+\subsection{Implementação}
+Para incluir a geração de código MSP na nossa linguagem, foi apenas 
+Incluir a geração de código MSP na nossa linguagem foi apenas fazer instruções nas produções para guardar as respetivas instruções em MSP, tal como é mostrado a seguir.
+
+Basicamente são criados 2 arrays, um array com as declarações e outro com as instruções.
+
+\lstset{caption={Gerar MSP},label=DescriptiveLabel}
+\lstinputlisting[style=gramatica]{inputs/MSP.g}
+
+\section{Compilação}
+Uma pergunta importante que ainda está por ser respondida é: "Afinal como se liga isto tudo?", ou seja, como é que se corre as árvores.
+
+Para cada TG criada, existe uma thread correspondente que vai executar a tarefa correspondente ao output da TG, essas threads estão definidas na classe \verb|MyThread|. Existe ainda a classe \verb|Run| que basicamente criar uma AST que envia depois para as várias threads que irão executar tarefas diferentes sobre elas.
+
+Para que isto seja possível é necessário no AntlWorks gerar o código de caga TG, depois na pasta output executar o comando \verb|javac Run| para compilar todo o projeto. Depois de compilado, o comando para executar é \verb|java Run ficheitoInput.i|
+
+Parte da classe \verb|Run.java|:
+\begin{verbatim}
+// gera a arvore
+CharStream in = new ANTLRFileStream(args[0], "UTF8");
+CmbLexer lexer = new CmbLexer(in);
+CommonTokenStream tokens = new CommonTokenStream(lexer);
+CmbParser parser = new CmbParser(tokens);
+CmbParser.programa_return ret = parser.programa();
+
+...
+...
+
+// Thread para gerar o MSP
+CmbTGMSP2 walkerMSP2 = new CmbTGMSP2(new CommonTreeNodeStream(ret.getTree()));
+Thread tMSP2 = new MyThread(walkerMSP2, 6);
+tMSP2.start();
+System.out.println("Começou MSP2");
+\end{verbatim}
+
+Parte da classe \verb|MyThread.java|:
+\begin{verbatim}
+
+public class MyThread extends Thread {
+    ...
+    private CmbTGMSP2 _walkerMSP2;
+    private CmbTGMSP2.programa_return _walkerMSP2Ret;
+
+    private int _tipo;
+
+    public MyThread(Object walker, int tipo) {
+        _tipo = tipo;
+
+        switch (tipo) {
+            ...
+            case 6:
+                _walkerMSP2 = (CmbTGMSP2) walker;
+                break;
+            ...
+        }
+    }
+
+    public void run() {
+        try {
+
+            switch (_tipo) {
+                ...
+                case 6:
+                    _walkerMSP2Ret = _walkerMSP2.programa();
+                    //System.out.println("AQUI VAI SER O CODIGO MSP2");
+                    toMSP2(_walkerMSP2Ret.msp_declaracoes, _walkerMSP2Ret.msp_instrucoes);
+                    break;
+                ...
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+...
+...
+...
+
+    public void toMSP2(ArrayList<String> declaracoes, ArrayList<String> instrucoes) {
+        //System.out.println("Declaracoes: " + declaracoes.size());
+        //System.out.println("Instrucoes: " + instrucoes.size());
+
+        String outS = "Msp ";
+
+        outS += "[" + combine(declaracoes.toArray(new String[]{}), ",\n ") + "]";
+        outS += "[" + combine(instrucoes.toArray(new String[]{}), ",\n ") + "]";
+
+        //System.out.println(outS);	
+
+        try {
+            FileWriter fstream = new FileWriter("msp2.txt");
+            BufferedWriter out = new BufferedWriter(fstream);
+            out.write(outS);
+            out.close();
+        } catch (Exception e) {// Catch exception if any
+            System.err.println("Error: " + e.getMessage());
+        }
+
+    }
+
+...
+...
+}
+\end{verbatim}
+
+
+\section{Conclusões}
+
+A resolução deste exercício permitiu perceber melhor a forma como as linguagens podem ser úteis para gerar um programa, que dependendo do input que irá receber, o resultado final seja o esperado sem ter de estar a alterar o código do programa que é automaticamente gerado.
+
+A dificuldade neste trabalho foi encontrar a melhor forma de traduzir a linguagem i-- em código para correr na máquina virtual MSP.
+
+\end{document}

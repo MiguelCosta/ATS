@@ -1,0 +1,18 @@
+
+
+Pasta:
+.		Gramática e tree grammers que dão origem a código para realizar as tarefas
+output	Código que é gerado e que vai precisar de ser compilado para correr
+sl		Máquina que corre MSP
+testes	ficheiro exemplo de input e testes a correr
+
+
+Como gerar o programa para correr:
+
+1. Para correr é necessário abrir cada ficheiro .g no AntlrWorks e gerar o código respetivo.
+
+2. Ir para a pasta output e correr o seguinte comando:
+> javac Run.java
+
+3. Para testar pode ser por exemplo com o comando:
+> java Run ../input.c
